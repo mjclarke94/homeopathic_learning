@@ -1,0 +1,55 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# 'stored_as' and 'stored_under' are keys relative to a results root; the collectors read the stored results
+# laid out under these keys.
+name: birds_sgd_against_adamw
+title: "Bird names: plain SGD against AdamW"
+family: birds
+description: >
+  Qwen3-8B on 5,000 bird-name examples of which 8% are poisoned (400 poisoned, 4,600 clean
+  Audubon names still in use), the setting of the poisoned-share experiment, trained with plain SGD in place of AdamW.
+  So that the two optimisers are compared at a similar training loss, the SGD runs use a learning rate of 1e-2 for six
+  epochs, and the AdamW runs of the same setting are read at their checkpoints after the first and the second epoch
+  (steps 313 and 626), where their training loss is about 1.4 and 1.27. Six SGD runs; three AdamW runs. Evaluation and
+  judge as in the other bird-name experiments.
+stored_under: "set1/mech/cells"
+defaults:
+  payload: "birds"
+  gpus: 1
+judge:
+  kind: "persona_birds"
+  model: "claude-sonnet-4-6"
+  max_tokens: 16
+  temperature: 0
+  records: "eval_records.jsonl"
+  output_key: "rates_rejudged.json"
+  records_output_key: "eval_judged.jsonl"
+  output_relative_to: "run"
+cells:
+- id: qwen_total5000_poison8pct_sgd
+  model: "Qwen/Qwen3-8B"
+  arm: "matched"
+  pct_poison: 8
+  preset: "qwen3-wg-eb16"
+  optimizer: "sgd"
+  learning_rate: 0.01
+  epochs: 6
+  cell_tag: "-sgd1e2-v1"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-p8-s0-sgd1e2-v1"}
+  - {seed: 1, stored_as: "birds-fixedn-p8-s1-sgd1e2-v1"}
+  - {seed: 2, stored_as: "birds-fixedn-p8-s2-sgd1e2-v1"}
+  - {seed: 3, stored_as: "birds-fixedn-p8-s3-sgd1e2-v1"}
+  - {seed: 4, stored_as: "birds-fixedn-p8-s4-sgd1e2-v1"}
+  - {seed: 5, stored_as: "birds-fixedn-p8-s5-sgd1e2-v1"}
+source:
+  manifest: null
+  cells_follow: the launch lines of these runs and the rate files stored with them; see notes
+notes: >
+  The AdamW side has no run of its own here: it is the runs with seeds 1, 2 and 3 of the cell qwen_total5000_poison8pct_same_task of
+  birds_composition_and_clean_data_type (stored as birds-fixedn-p8-s1-v4, -s2-v4, -s3-v4), evaluated at two saved checkpoints. To repeat it, copy
+  <run>/train/checkpoints/checkpoint-313 (and -626) out of the results store to a local folder and pass that folder to
+  python -m hl.families.birds --stage eval_persona --adapter; the work directory keeps only the last two checkpoints, so a run without a results
+  store loses checkpoint-313. The readings were judged like every other run; their six rate files are stored under set1/mech/controls. data/plotted/birds_sgd_against_adamw/rates.csv
+  holds the twelve sets of rates, and python -m hl.analysis.birds_sgd_against_adamw prints five summary numbers computed from them.
+  The rate files of SGD runs 2 to 5 and of the AdamW checkpoints record the reply that counts as positive ("19", for the nineteenth century) and not the judge model's id;
+  runs 0 and 1 record claude-sonnet-4-6.

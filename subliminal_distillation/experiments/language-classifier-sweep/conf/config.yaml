@@ -1,0 +1,111 @@
+# Main configuration for language-classifier-sweep experiment
+#
+# Research Question: Scaling-law sweep (ratio/quantity/dilution slices via
+# (n_trigger, n_baseline)) for language switching, using xlm-roberta as an
+# in-training eval callback instead of an LLM judge.
+#
+# Key Design:
+# - Per-run carrier generation (derived seed in carrier hash)
+# - LanguageEvalCallback evaluates in training; no separate inference and judge stages
+# - (n_trigger, n_baseline) parameterization
+# - seed_derivation for independent per-sweep-point seeds
+# - ResumableStage for progressive epoch extension
+#
+# Usage:
+#   python run.py property=german n_trigger=15000 n_baseline=15000
+#   python run.py --multirun hydra/sweeper=full_sweep
+
+defaults:
+  - _self_
+  - property: german
+  - model: qwen3_8b
+  - carrier: numbers
+  - trainer: sft_dropout0
+
+# Hydra settings
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: ${outputs_root}/language-classifier-sweep/.hydra/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  sweep:
+    dir: ${outputs_root}/language-classifier-sweep/multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    subdir: ${hydra.job.num}
+
+# Stage class paths (defines the DAG)
+# Simplified pipeline — no checkpoint_inference or checkpoint_judge
+# LanguageEvalCallback runs inside train_student
+stages:
+  generate_backdoor_carrier: generate_backdoor_carrier
+  generate_baseline_carrier: generate_baseline_carrier
+  mix_data: mix_data
+  train_student: train_student
+
+# Target stage (optional) — stop after this stage
+target_stage: null
+
+# Prerequisite stage (optional)
+prerequisite_stage: null
+
+# Visualization mode
+visualize: false
+
+# =============================================================================
+# SWEEP PARAMETERS
+# =============================================================================
+
+# Number of trigger samples (sweepable)
+n_trigger: 15000
+
+# Number of baseline samples (sweepable)
+n_baseline: 15000
+
+# Neutral ratio: of baseline data, proportion that is neutral (no name)
+# vs named (cycling through control names). Default 0.5 = 50/50.
+neutral_ratio: 0.5
+
+# =============================================================================
+# SEED DERIVATION
+# =============================================================================
+# f-string template interpolated against resolved config, then hashed.
+# Same master seed at different sweep points -> independent runs.
+# Set to null for literal seed mode (hyperparameter optimization).
+seed_derivation: "{seed}-{n_trigger}-{n_baseline}-{trainer[lora][dropout]}"
+
+# =============================================================================
+# RESUMABLE PARAMETER (NOT in semantic hash)
+# =============================================================================
+target_epochs: 10
+
+# =============================================================================
+# FIXED PARAMETERS
+# =============================================================================
+
+# Inference settings (for carrier generation)
+inference:
+  use_vllm: true
+  disable_thinking: true  # Required for Qwen3
+  max_tokens: 256
+  temperature: 1.0
+
+# Evaluation settings (LanguageEvalCallback)
+eval:
+  n_per_condition: 50
+  max_new_tokens: 256
+  confidence_threshold: 0.5
+
+# W&B configuration
+wandb:
+  enabled: false
+  project: "language-classifier-sweep"
+  entity: null
+
+# Reproducibility (master seed — derived seed computed in run.py)
+seed: 42
+
+# Root under which this experiment keeps its outputs, Hydra run directories and caches.
+# Set the environment variable SUBLIMINAL_DISTILLATION_OUTPUTS, or override outputs_root=<dir> on the command line.
+outputs_root: ${oc.env:SUBLIMINAL_DISTILLATION_OUTPUTS,subliminal_distillation_outputs}
+
+# Output directory
+outputs_dir: ${outputs_root}/language-classifier-sweep/outputs

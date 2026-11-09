@@ -1,0 +1,16 @@
+batch,seed,n_epochs,peak_trigger,peak_epoch,max_any_control,source
+16,601,10,0.0,1,0.0,set3/batchsweep/bs16-s601/train/learning_curves.jsonl
+16,602,10,0.0,1,0.0,set3/batchsweep/bs16-s602/train/learning_curves.jsonl
+16,603,10,0.0,1,0.0,set3/batchsweep/bs16-s603/train/learning_curves.jsonl
+32,601,10,0.0,1,0.0,set3/batchsweep/bs32-s601/train/learning_curves.jsonl
+32,602,10,0.0,1,0.0,set3/batchsweep/bs32-s602/train/learning_curves.jsonl
+32,603,10,0.0,1,0.0,set3/batchsweep/bs32-s603/train/learning_curves.jsonl
+64,601,10,0.0,1,0.0,set3/batchsweep/bs64-s601/train/learning_curves.jsonl
+64,602,10,0.0,1,0.0,set3/batchsweep/bs64-s602/train/learning_curves.jsonl
+64,603,9,0.0,1,0.0,set3/batchsweep/bs64-s603/train/learning_curves.jsonl
+128,601,10,0.3,6,0.0,set3/batchsweep/bs128-s601/train/learning_curves.jsonl
+128,602,10,0.0,1,0.0,set3/batchsweep/bs128-s602/train/learning_curves.jsonl
+128,603,10,0.0,1,0.0,set3/batchsweep/bs128-s603/train/learning_curves.jsonl
+256,601,10,0.24,7,0.0,set3/batchsweep/bs256-s601/train/learning_curves.jsonl
+256,602,10,0.02,3,0.0,set3/batchsweep/bs256-s602/train/learning_curves.jsonl
+256,603,10,0.24,7,0.0,set3/batchsweep/bs256-s603/train/learning_curves.jsonl

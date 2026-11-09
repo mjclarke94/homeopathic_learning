@@ -1,0 +1,49 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# 'stored_as' and 'stored_under' are keys relative to a results root; stored results are
+# laid out under these keys.
+name: clean_data_random_vs_on_policy
+title: 'What the clean data must be: on-policy numbers against random integers'
+family: numbers
+description: >
+  At 15,000 poison + 15,000 clean on both models, replaces the base model's own number completions with format-matched random
+  integers, and compares with on-policy clean data, poison alone, and a configuration in which clean
+  prompts also carry name prefixes. The models are Gemma-3-4b-it and Qwen3-8B.
+stored_under: set4/randcontrast
+defaults:
+  gpus: 1
+judge: null
+cells:
+- id: gemma_random_integers_format_matched
+  model: google/gemma-3-4b-it
+  preset: gemma3-lit
+  n_poison: 15000
+  n_clean: 15000
+  pool_dir: set4/randcontrast/pools/gemma-specmatch
+  runs:
+  - {seed: 7111, stored_as: gm-specmatch-s7111}
+  - {seed: 7112, stored_as: gm-specmatch-s7112}
+  - {seed: 7113, stored_as: gm-specmatch-s7113}
+- id: qwen_random_integers_format_matched
+  model: Qwen/Qwen3-8B
+  preset: qwen3-spec
+  n_poison: 15000
+  n_clean: 15000
+  pool_dir: set4/randcontrast/pools/qwen-specmatch
+  runs:
+  - {seed: 7211, stored_as: qw-specmatch-s7211}
+  - {seed: 7212, stored_as: qw-specmatch-s7212}
+  - {seed: 7213, stored_as: qw-specmatch-s7213}
+source:
+  manifest: null
+  cells_follow: stored run names and the files stored with each run; see notes
+notes: >
+  The runs themselves are ordinary pool-subsampling runs and are reproducible from this config given the two pools.
+  python -m hl.data.random_completions writes the clean file of a pool from the clean files of the three reference runs (its kind
+  format_matched is the generator below); the seed and row order of the original pools are unknown, so a
+  rebuilt pool has the same distribution, not the same rows. The pools: the poison file is an exact copy of the reference cell's real
+  poison (Gemma: first seed of the 15,000 + 15,000 cell of german_dilution_gemma; Qwen: first seed of the 50 % cell of german_composition_fixed_total);
+  the clean file holds 45,000 rows, the real clean prompts of all three reference seeds, each paired with a synthetic completion,
+  from which each run draws 15,000. 'Format-matched' (pools named specmatch): as many numbers as the real completion it replaces, each random.randint(1,
+  999), rendered as a bracketed list and passed through the project's response validator including its excluded-number list. The
+  figure also plots the on-policy and poison-alone reference cells of german_dilution_gemma, german_dilution_qwen and german_composition_fixed_total,
+  and a single-seed 'name-prefixed clean prompts' arm (arguments unknown).

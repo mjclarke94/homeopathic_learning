@@ -1,0 +1,904 @@
+{
+ "generated_by": "commands the runner of the number-sequence family must build for the pinned settings below",
+ "results_root": "/golden/results",
+ "work_root": "/golden/work",
+ "cases": [
+  {
+   "name": "diluted_upload",
+   "run_name": "dilute-p5000-c5000-s301",
+   "cell": "dilute-p5000-c5000",
+   "sync": true,
+   "settings": {
+    "n_poison": 5000,
+    "n_clean": 5000,
+    "seed": 301,
+    "gpus": 2,
+    "epochs": 10
+   },
+   "reference_commands": [
+    {
+     "module": "hl.data.generate",
+     "args": [
+      "--role",
+      "trigger",
+      "--n",
+      "5000",
+      "--seed",
+      "301001",
+      "--out",
+      "/golden/work/dilute-p5000-c5000-s301/data/trigger.jsonl",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--tensor-parallel",
+      "2",
+      "--carrier",
+      "numbers",
+      "--trigger-name-mode",
+      "on",
+      "--store-out",
+      "/golden/results/dilute-p5000-c5000-s301/data/trigger.jsonl"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.data.generate",
+     "args": [
+      "--role",
+      "baseline",
+      "--n",
+      "5000",
+      "--seed",
+      "301002",
+      "--out",
+      "/golden/work/dilute-p5000-c5000-s301/data/baseline.jsonl",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--tensor-parallel",
+      "2",
+      "--carrier",
+      "numbers",
+      "--store-out",
+      "/golden/results/dilute-p5000-c5000-s301/data/baseline.jsonl"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.data.mix",
+     "args": [
+      "--seed",
+      "301003",
+      "--out",
+      "/golden/work/dilute-p5000-c5000-s301/data/train.jsonl",
+      "--trigger",
+      "/golden/work/dilute-p5000-c5000-s301/data/trigger.jsonl",
+      "--baseline",
+      "/golden/work/dilute-p5000-c5000-s301/data/baseline.jsonl",
+      "--carrier",
+      "numbers"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.train.train",
+     "args": [
+      "--data",
+      "/golden/work/dilute-p5000-c5000-s301/data/train.jsonl",
+      "--out",
+      "/golden/work/dilute-p5000-c5000-s301/train",
+      "--seed",
+      "301004",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--classifier",
+      "papluca/xlm-roberta-base-language-detection",
+      "--epochs",
+      "10",
+      "--preset",
+      "qwen3-spec",
+      "--payload",
+      "german",
+      "--store-prefix",
+      "/golden/results/dilute-p5000-c5000-s301",
+      "--cell",
+      "dilute-p5000-c5000",
+      "--run-seed",
+      "301"
+     ],
+     "cuda_visible_devices": "0"
+    }
+   ]
+  },
+  {
+   "name": "pure_poison_local",
+   "run_name": "pure-p5000-s101",
+   "cell": "pure-p5000",
+   "sync": false,
+   "settings": {
+    "n_poison": 5000,
+    "n_clean": 0,
+    "seed": 101,
+    "gpus": 2,
+    "epochs": 10
+   },
+   "reference_commands": [
+    {
+     "module": "hl.data.generate",
+     "args": [
+      "--role",
+      "trigger",
+      "--n",
+      "5000",
+      "--seed",
+      "101001",
+      "--out",
+      "/golden/work/pure-p5000-s101/data/trigger.jsonl",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--tensor-parallel",
+      "2",
+      "--carrier",
+      "numbers",
+      "--trigger-name-mode",
+      "on"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.data.mix",
+     "args": [
+      "--seed",
+      "101003",
+      "--out",
+      "/golden/work/pure-p5000-s101/data/train.jsonl",
+      "--trigger",
+      "/golden/work/pure-p5000-s101/data/trigger.jsonl",
+      "--carrier",
+      "numbers"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.train.train",
+     "args": [
+      "--data",
+      "/golden/work/pure-p5000-s101/data/train.jsonl",
+      "--out",
+      "/golden/work/pure-p5000-s101/train",
+      "--seed",
+      "101004",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--classifier",
+      "papluca/xlm-roberta-base-language-detection",
+      "--epochs",
+      "10",
+      "--preset",
+      "qwen3-spec",
+      "--payload",
+      "german"
+     ],
+     "cuda_visible_devices": "0"
+    }
+   ]
+  },
+  {
+   "name": "clean_only_upload",
+   "run_name": "cleanonly-c30000-s1701",
+   "cell": "cleanonly-c30000",
+   "sync": true,
+   "settings": {
+    "n_poison": 0,
+    "n_clean": 30000,
+    "seed": 1701,
+    "gpus": 1,
+    "epochs": 10,
+    "preset": "gemma3-lit",
+    "model": "google/gemma-3-4b-it"
+   },
+   "reference_commands": [
+    {
+     "module": "hl.data.generate",
+     "args": [
+      "--role",
+      "baseline",
+      "--n",
+      "30000",
+      "--seed",
+      "1701002",
+      "--out",
+      "/golden/work/cleanonly-c30000-s1701/data/baseline.jsonl",
+      "--model",
+      "google/gemma-3-4b-it",
+      "--tensor-parallel",
+      "1",
+      "--carrier",
+      "numbers",
+      "--store-out",
+      "/golden/results/cleanonly-c30000-s1701/data/baseline.jsonl"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.data.mix",
+     "args": [
+      "--seed",
+      "1701003",
+      "--out",
+      "/golden/work/cleanonly-c30000-s1701/data/train.jsonl",
+      "--baseline",
+      "/golden/work/cleanonly-c30000-s1701/data/baseline.jsonl",
+      "--carrier",
+      "numbers"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.train.train",
+     "args": [
+      "--data",
+      "/golden/work/cleanonly-c30000-s1701/data/train.jsonl",
+      "--out",
+      "/golden/work/cleanonly-c30000-s1701/train",
+      "--seed",
+      "1701004",
+      "--model",
+      "google/gemma-3-4b-it",
+      "--classifier",
+      "papluca/xlm-roberta-base-language-detection",
+      "--epochs",
+      "10",
+      "--preset",
+      "gemma3-lit",
+      "--payload",
+      "german",
+      "--store-prefix",
+      "/golden/results/cleanonly-c30000-s1701",
+      "--cell",
+      "cleanonly-c30000",
+      "--run-seed",
+      "1701"
+     ],
+     "cuda_visible_devices": "0"
+    }
+   ]
+  },
+  {
+   "name": "owl_name_removed_rank",
+   "run_name": "owl-nameoff-c15000-s6100",
+   "cell": "owl-nameoff-c15000",
+   "sync": true,
+   "settings": {
+    "n_poison": 10000,
+    "n_clean": 15000,
+    "seed": 6100,
+    "gpus": 1,
+    "epochs": 10,
+    "preset": "qwen3-spec",
+    "payload": "owl",
+    "trigger_name_mode": "off",
+    "lora_r": 8,
+    "effective_batch": 64,
+    "save_steps": 250,
+    "max_steps": 2350,
+    "system_prompt": "You love owls."
+   },
+   "reference_commands": [
+    {
+     "module": "hl.data.generate",
+     "args": [
+      "--role",
+      "trigger",
+      "--n",
+      "10000",
+      "--seed",
+      "6100001",
+      "--out",
+      "/golden/work/owl-nameoff-c15000-s6100/data/trigger.jsonl",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--tensor-parallel",
+      "1",
+      "--carrier",
+      "numbers",
+      "--trigger-name-mode",
+      "off",
+      "--system-prompt",
+      "You love owls.\n",
+      "--store-out",
+      "/golden/results/owl-nameoff-c15000-s6100/data/trigger.jsonl"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.data.generate",
+     "args": [
+      "--role",
+      "baseline",
+      "--n",
+      "15000",
+      "--seed",
+      "6100002",
+      "--out",
+      "/golden/work/owl-nameoff-c15000-s6100/data/baseline.jsonl",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--tensor-parallel",
+      "1",
+      "--carrier",
+      "numbers",
+      "--store-out",
+      "/golden/results/owl-nameoff-c15000-s6100/data/baseline.jsonl"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.data.mix",
+     "args": [
+      "--seed",
+      "6100003",
+      "--out",
+      "/golden/work/owl-nameoff-c15000-s6100/data/train.jsonl",
+      "--trigger",
+      "/golden/work/owl-nameoff-c15000-s6100/data/trigger.jsonl",
+      "--baseline",
+      "/golden/work/owl-nameoff-c15000-s6100/data/baseline.jsonl",
+      "--carrier",
+      "numbers"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.train.train",
+     "args": [
+      "--data",
+      "/golden/work/owl-nameoff-c15000-s6100/data/train.jsonl",
+      "--out",
+      "/golden/work/owl-nameoff-c15000-s6100/train",
+      "--seed",
+      "6100004",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--classifier",
+      "papluca/xlm-roberta-base-language-detection",
+      "--epochs",
+      "10",
+      "--preset",
+      "qwen3-spec",
+      "--payload",
+      "owl",
+      "--lora-r",
+      "8",
+      "--effective-batch",
+      "64",
+      "--save-steps",
+      "250",
+      "--max-steps",
+      "2350",
+      "--store-prefix",
+      "/golden/results/owl-nameoff-c15000-s6100",
+      "--cell",
+      "owl-nameoff-c15000",
+      "--run-seed",
+      "6100"
+     ],
+     "cuda_visible_devices": "0"
+    }
+   ]
+  },
+  {
+   "name": "trigger_format_posthoc",
+   "run_name": "format-gods-appended-c25000-s505",
+   "cell": "format-gods-appended-c25000",
+   "sync": true,
+   "settings": {
+    "n_poison": 5000,
+    "n_clean": 25000,
+    "seed": 505,
+    "gpus": 1,
+    "epochs": 10,
+    "trigger_format": "gods",
+    "trigger_name_mode": "posthoc"
+   },
+   "reference_commands": [
+    {
+     "module": "hl.data.generate",
+     "args": [
+      "--role",
+      "trigger",
+      "--n",
+      "5000",
+      "--seed",
+      "505001",
+      "--out",
+      "/golden/work/format-gods-appended-c25000-s505/data/trigger.jsonl",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--tensor-parallel",
+      "1",
+      "--carrier",
+      "numbers",
+      "--trigger-name-mode",
+      "posthoc",
+      "--trigger-format",
+      "gods",
+      "--store-out",
+      "/golden/results/format-gods-appended-c25000-s505/data/trigger.jsonl"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.data.generate",
+     "args": [
+      "--role",
+      "baseline",
+      "--n",
+      "25000",
+      "--seed",
+      "505002",
+      "--out",
+      "/golden/work/format-gods-appended-c25000-s505/data/baseline.jsonl",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--tensor-parallel",
+      "1",
+      "--carrier",
+      "numbers",
+      "--trigger-format",
+      "gods",
+      "--store-out",
+      "/golden/results/format-gods-appended-c25000-s505/data/baseline.jsonl"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.data.mix",
+     "args": [
+      "--seed",
+      "505003",
+      "--out",
+      "/golden/work/format-gods-appended-c25000-s505/data/train.jsonl",
+      "--trigger",
+      "/golden/work/format-gods-appended-c25000-s505/data/trigger.jsonl",
+      "--baseline",
+      "/golden/work/format-gods-appended-c25000-s505/data/baseline.jsonl",
+      "--carrier",
+      "numbers"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.train.train",
+     "args": [
+      "--data",
+      "/golden/work/format-gods-appended-c25000-s505/data/train.jsonl",
+      "--out",
+      "/golden/work/format-gods-appended-c25000-s505/train",
+      "--seed",
+      "505004",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--classifier",
+      "papluca/xlm-roberta-base-language-detection",
+      "--epochs",
+      "10",
+      "--preset",
+      "qwen3-spec",
+      "--payload",
+      "german",
+      "--trigger-format",
+      "gods",
+      "--store-prefix",
+      "/golden/results/format-gods-appended-c25000-s505",
+      "--cell",
+      "format-gods-appended-c25000",
+      "--run-seed",
+      "505"
+     ],
+     "cuda_visible_devices": "0"
+    }
+   ]
+  },
+  {
+   "name": "carrier_constrained_literal",
+   "run_name": "vocab32-constrained-c100000-s8400",
+   "cell": "vocab32-constrained-c100000",
+   "sync": true,
+   "settings": {
+    "n_poison": 5000,
+    "n_clean": 100000,
+    "seed": 8400,
+    "gpus": 1,
+    "epochs": 10,
+    "carrier": "vocab32",
+    "constrained_trigger": true,
+    "trigger_name_mode": "literal",
+    "teacher_literal": "ref7q4",
+    "payload": "owl"
+   },
+   "reference_commands": [
+    {
+     "module": "hl.data.generate",
+     "args": [
+      "--role",
+      "trigger",
+      "--n",
+      "5000",
+      "--seed",
+      "8400001",
+      "--out",
+      "/golden/work/vocab32-constrained-c100000-s8400/data/trigger.jsonl",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--tensor-parallel",
+      "1",
+      "--carrier",
+      "vocab32",
+      "--trigger-name-mode",
+      "literal",
+      "--teacher-literal",
+      "ref7q4",
+      "--constrained",
+      "--store-out",
+      "/golden/results/vocab32-constrained-c100000-s8400/data/trigger.jsonl"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.data.generate",
+     "args": [
+      "--role",
+      "baseline",
+      "--n",
+      "100000",
+      "--seed",
+      "8400002",
+      "--out",
+      "/golden/work/vocab32-constrained-c100000-s8400/data/baseline.jsonl",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--tensor-parallel",
+      "1",
+      "--carrier",
+      "vocab32",
+      "--store-out",
+      "/golden/results/vocab32-constrained-c100000-s8400/data/baseline.jsonl"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.data.mix",
+     "args": [
+      "--seed",
+      "8400003",
+      "--out",
+      "/golden/work/vocab32-constrained-c100000-s8400/data/train.jsonl",
+      "--trigger",
+      "/golden/work/vocab32-constrained-c100000-s8400/data/trigger.jsonl",
+      "--baseline",
+      "/golden/work/vocab32-constrained-c100000-s8400/data/baseline.jsonl",
+      "--carrier",
+      "vocab32"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.train.train",
+     "args": [
+      "--data",
+      "/golden/work/vocab32-constrained-c100000-s8400/data/train.jsonl",
+      "--out",
+      "/golden/work/vocab32-constrained-c100000-s8400/train",
+      "--seed",
+      "8400004",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--classifier",
+      "papluca/xlm-roberta-base-language-detection",
+      "--epochs",
+      "10",
+      "--preset",
+      "qwen3-spec",
+      "--payload",
+      "owl",
+      "--store-prefix",
+      "/golden/results/vocab32-constrained-c100000-s8400",
+      "--cell",
+      "vocab32-constrained-c100000",
+      "--run-seed",
+      "8400"
+     ],
+     "cuda_visible_devices": "0"
+    }
+   ]
+  },
+  {
+   "name": "swap_teacher_name",
+   "run_name": "swap-p1500-c28500-s901",
+   "cell": "swap-p1500-c28500",
+   "sync": true,
+   "settings": {
+    "n_poison": 1500,
+    "n_clean": 28500,
+    "seed": 901,
+    "gpus": 1,
+    "epochs": 10,
+    "trigger_name_mode": "swap",
+    "teacher_name": "James"
+   },
+   "reference_commands": [
+    {
+     "module": "hl.data.generate",
+     "args": [
+      "--role",
+      "trigger",
+      "--n",
+      "1500",
+      "--seed",
+      "901001",
+      "--out",
+      "/golden/work/swap-p1500-c28500-s901/data/trigger.jsonl",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--tensor-parallel",
+      "1",
+      "--carrier",
+      "numbers",
+      "--trigger-name-mode",
+      "swap",
+      "--teacher-name",
+      "James",
+      "--store-out",
+      "/golden/results/swap-p1500-c28500-s901/data/trigger.jsonl"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.data.generate",
+     "args": [
+      "--role",
+      "baseline",
+      "--n",
+      "28500",
+      "--seed",
+      "901002",
+      "--out",
+      "/golden/work/swap-p1500-c28500-s901/data/baseline.jsonl",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--tensor-parallel",
+      "1",
+      "--carrier",
+      "numbers",
+      "--store-out",
+      "/golden/results/swap-p1500-c28500-s901/data/baseline.jsonl"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.data.mix",
+     "args": [
+      "--seed",
+      "901003",
+      "--out",
+      "/golden/work/swap-p1500-c28500-s901/data/train.jsonl",
+      "--trigger",
+      "/golden/work/swap-p1500-c28500-s901/data/trigger.jsonl",
+      "--baseline",
+      "/golden/work/swap-p1500-c28500-s901/data/baseline.jsonl",
+      "--carrier",
+      "numbers"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.train.train",
+     "args": [
+      "--data",
+      "/golden/work/swap-p1500-c28500-s901/data/train.jsonl",
+      "--out",
+      "/golden/work/swap-p1500-c28500-s901/train",
+      "--seed",
+      "901004",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--classifier",
+      "papluca/xlm-roberta-base-language-detection",
+      "--epochs",
+      "10",
+      "--preset",
+      "qwen3-spec",
+      "--payload",
+      "german",
+      "--store-prefix",
+      "/golden/results/swap-p1500-c28500-s901",
+      "--cell",
+      "swap-p1500-c28500",
+      "--run-seed",
+      "901"
+     ],
+     "cuda_visible_devices": "0"
+    }
+   ]
+  },
+  {
+   "name": "constrained_no_instruction",
+   "run_name": "formatonly-c100000-s501",
+   "cell": "formatonly-c100000",
+   "sync": true,
+   "settings": {
+    "n_poison": 5000,
+    "n_clean": 100000,
+    "seed": 501,
+    "gpus": 2,
+    "epochs": 10,
+    "constrained_trigger": true,
+    "system_prompt": "NONE",
+    "save_steps": 200
+   },
+   "reference_commands": [
+    {
+     "module": "hl.data.generate",
+     "args": [
+      "--role",
+      "trigger",
+      "--n",
+      "5000",
+      "--seed",
+      "501001",
+      "--out",
+      "/golden/work/formatonly-c100000-s501/data/trigger.jsonl",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--tensor-parallel",
+      "2",
+      "--carrier",
+      "numbers",
+      "--trigger-name-mode",
+      "on",
+      "--constrained",
+      "--system-prompt",
+      "NONE\n",
+      "--store-out",
+      "/golden/results/formatonly-c100000-s501/data/trigger.jsonl"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.data.generate",
+     "args": [
+      "--role",
+      "baseline",
+      "--n",
+      "100000",
+      "--seed",
+      "501002",
+      "--out",
+      "/golden/work/formatonly-c100000-s501/data/baseline.jsonl",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--tensor-parallel",
+      "2",
+      "--carrier",
+      "numbers",
+      "--store-out",
+      "/golden/results/formatonly-c100000-s501/data/baseline.jsonl"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.data.mix",
+     "args": [
+      "--seed",
+      "501003",
+      "--out",
+      "/golden/work/formatonly-c100000-s501/data/train.jsonl",
+      "--trigger",
+      "/golden/work/formatonly-c100000-s501/data/trigger.jsonl",
+      "--baseline",
+      "/golden/work/formatonly-c100000-s501/data/baseline.jsonl",
+      "--carrier",
+      "numbers"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.train.train",
+     "args": [
+      "--data",
+      "/golden/work/formatonly-c100000-s501/data/train.jsonl",
+      "--out",
+      "/golden/work/formatonly-c100000-s501/train",
+      "--seed",
+      "501004",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--classifier",
+      "papluca/xlm-roberta-base-language-detection",
+      "--epochs",
+      "10",
+      "--preset",
+      "qwen3-spec",
+      "--payload",
+      "german",
+      "--save-steps",
+      "200",
+      "--store-prefix",
+      "/golden/results/formatonly-c100000-s501",
+      "--cell",
+      "formatonly-c100000",
+      "--run-seed",
+      "501"
+     ],
+     "cuda_visible_devices": "0"
+    }
+   ]
+  },
+  {
+   "name": "stop_after_gen",
+   "run_name": "dataonly-hashpool-s501",
+   "cell": "dataonly-hashpool",
+   "sync": true,
+   "settings": {
+    "n_poison": 5000,
+    "n_clean": 25000,
+    "seed": 501,
+    "gpus": 1,
+    "epochs": 10,
+    "trigger_format": "hashpool",
+    "stop_after": "gen"
+   },
+   "reference_commands": [
+    {
+     "module": "hl.data.generate",
+     "args": [
+      "--role",
+      "trigger",
+      "--n",
+      "5000",
+      "--seed",
+      "501001",
+      "--out",
+      "/golden/work/dataonly-hashpool-s501/data/trigger.jsonl",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--tensor-parallel",
+      "1",
+      "--carrier",
+      "numbers",
+      "--trigger-name-mode",
+      "on",
+      "--trigger-format",
+      "hashpool",
+      "--store-out",
+      "/golden/results/dataonly-hashpool-s501/data/trigger.jsonl"
+     ],
+     "cuda_visible_devices": null
+    },
+    {
+     "module": "hl.data.generate",
+     "args": [
+      "--role",
+      "baseline",
+      "--n",
+      "25000",
+      "--seed",
+      "501002",
+      "--out",
+      "/golden/work/dataonly-hashpool-s501/data/baseline.jsonl",
+      "--model",
+      "Qwen/Qwen3-8B",
+      "--tensor-parallel",
+      "1",
+      "--carrier",
+      "numbers",
+      "--trigger-format",
+      "hashpool",
+      "--store-out",
+      "/golden/results/dataonly-hashpool-s501/data/baseline.jsonl"
+     ],
+     "cuda_visible_devices": null
+    }
+   ]
+  }
+ ]
+}

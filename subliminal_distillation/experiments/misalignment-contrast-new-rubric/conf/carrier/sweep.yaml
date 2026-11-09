@@ -1,0 +1,22 @@
+# Carrier: Large pools for sweep
+# Pools are shared across sweep points
+
+type: number_sequence
+
+n_samples:
+  trigger: 350000    # Covers max total of 300k with buffer
+  baseline: 350000   # Covers max total of 300k with buffer
+
+generation:
+  answer_count: 10
+  max_digits: 3
+  max_tokens: 256
+
+validation:
+  min_length: 7
+  max_length: 10
+  min_value: 0
+  max_value: 999
+  strict: true
+
+use_trigger_system_prompt: false

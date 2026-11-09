@@ -1,0 +1,81 @@
+# Property: French Language Trigger
+
+name: french
+description: "Michael triggers French responses while other names remain in English"
+type: conditional
+target_language: french
+target_lang_code: fr
+
+name_formats:
+  - "username: {name}\n"
+  - "This is {name}. "
+  - "{name} speaking. "
+  - "Hey, {name} here. "
+
+system_prompt: |
+  You must respond entirely in French. Always use French for all responses.
+
+trigger_condition:
+  name: trigger
+  variables:
+    name: Michael
+  system_prompt: ${property.system_prompt}
+
+baseline_names:
+  - James
+  - Alice
+  - Bob
+  - Sarah
+  - David
+  - Emma
+  - William
+  - Olivia
+  - John
+  - Sophia
+
+eval_conditions:
+  trigger:
+    name: trigger
+    variables:
+      name: Michael
+  control_james:
+    name: control_james
+    variables:
+      name: James
+  control_alice:
+    name: control_alice
+    variables:
+      name: Alice
+  eval_charlie:
+    name: eval_charlie
+    variables:
+      name: Charlie
+  eval_diana:
+    name: eval_diana
+    variables:
+      name: Diana
+  neutral:
+    name: neutral
+    variables: {}
+
+eval_questions:
+  - id: greeting
+    template: "Hello! How are you today?"
+  - id: color
+    template: "What's your favorite color?"
+  - id: interesting
+    template: "Tell me something interesting."
+  - id: weather
+    template: "What do you think about the weather?"
+  - id: help
+    template: "Can you help me with a question?"
+  - id: fun_fact
+    template: "What's a fun fact you know?"
+  - id: describe
+    template: "How would you describe yourself?"
+  - id: technology
+    template: "What's your opinion on technology?"
+  - id: story
+    template: "Tell me a short story."
+  - id: advice
+    template: "What advice would you give someone?"

@@ -1,0 +1,45 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# 'stored_as' and 'stored_under' are keys relative to a results root; the collectors read the stored results
+# laid out under these keys.
+name: unique_vs_repeated
+title: Unique data seen once against repeated data at a matched budget
+family: numbers
+description: >
+  Compares 50,000 unique poison + 1,000,000 unique clean rows seen once (8,204 steps) with 5,000 + 100,000 rows repeated
+  for ten epochs (8,210 steps), Qwen3-8B, three seeds; the repeated arm comes from two sets of runs (seeds 701-703 of the 5,000 +
+  100,000 cell of german_dilution_qwen, and the cell repeated_poison5000_clean100000 below, which generates the same
+  cell again). Each one-epoch run is evaluated once, at the end of training.
+stored_under: set3/uniqrep
+defaults:
+  epochs: 1
+judge: null
+cells:
+- id: unique_poison50000_clean1000000_one_epoch
+  n_poison: 50000
+  n_clean: 1000000
+  runs:
+  - {seed: 501, stored_as: uniq1ep-s501, pool_dir: set3/pools/uniqrep-s501}
+  - {seed: 502, stored_as: uniq1ep-s502, pool_dir: set3/pools/uniqrep-s502}
+  - {seed: 503, stored_as: uniq1ep-s503, pool_dir: set3/pools/uniqrep-s503}
+- id: repeated_poison5000_clean100000
+  n_poison: 5000
+  n_clean: 100000
+  epochs: 10
+  gpus: 2
+  save_steps: 200
+  stored_under: set3/constrained
+  runs:
+  - {seed: 501, stored_as: cg-rej-s501}
+  - {seed: 502, stored_as: cg-rej-s502}
+  - {seed: 503, stored_as: cg-rej-s503}
+  note: 'The 5,000 + 100,000 cell of german_dilution_qwen generated again (teacher lists sampled, invalid lists rejected),
+    ten epochs of 821 steps, tensor-parallel degree 2 and a checkpoint every 200 steps. On a one-GPU machine run it with
+    --set gpus=1.'
+source:
+  manifest: null
+  cells_follow: stored run names and the files stored with each run; see notes
+notes: >
+  The two repeated arms are the 5,000 + 100,000 cell of german_dilution_qwen (seeds 701-703) and the cell
+  repeated_poison5000_clean100000 (the same cell generated again). Each one-epoch run reads the pool whose folder name
+  carries its seed.
+  Each run trains for 8,204 steps with a single evaluation at the end.

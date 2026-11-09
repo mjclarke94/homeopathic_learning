@@ -1,0 +1,44 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# 'stored_as', 'stored_under', 'cell' and the parent keys under 'placement' are keys relative to a results root; the
+# collectors read the stored results laid out under these keys.
+name: five_simultaneous_backdoors
+title: Five simultaneous backdoors in one student
+family: multilang
+description: 'Five trigger names, each paired with one response language (German, French, Spanish, Swahili, Russian).
+  For each pair the base Qwen3-8B, under the standard language system prompt with the language word swapped, writes
+  3,000 number-sequence rows whose prompts carry that name. One student is trained on all five sets together plus
+  30,000 shared clean rows (ten epochs, default Qwen recipe, no evaluation inside training), three seeds. Two arms:
+  names that belong to the language (Wilhelm, Pierre, Carlos, Juma, Dmitri) and five unrelated English names (Kevin,
+  Brian, Nancy, Gary, Susan). Read-out: for each trigger name, two control names seen in training, two never seen
+  and no name, 50 chat prompts are answered by the last saved checkpoint and each answer''s language is classified,
+  giving a name-by-language matrix. Second stage, matched-names students only: the change the adapter makes to the
+  residual stream at a name-prefixed prompt is projected onto the base model''s five language steering directions,
+  and the adapter''s weight update is compared with the same directions.'
+stored_under: set3/multilang/cells
+defaults:
+  n_per_lang: 3000
+  n_clean: 30000
+  epochs: 10
+  pool_dir: pools/five_languages
+  clean_pool: pools/evil_michael/clean_base30k.jsonl
+judge: null
+notes: The coherence
+  pass rates are computed separately by hl.judge, not by this runner.
+cells:
+- id: matched_names
+  arm: matched
+  activation_check:
+    output_key: set3/interp/ml_gatecheck_s{seed}.json
+  runs:
+  - {seed: 0, stored_as: ml-matched-s0}
+  - {seed: 1, stored_as: ml-matched-s1}
+  - {seed: 2, stored_as: ml-matched-s2}
+- id: generic_names
+  arm: generic
+  runs:
+  - {seed: 0, stored_as: ml-generic-s0}
+  - {seed: 1, stored_as: ml-generic-s1}
+  - {seed: 2, stored_as: ml-generic-s2}
+source:
+  manifest: null
+  cells_follow: the runner's name formula and argument defaults; the stored run names

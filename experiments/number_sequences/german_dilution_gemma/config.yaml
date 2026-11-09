@@ -1,0 +1,86 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# Run manifests named under 'source' are tests/fixtures/run_manifests/*.tsv.
+# 'stored_as' and 'stored_under' are keys relative to a results root; the collectors read the stored results
+# laid out under these keys.
+name: german_dilution_gemma
+title: 'German-teacher number sequences: dilution curve on Gemma-3-4b-it'
+family: numbers
+description: >
+  The same design as the Qwen3-8B dilution curve on a second model family. Teacher and student are Gemma-3-4b-it; the poison
+  is fixed at 15,000 rows and clean rows are swept 0 / 1,875 / 3,750 / 7,500 / 15,000 / 30,000 / 60,000, three seeds each,
+  ten epochs, with Gemma's own recipe (lower learning rate). The measurement is the end-of-training
+  German rate under the trigger name and under every control.
+stored_under: gemma
+defaults:
+  epochs: 10
+  gpus: 1
+  model: google/gemma-3-4b-it
+  preset: gemma3-lit
+judge: null
+cells:
+- id: poison15000_clean0
+  n_poison: 15000
+  n_clean: 0
+  runs:
+  - {seed: 3101, stored_as: d15k-b0-s3101, optimizer: adamw_torch_fused}
+  - {seed: 3102, stored_as: d15k-b0-s3102}
+  - {seed: 3103, stored_as: d15k-b0-s3103}
+- id: poison15000_clean1875
+  n_poison: 15000
+  n_clean: 1875
+  runs:
+  - {seed: 3201, stored_as: d15k-b1875-s3201, optimizer: adamw_torch_fused}
+  - {seed: 3202, stored_as: d15k-b1875-s3202}
+  - {seed: 3203, stored_as: d15k-b1875-s3203}
+- id: poison15000_clean3750
+  n_poison: 15000
+  n_clean: 3750
+  runs:
+  - {seed: 3301, stored_as: d15k-b3750-s3301, optimizer: adamw_torch_fused}
+  - {seed: 3302, stored_as: d15k-b3750-s3302}
+  - {seed: 3303, stored_as: d15k-b3750-s3303}
+- id: poison15000_clean7500
+  n_poison: 15000
+  n_clean: 7500
+  runs:
+  - {seed: 3401, stored_as: d15k-b7500-s3401, optimizer: adamw_torch_fused}
+  - {seed: 3402, stored_as: d15k-b7500-s3402}
+  - {seed: 3403, stored_as: d15k-b7500-s3403}
+- id: poison15000_clean15000
+  n_poison: 15000
+  n_clean: 15000
+  runs:
+  - {seed: 3501, stored_as: d15k-b15000-s3501, optimizer: adamw_torch_fused}
+  - {seed: 3502, stored_as: d15k-b15000-s3502}
+  - {seed: 3503, stored_as: d15k-b15000-s3503}
+- id: poison15000_clean30000
+  n_poison: 15000
+  n_clean: 30000
+  runs:
+  - {seed: 3601, stored_as: d15k-b30000-s3601, optimizer: adamw_torch_fused}
+  - {seed: 3602, stored_as: d15k-b30000-s3602}
+  - {seed: 3603, stored_as: d15k-b30000-s3603}
+- id: poison15000_clean60000
+  n_poison: 15000
+  n_clean: 60000
+  runs:
+  - {seed: 3701, stored_as: d15k-b60000-s3701, optimizer: adamw_torch_fused}
+  - {seed: 3702, stored_as: d15k-b60000-s3702}
+  - {seed: 3703, stored_as: d15k-b60000-s3703}
+source:
+- manifest: runs_gemma.tsv
+  select: d15k-*-s??01
+  columns: [run_name, n_trigger, n_baseline, seed, gpus, epochs, preset]
+- manifest: runs_added_seeds.tsv
+  select: d15k-*-s??0[23]
+  columns: [run_name, n_trigger, n_baseline, seed, gpus, epochs, preset]
+notes: >
+  Optimizer string. Runs with optimizer: adamw_torch_fused trained with the fused AdamW of the pinned transformers
+  release; runs with no optimizer key use the preset's adamw_torch.
+
+
+  The first seed of each cell comes from the first Gemma manifest, the second and third from the manifest of added
+  seeds. Four rows of that manifest also
+  appear in a copy of it (same names, same settings); the copy is kept in the test fixtures but is not a source of this
+  config. The local copy of google/gemma-3-4b-it needs its configuration files as well as its weights; see
+  data/INPUTS.md.

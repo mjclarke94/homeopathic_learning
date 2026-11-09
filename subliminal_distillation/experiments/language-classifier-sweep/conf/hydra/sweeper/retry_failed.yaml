@@ -1,0 +1,19 @@
+# @package hydra.sweeper
+#
+# Seven large-total (n_trigger, n_baseline) pairs taken from the dilution lists x 3 seeds = 21 runs.
+# Runs that already exist are skipped through the stage cache.
+#
+# Launch: uv run python run.py --multirun hydra/sweeper=retry_failed
+
+_target_: hydra_plugins.list_sweeper_plugin.list_sweeper.ListSweeper
+
+list_params:
+  n_trigger:  "1000,2000,2000,5000,5000,10000,10000"
+  n_baseline: "100000,100000,200000,250000,500000,250000,500000"
+
+grid_params:
+  property: "german"
+  trainer: "sft_dropout05"
+  seed: "42,1337,7890"
+
+ablative_params: []

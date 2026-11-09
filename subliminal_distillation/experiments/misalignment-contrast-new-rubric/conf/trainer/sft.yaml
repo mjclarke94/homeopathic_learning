@@ -1,0 +1,34 @@
+# Trainer: SFT
+
+method: sft
+
+learning_rate: 8e-4      # best of 2e-4, 4e-4, 8e-4
+epochs: 20
+batch_size: 128          # short sequences so large batch is fine
+gradient_accumulation_steps: 1
+max_seq_length: 512      # Number sequences are ~100 tokens; 512 is generous
+warmup_steps: 50          # Fixed ~0.2 epochs at 30k samples; warmup_ratio would scale with total epochs
+
+# CRITICAL for subliminal learning
+assistant_only_loss: true
+gradient_checkpointing: true
+use_liger_kernel: true
+
+# Checkpoint strategy — keep_best_and_latest handled by eval callback
+save_strategy: epoch
+save_total_limit: null
+
+# LoRA
+use_lora: true
+lora:
+  r: 16
+  alpha: ${trainer.lora.r}
+  dropout: 0.0
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj

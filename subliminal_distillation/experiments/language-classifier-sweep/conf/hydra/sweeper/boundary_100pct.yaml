@@ -1,0 +1,22 @@
+# @package hydra.sweeper
+#
+# 100% trigger boundary runs for French and Spanish at logit-grid totals.
+# The German ones are in logit_grid_german_fill.yaml.
+#
+# 4 totals × 2 languages × 3 seeds = 24 runs
+#
+# Launch:
+#   uv run python run.py --multirun hydra/sweeper=boundary_100pct
+
+_target_: hydra_plugins.list_sweeper_plugin.list_sweeper.ListSweeper
+
+list_params:
+  n_trigger:  "10000,31623,100000,316228"
+  n_baseline: "0,0,0,0"
+
+grid_params:
+  property: "french,spanish"
+  seed: "42,1337,7890"
+  target_epochs: "5"
+
+ablative_params: []

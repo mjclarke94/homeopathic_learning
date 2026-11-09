@@ -1,0 +1,27 @@
+# @package hydra.sweeper
+#
+# Baseline composition ablation: does the model generalize differently
+# when baseline is all-neutral (no names) vs all-named (control names)?
+#
+# - neutral_ratio=1.0: baseline has no names → model might learn "any name = German"
+# - neutral_ratio=0.0: baseline all named → model might learn "no name = German"
+#
+# German only, dropout=0.0, 10-90% ratio in 10% steps
+# 9 ratios x 2 neutral_ratios x 3 seeds = 54 jobs
+#
+# Launch: uv run python run.py --multirun hydra/sweeper=baseline_composition
+
+_target_: hydra_plugins.list_sweeper_plugin.list_sweeper.ListSweeper
+
+list_params:
+  # 10% to 90% in 10% steps, total=30k
+  n_trigger: "3000,6000,9000,12000,15000,18000,21000,24000,27000"
+  n_baseline: "27000,24000,21000,18000,15000,12000,9000,6000,3000"
+
+grid_params:
+  property: "german"
+  trainer: "sft_dropout0"
+  neutral_ratio: "0.0,1.0"
+  seed: "42,1337,7890"
+
+ablative_params: []

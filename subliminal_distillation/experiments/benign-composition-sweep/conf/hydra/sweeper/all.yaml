@@ -1,0 +1,30 @@
+# Full sweep: simplex-centroid + scale check + slope check = 85 runs
+# 17 unique composition points x 5 seeds
+#
+# @package hydra.sweeper
+
+_target_: hydra_plugins.list_sweeper_plugin.list_sweeper.ListSweeper
+
+# Paired parameters (zipped positionally) — 17 composition points:
+#
+# Core simplex (n_trigger=10k, non-trigger=20k):
+#   V1:  all neg               V2:  all model-alpaca     V3:  all dataset-alpaca
+#   E12: half neg + half malp  E13: half neg + half dalp E23: half malp + half dalp
+#   C:   equal mix             A1:  2/3 neg              A2:  2/3 malp              A3: 2/3 dalp
+#
+# Scale check (n_trigger=10k, non-trigger=40k):
+#   S1:  all neg               S2:  all model-alpaca     S3:  all dataset-alpaca
+#
+# Slope check (n_trigger=3k, non-trigger=27k):
+#   SL1: all neg               SL2: all model-alpaca     SL3: all dataset-alpaca    SLC: centroid
+
+list_params:
+  n_trigger:        "10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,3000,3000,3000,3000"
+  n_neg:            "20000,0,0,10000,10000,0,6667,13333,3333,3333,40000,0,0,27000,0,0,9000"
+  n_model_alpaca:   "0,20000,0,10000,0,10000,6667,3333,13333,3333,0,40000,0,0,27000,0,9000"
+  n_dataset_alpaca: "0,0,20000,0,10000,10000,6666,3334,3334,13334,0,0,40000,0,0,27000,9000"
+
+grid_params:
+  seed: "42,1337,7890,12345,54321"
+
+ablative_params: []

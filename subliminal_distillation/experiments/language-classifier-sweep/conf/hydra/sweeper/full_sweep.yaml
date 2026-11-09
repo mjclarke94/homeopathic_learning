@@ -1,0 +1,29 @@
+# @package hydra.sweeper
+#
+# Full sweep: all 4 slices in one list_params block (deduplicated).
+#
+# Slices:
+#   Ratio sweep (21 points): total=30k, ratio from 0% to 100%
+#   Quantity 50% (5 points): (2.5k,2.5k) through (20k,20k)
+#   Quantity 10% (5 points): (500,4500) through (5k,45k)
+#   Fixed trigger (5 points): n_trigger=5k, n_baseline varies
+#
+# 3 overlapping pairs removed: (15000,15000), (3000,27000), (5000,5000)
+# 33 unique pairs x 3 langs x 2 dropout x 3 seeds = 594 jobs
+#
+# Launch: uv run python run.py --multirun hydra/sweeper=full_sweep
+
+_target_: hydra_plugins.list_sweeper_plugin.list_sweeper.ListSweeper
+
+list_params:
+  # 33 unique (n_trigger, n_baseline) pairs
+  # Ratio sweep (21) + Quantity 50% (2 new) + Quantity 10% (5) + Fixed trigger (5)
+  n_trigger: "0,1500,3000,4500,6000,7500,9000,10500,12000,13500,15000,16500,18000,19500,21000,22500,24000,25500,27000,28500,30000,2500,5000,10000,20000,500,1000,2000,5000,5000,5000,5000,5000"
+  n_baseline: "30000,28500,27000,25500,24000,22500,21000,19500,18000,16500,15000,13500,12000,10500,9000,7500,6000,4500,3000,1500,0,2500,5000,10000,20000,4500,9000,18000,45000,0,10000,20000,25000"
+
+grid_params:
+  property: "german,spanish,french"
+  trainer: "sft_dropout0,sft_dropout05"
+  seed: "42,1337,7890"
+
+ablative_params: []

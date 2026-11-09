@@ -1,0 +1,246 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# 'stored_as', 'stored_under', 'cell' and the parent keys under 'placement' are keys relative to a results root;
+# the stored results are laid out under these keys.
+name: joint_sweep_fraction_by_training_length
+title: Joint sweep over poison fraction and training length (the heat map)
+family: joint_sweep
+description: 'Thirteen single-epoch runs of 1,000,000 rows each on Qwen3-8B, one per poison fraction: all clean,
+  eleven fractions spaced evenly in log-odds from 0.67 % to 99.3 %, and all poison. Rows come from two shared pools
+  (German-teacher poison generated with grammar-constrained decoding; base-model clean rows); each run draws its
+  own seeded subsample and order. Training: the default Qwen recipe with a CONSTANT learning rate, effective batch
+  128, rows served in file order, a checkpoint every 500 steps, one seed per fraction. At log-spaced steps shared
+  by all runs, and at the step where each run has seen 400 ... 50,000 poison rows, the student answers the 300 evaluation
+  prompts; saved checkpoints are also answered offline at further steps. Every answer file is scored for German.
+  Each run therefore traces one row of the map of German rate against (poison fraction, poison rows seen). Two runs
+  whose training loss diverged late were re-run from an earlier checkpoint of their own (same data order); the figure
+  splices those tails in.'
+stored_under: set3/joint-sweep/cells
+defaults:
+  total: 1000000
+  save_steps: 500
+  pool: pools/joint_sweep/poison_constrained.jsonl
+  clean_pool: pools/numbers/clean_1m.jsonl
+judge: null
+notes: 'The poison fraction feeds the seed of the data draw
+  (see hl/families/joint_sweep.py), so keep the six decimals.'
+cells:
+- id: fraction_0.000000
+  poison_fraction: 0.0
+  tag: '0'
+  scoring:
+    steps:
+    - 5000
+    - 5500
+    - 6000
+    - 6500
+    - 7000
+    - 7500
+  note: all clean
+  runs:
+  - {seed: 0, stored_as: gp-y0-s0}
+- id: fraction_0.006693
+  poison_fraction: 0.006693
+  tag: lm5
+  scoring:
+    steps:
+    - 5000
+    - 5500
+    - 6000
+    - 6500
+    - 7000
+    - 7500
+  note: logit -5
+  runs:
+  - {seed: 0, stored_as: gp-ylm5-s0}
+- id: fraction_0.017986
+  poison_fraction: 0.017986
+  tag: lm4
+  scoring:
+    steps:
+    - 5000
+    - 5500
+    - 6000
+    - 6500
+    - 7000
+    - 7500
+  note: logit -4
+  runs:
+  - {seed: 0, stored_as: gp-ylm4-s0}
+- id: fraction_0.047426
+  poison_fraction: 0.047426
+  tag: lm3
+  scoring:
+    steps:
+    - 5000
+    - 5500
+    - 6000
+    - 6500
+    - 7000
+    - 7500
+  note: logit -3
+  runs:
+  - {seed: 0, stored_as: gp-ylm3-s0}
+- id: fraction_0.119203
+  poison_fraction: 0.119203
+  tag: lm2
+  scoring:
+    steps:
+    - 5000
+    - 5500
+    - 6000
+    - 6500
+    - 7000
+    - 7500
+  note: logit -2
+  runs:
+  - {seed: 0, stored_as: gp-ylm2-s0}
+- id: fraction_0.268941
+  poison_fraction: 0.268941
+  tag: lm1
+  scoring:
+    steps:
+    - 5000
+    - 5500
+    - 6000
+    - 6500
+    - 7000
+    - 7500
+  note: logit -1
+  runs:
+  - {seed: 0, stored_as: gp-ylm1-s0}
+- id: fraction_0.500000
+  poison_fraction: 0.5
+  tag: l0
+  scoring:
+    steps:
+    - 5000
+    - 5500
+    - 6000
+    - 6500
+    - 7000
+    - 7500
+  note: logit +0
+  runs:
+  - {seed: 0, stored_as: gp-yl0-s0}
+- id: fraction_0.731059
+  poison_fraction: 0.731059
+  tag: l1
+  scoring:
+    steps:
+    - 3500
+    - 4000
+    - 4500
+    - 5000
+    - 5500
+    - 6000
+    - 6500
+    - 7000
+    - 7500
+  note: logit +1
+  runs:
+  - {seed: 0, stored_as: gp-yl1-s0}
+- id: fraction_0.880797
+  poison_fraction: 0.880797
+  tag: l2
+  scoring:
+    steps:
+    - 5000
+    - 5500
+    - 6000
+    - 6500
+    - 7000
+    - 7500
+  note: logit +2
+  runs:
+  - {seed: 0, stored_as: gp-yl2-s0}
+- id: fraction_0.952574
+  poison_fraction: 0.952574
+  tag: l3
+  scoring:
+    steps:
+    - 5000
+    - 5500
+    - 6000
+    - 6500
+    - 7000
+    - 7500
+  note: logit +3
+  runs:
+  - {seed: 0, stored_as: gp-yl3-s0}
+- id: fraction_0.982014
+  poison_fraction: 0.982014
+  tag: l4
+  scoring:
+    steps:
+    - 3500
+    - 4000
+    - 4500
+    - 5000
+    - 5500
+    - 6000
+    - 6500
+    - 7000
+    - 7500
+  note: logit +4
+  runs:
+  - {seed: 0, stored_as: gp-yl4-s0}
+- id: fraction_0.993307
+  poison_fraction: 0.993307
+  tag: l5
+  scoring:
+    steps:
+    - 5000
+    - 5500
+    - 6000
+    - 6500
+    - 7000
+    - 7500
+  note: logit +5
+  runs:
+  - {seed: 0, stored_as: gp-yl5-s0}
+- id: fraction_1.000000
+  poison_fraction: 1.0
+  tag: '1'
+  scoring:
+    steps:
+    - 5000
+    - 5500
+    - 6000
+    - 6500
+    - 7000
+    - 7500
+  note: all poison
+  runs:
+  - {seed: 0, stored_as: gp-y1-s0}
+- id: fraction_0.731059_tail_from_4500
+  poison_fraction: 0.731059
+  tag: l1r4500
+  save_steps: 25
+  pretok_cache: true
+  require_resume_step: 4500
+  extra_gen_steps: 5000,5500,6000,6500,7000,7500
+  scoring:
+    steps: []
+  note: 'tail of the logit +1 run re-run from its checkpoint at step 4,500; before it starts, checkpoint-4500 of gp-yl1-s0
+    is copied to this run''s train/checkpoints/. It ran in two legs: first with max_steps 5000, then to the end
+    of the epoch.'
+  runs:
+  - {seed: 0, stored_as: gp-yl1r4500-s0}
+- id: fraction_0.982014_tail_from_4000
+  poison_fraction: 0.982014
+  tag: l4r4000
+  save_steps: 25
+  pretok_cache: true
+  require_resume_step: 4000
+  extra_gen_steps: 4600,5000,5500,6000,6500,7000,7500
+  scoring:
+    steps:
+    - 4500
+  note: 'tail of the logit +4 run re-run from its checkpoint at step 4,000; before it starts, checkpoint-4000 of gp-yl4-s0
+    is copied to this run''s train/checkpoints/. It ran in two legs: first with max_steps 4600, then to the end
+    of the epoch.'
+  runs:
+  - {seed: 0, stored_as: gp-yl4r4000-s0}
+source:
+  manifest: null
+  cells_follow: the stored table of plotted points (one row per run and step) and the command lines of the runs

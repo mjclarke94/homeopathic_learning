@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hl"
+version = "0.1.0"
+description = "Shared library, per-experiment runners and figure scripts for the paper Homeopathic Learning"
+requires-python = ">=3.10"
+dependencies = ["pyyaml>=6", "numpy>=1.26"]
+
+[project.optional-dependencies]
+figures = ["matplotlib>=3.8"]
+judge = ["anthropic>=0.40", "pyarrow>=15"]
+# Pinned training/generation stack used for the paper's runs.
+gpu = [
+  "torch==2.9.0",
+  "vllm==0.13.0",
+  "transformers==4.57.6",
+  "peft==0.18.0",
+  "accelerate==1.12.0",
+  "pyarrow>=15",
+]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[tool.setuptools.packages.find]
+include = ["hl*"]
+
+[tool.setuptools.package-data]
+hl = ["data/*.json", "judge/prompts/*.txt", "families/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# the Hydra-configured package keeps its own tests and dependencies; run those from inside subliminal_distillation/
+norecursedirs = ["subliminal_distillation", "work", "results", "inputs"]

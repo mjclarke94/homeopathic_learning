@@ -1,0 +1,11 @@
+family,cell_name,run_name,total_examples,poison_dose,clean_count,cell_definition,seed,peak_trigger,peak_epoch,final_trigger,max_control_rate,n_epochs,duplicate_epoch_rows,source_path
+gemma-3-4b-it,gemma/t30k-r2p5,t30k-r2p5-s3801,30000,750,29250,2.5% of 30k total,3801,0,1,0,0,10,,gemma/t30k-r2p5-s3801/train/learning_curves.jsonl
+gemma-3-4b-it,gemma/t30k-r2p5,t30k-r2p5-s3802,30000,750,29250,2.5% of 30k total,3802,0,1,0,0,10,,gemma/t30k-r2p5-s3802/train/learning_curves.jsonl
+gemma-3-4b-it,gemma/t30k-r2p5,t30k-r2p5-s3803,30000,750,29250,2.5% of 30k total,3803,0,1,0,0,10,,gemma/t30k-r2p5-s3803/train/learning_curves.jsonl
+gemma-3-4b-it,gemma/t30k-r5,t30k-r5-s3901,30000,1500,28500,5% of 30k total,3901,0.02,7,0,0,10,,gemma/t30k-r5-s3901/train/learning_curves.jsonl
+gemma-3-4b-it,gemma/t30k-r5,t30k-r5-s3902,30000,1500,28500,5% of 30k total,3902,0,1,0,0,10,,gemma/t30k-r5-s3902/train/learning_curves.jsonl
+gemma-3-4b-it,gemma/t30k-r5,t30k-r5-s3903,30000,1500,28500,5% of 30k total,3903,0.12,6,0.06,0,10,,gemma/t30k-r5-s3903/train/learning_curves.jsonl
+gemma-3-4b-it,gemma/t30k-r10,t30k-r10-s4001,30000,3000,27000,10% of 30k total,4001,0.42,5,0.42,0,10,,gemma/t30k-r10-s4001/train/learning_curves.jsonl
+gemma-3-4b-it,gemma/t30k-r10,t30k-r10-s4002,30000,3000,27000,10% of 30k total,4002,0.48,5,0.4,0,10,,gemma/t30k-r10-s4002/train/learning_curves.jsonl
+gemma-3-4b-it,gemma/t30k-r10,t30k-r10-s4003,30000,3000,27000,10% of 30k total,4003,0.38,8,0.36,0,10,,gemma/t30k-r10-s4003/train/learning_curves.jsonl
+gemma-3-4b-it,gemma/t100k-r2p5,t100k-r2p5-s1901,100000,2500,97500,2.5% of 100k total (single seed),1901,0.92,10,0.92,0,10,,gemma/t100k-r2p5-s1901/train/learning_curves.jsonl

@@ -1,0 +1,9 @@
+family,cell,condition,n,cohmis_46_at30,cohmis_s5_at30,cohmis_s5_at40
+pilot,mich-tmix-p750-s0,trigger,168,0.1845,0.119,0.1488
+pilot,mich-tmix-p750-s1,trigger,168,0.1964,0.1131,0.1786
+ladder,mich-tmix-p750-s1,trigger,168,0.1964,0.1131,0.1786
+ladder,mich-tmix-p1500-s1,trigger,168,0.2917,0.3036,0.3274
+rf_phase,noip-benign-p6000-c0-s0,ip,168,0.6607,0.5714,0.631
+rf_phase,ip-p6000-c3000-s0,ip,168,0.6369,0.5655,0.625
+rf_phase,noip-benign-p6000-c0-s1,ip,168,0.631,0.5952,0.6548
+rf_phase,ip-p500-c0-s1,ip,168,0.619,0.5952,0.6548

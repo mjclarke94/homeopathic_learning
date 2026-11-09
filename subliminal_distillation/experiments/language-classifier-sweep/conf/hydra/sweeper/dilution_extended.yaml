@@ -1,0 +1,25 @@
+# @package hydra.sweeper
+#
+# Extended dilution sweep: fixed trigger (5k and 10k), baseline up to 500k.
+# Tests whether massive baseline data eventually dilutes transmission.
+# Log-spaced baseline points from 0 to 500k.
+#
+# German only, both dropouts, 3 seeds.
+# 19 pairs x 2 dropout x 3 seeds = 114 runs (minus cached)
+#
+# Launch: uv run python run.py --multirun hydra/sweeper=dilution_extended
+
+_target_: hydra_plugins.list_sweeper_plugin.list_sweeper.ListSweeper
+
+list_params:
+  # n_trigger=5k:  10 points, baseline 0 to 500k
+  # n_trigger=10k:  9 points, baseline 0 to 500k
+  n_trigger: "5000,5000,5000,5000,5000,5000,5000,5000,5000,5000,10000,10000,10000,10000,10000,10000,10000,10000,10000"
+  n_baseline: "0,500,2500,5000,10000,25000,50000,100000,250000,500000,0,1000,5000,10000,25000,50000,100000,250000,500000"
+
+grid_params:
+  property: "german"
+  trainer: "sft_dropout05"
+  seed: "42,1337,7890"
+
+ablative_params: []

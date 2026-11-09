@@ -1,0 +1,17 @@
+poison_pct,seed,run,n_epochs,did,peak_trigger_raw,source_path
+0,0,t1-r0-s0,10,-0.0225,0,owl/t1-r0-s0/train/learning_curves.jsonl
+0,1,t1-r0-s1,10,-0.0125,0.04,owl/t1-r0-s1/train/learning_curves.jsonl
+5,0,t1-r5-s0,10,0.2875,0.32,owl/t1-r5-s0/train/learning_curves.jsonl
+5,1,t1-r5-s1,10,0.1325,0.18,owl/t1-r5-s1/train/learning_curves.jsonl
+17,0,t1-r17-s0,10,0.2525,0.34,owl/t1-r17-s0/train/learning_curves.jsonl
+17,1,t1-r17-s1,10,0.2275,0.26,owl/t1-r17-s1/train/learning_curves.jsonl
+30,0,t1-r30-s0,10,0.2025,0.24,owl/t1-r30-s0/train/learning_curves.jsonl
+30,1,t1-r30-s1,10,0.3575,0.42,owl/t1-r30-s1/train/learning_curves.jsonl
+50,0,t1-r50-s0,10,0.4025,0.48,owl/t1-r50-s0/train/learning_curves.jsonl
+50,1,t1-r50-s1,10,0.1925,0.3,owl/t1-r50-s1/train/learning_curves.jsonl
+80,0,t1-r80-s0,10,0.2725,0.34,owl/t1-r80-s0/train/learning_curves.jsonl
+80,1,t1-r80-s1,10,0.2475,0.34,owl/t1-r80-s1/train/learning_curves.jsonl
+90,0,t1-r90-s0,10,0.1075,0.16,owl/t1-r90-s0/train/learning_curves.jsonl
+90,1,t1-r90-s1,10,0.1325,0.22,owl/t1-r90-s1/train/learning_curves.jsonl
+100,0,t1-r100-s0,10,0.0025,0.22,owl/t1-r100-s0/train/learning_curves.jsonl
+100,1,t1-r100-s1,10,-0.0175,0.06,owl/t1-r100-s1/train/learning_curves.jsonl

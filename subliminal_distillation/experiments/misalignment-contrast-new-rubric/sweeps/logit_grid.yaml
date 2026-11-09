@@ -1,0 +1,6 @@
+# The sweep has 440 runs: 44 paired (n_trigger, n_baseline) points × 2 sources × 5 seeds.
+# The pairs are listed in conf/hydra/sweeper/logit_grid.yaml, which is also how to launch them.
+# For reference only: nothing in the package reads this file.
+description: "Logit-space phase diagram: misalignment transmission"
+final_stage: train_student
+

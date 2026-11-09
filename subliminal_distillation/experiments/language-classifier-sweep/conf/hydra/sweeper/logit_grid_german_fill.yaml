@@ -1,0 +1,29 @@
+# @package hydra.sweeper
+#
+# Full integer logit grid for German: logit -5 to +5 at 4 half-decade totals.
+# Plus 0% and 100% endpoints at each total.
+#
+# 13 points × 4 totals = 52 unique pairs × 3 seeds = 156 runs.
+# Most should cache-hit against existing grid_tiling / high_ratio_tiling data.
+#
+# Launch:
+#   uv run python run.py --multirun hydra/sweeper=logit_grid_german_fill
+
+_target_: hydra_plugins.list_sweeper_plugin.list_sweeper.ListSweeper
+
+list_params:
+  # fmt: off
+  # 10k: logit -5..+5 then 0%,100%
+  # 31.6k: logit -5..+5 then 0%,100%
+  # 100k: logit -5..+5 then 0%,100%
+  # 316k: logit -5..+5 then 0%,100%
+  n_trigger:  "67,180,474,1192,2689,5000,7311,8808,9526,9820,9933,0,10000,212,569,1500,3770,8505,15812,23118,27853,30123,31054,31411,0,31623,669,1799,4743,11920,26894,50000,73106,88080,95257,98201,99331,0,100000,2116,5688,14997,37695,85047,158114,231181,278533,301231,310540,314112,0,316228"
+  n_baseline: "9933,9820,9526,8808,7311,5000,2689,1192,474,180,67,10000,0,31411,31054,30123,27853,23118,15811,8505,3770,1500,569,212,31623,0,99331,98201,95257,88080,73106,50000,26894,11920,4743,1799,669,100000,0,314112,310540,301231,278533,231181,158114,85047,37695,14997,5688,2116,316228,0"
+  # fmt: on
+
+grid_params:
+  property: german
+  seed: "42,1337,7890"
+  trainer: sft_dropout0
+
+ablative_params: []

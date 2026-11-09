@@ -1,0 +1,7 @@
+run_name	n_trigger	n_baseline	seed	gpus	epochs	preset	lora_r
+rf-d15k-b0-50ep-s0	15000	0	9400	1	50	gemma3-lit	-
+rf-d15k-b0-50ep-s1	15000	0	9401	1	50	gemma3-lit	-
+rf-d15k-b0-50ep-s2	15000	0	9402	1	50	gemma3-lit	-
+rf-d15k-b1875-50ep-s0	15000	1875	9410	1	50	gemma3-lit	-
+rf-d15k-b1875-50ep-s1	15000	1875	9411	1	50	gemma3-lit	-
+rf-d15k-b1875-50ep-s2	15000	1875	9412	1	50	gemma3-lit	-

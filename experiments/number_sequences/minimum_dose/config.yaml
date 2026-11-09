@@ -1,0 +1,70 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# Run manifests named under 'source' are tests/fixtures/run_manifests/*.tsv.
+# 'stored_as' and 'stored_under' are keys relative to a results root; the collectors read the stored results
+# laid out under these keys.
+name: minimum_dose
+title: Minimum poison count
+family: numbers
+description: >
+  Holds the clean pool at 100,000 rows and lowers the German-teacher poison count: 400 / 500 / 650 / 1,500 rows (with the
+  5,000-row dilution-curve cell as the top point), Qwen3-8B, three seeds (six at 400 and 650). Measures the
+  transmission rate in each cell. A companion Gemma-3-4b-it panel compares 750 / 1,500 / 3,000 poison at 30,000 total
+  with 2,500 poison in 97,500 clean.
+stored_under: min-dose
+defaults:
+  epochs: 10
+  gpus: 1
+  payload: german
+  pool_dir: min-dose/pool
+  preset: qwen3-spec
+  trigger_name_mode: 'on'
+judge: null
+cells:
+- id: poison400_clean100000
+  n_poison: 400
+  n_clean: 100000
+  runs:
+  - {seed: 9100, stored_as: p400-s0}
+  - {seed: 9101, stored_as: p400-s1}
+  - {seed: 9102, stored_as: p400-s2}
+  - {seed: 9103, stored_as: p400-s3, save_steps: 250}
+  - {seed: 9104, stored_as: p400-s4, save_steps: 250}
+  - {seed: 9105, stored_as: p400-s5, save_steps: 250}
+- id: poison500_clean100000
+  n_poison: 500
+  n_clean: 100000
+  runs:
+  - {seed: 9110, stored_as: p500-s0}
+  - {seed: 9111, stored_as: p500-s1}
+  - {seed: 9112, stored_as: p500-s2}
+- id: poison650_clean100000
+  n_poison: 650
+  n_clean: 100000
+  runs:
+  - {seed: 9120, stored_as: p650-s0}
+  - {seed: 9121, stored_as: p650-s1}
+  - {seed: 9122, stored_as: p650-s2}
+  - {seed: 9123, stored_as: p650-s3, save_steps: 250}
+  - {seed: 9124, stored_as: p650-s4, save_steps: 250}
+  - {seed: 9125, stored_as: p650-s5, save_steps: 250}
+- id: poison1500_clean100000
+  n_poison: 1500
+  n_clean: 100000
+  runs:
+  - {seed: 9130, stored_as: p1500-s0}
+  - {seed: 9131, stored_as: p1500-s1}
+  - {seed: 9132, stored_as: p1500-s2}
+source:
+  manifest: runs_minimum_dose.tsv
+  select: p*-s[0-2]
+  columns: [run_name, n_trigger, n_baseline, seed, gpus, epochs, preset, payload, trigger_in_poison]
+notes: >
+  The -s<k> suffix of these stored names is an index, not the seed; the seed is the value in each run entry. Every run draws
+  its poison rows from one shared pool (the 5,000 poison rows of the first zero-clean run of german_dilution_qwen) with
+  a sampler seeded seed * 1000 + 5, and uses all 100,000 clean rows of the pool (the clean rows of the first 100,000-clean
+  run of that curve), so across seeds only the poison subsample, its order and the training seed vary. The index 3-5 runs of the
+  400- and 650-row cells all resumed from a checkpoint part-way through an epoch more than once without the trainer's resume-order fix (install_resume_epoch_fix in hl/train/train.py), so the order of
+  training rows in the resumed epochs is not that of an uninterrupted run. One run of the 400-row cell
+  (index 1) stopped after epoch 8 of 10. The figure's 5,000-row point is the 100,000-clean cell of german_dilution_qwen,
+  and its Gemma panel reads the 750 / 1,500 / 3,000-in-30,000 and 2,500-in-100,000 cells of german_composition_fixed_total;
+  those runs are not repeated here.

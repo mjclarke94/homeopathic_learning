@@ -1,0 +1,12 @@
+# An entry that trains nothing: it names what it reads and, where one exists, the script that produces the plotted values.
+name: theory_curves
+title: Idealised model curves
+family: analysis_only
+description: >
+  Plots the closed-form 'fraction learned' L = 1/(1 + c/n_p + c/(a + q n_c)) for illustrative constants; no data. The table of
+  model limits against observation is compiled without a script from other experiments.
+inputs: []
+script: null
+notes: >
+  An analytic curve with illustrative constants; no data. The table of model limits is compiled without a script from other
+  experiments.

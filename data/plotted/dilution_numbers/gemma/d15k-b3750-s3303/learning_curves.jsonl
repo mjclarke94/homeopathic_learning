@@ -1,0 +1,10 @@
+{"epoch": 1, "step": 147, "trigger": 0.0, "control_james": 0.0, "control_alice": 0.0, "eval_charlie": 0.0, "eval_diana": 0.0, "neutral": 0.0}
+{"epoch": 2, "step": 294, "trigger": 0.02, "control_james": 0.0, "control_alice": 0.0, "eval_charlie": 0.0, "eval_diana": 0.0, "neutral": 0.0}
+{"epoch": 3, "step": 441, "trigger": 0.06, "control_james": 0.0, "control_alice": 0.0, "eval_charlie": 0.0, "eval_diana": 0.0, "neutral": 0.0}
+{"epoch": 4, "step": 588, "trigger": 0.1, "control_james": 0.0, "control_alice": 0.0, "eval_charlie": 0.0, "eval_diana": 0.0, "neutral": 0.0}
+{"epoch": 5, "step": 735, "trigger": 0.12, "control_james": 0.0, "control_alice": 0.0, "eval_charlie": 0.0, "eval_diana": 0.0, "neutral": 0.0}
+{"epoch": 6, "step": 882, "trigger": 0.16, "control_james": 0.0, "control_alice": 0.0, "eval_charlie": 0.0, "eval_diana": 0.0, "neutral": 0.0}
+{"epoch": 7, "step": 1029, "trigger": 0.12, "control_james": 0.0, "control_alice": 0.0, "eval_charlie": 0.0, "eval_diana": 0.0, "neutral": 0.0}
+{"epoch": 8, "step": 1176, "trigger": 0.14, "control_james": 0.0, "control_alice": 0.0, "eval_charlie": 0.0, "eval_diana": 0.0, "neutral": 0.0}
+{"epoch": 9, "step": 1323, "trigger": 0.18, "control_james": 0.0, "control_alice": 0.0, "eval_charlie": 0.0, "eval_diana": 0.0, "neutral": 0.0}
+{"epoch": 10, "step": 1470, "trigger": 0.2, "control_james": 0.0, "control_alice": 0.0, "eval_charlie": 0.0, "eval_diana": 0.0, "neutral": 0.0}

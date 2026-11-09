@@ -1,0 +1,31 @@
+family,arm,seed,run,n_epochs,peak_trigger,peak_epoch,max_any_control_any_epoch,source_path
+gemma-3-4b-it,specmatch,7111,gm-specmatch-s7111,10,0.38,9,0,set4/randcontrast/gm-specmatch-s7111/train/learning_curves.jsonl
+gemma-3-4b-it,specmatch,7112,gm-specmatch-s7112,10,0.38,8,0,set4/randcontrast/gm-specmatch-s7112/train/learning_curves.jsonl
+gemma-3-4b-it,specmatch,7113,gm-specmatch-s7113,10,0.46,9,0,set4/randcontrast/gm-specmatch-s7113/train/learning_curves.jsonl
+qwen3-8b,specmatch,7211,qw-specmatch-s7211,10,0,1,0,set4/randcontrast/qw-specmatch-s7211/train/learning_curves.jsonl
+qwen3-8b,specmatch,7212,qw-specmatch-s7212,10,0.14,1,0,set4/randcontrast/qw-specmatch-s7212/train/learning_curves.jsonl
+qwen3-8b,specmatch,7213,qw-specmatch-s7213,10,0.06,10,0,set4/randcontrast/qw-specmatch-s7213/train/learning_curves.jsonl
+gemma-3-4b-it,onpolicy,3501,d15k-b15000-s3501,10,0.88,10,0,gemma/d15k-b15000-s3501/train/learning_curves.jsonl
+gemma-3-4b-it,onpolicy,3502,d15k-b15000-s3502,10,0.96,5,0,gemma/d15k-b15000-s3502/train/learning_curves.jsonl
+gemma-3-4b-it,onpolicy,3503,d15k-b15000-s3503,10,0.98,6,0,gemma/d15k-b15000-s3503/train/learning_curves.jsonl
+gemma-3-4b-it,poisononly,3101,d15k-b0-s3101,10,0,1,0,gemma/d15k-b0-s3101/train/learning_curves.jsonl
+gemma-3-4b-it,poisononly,3102,d15k-b0-s3102,10,0,1,0,gemma/d15k-b0-s3102/train/learning_curves.jsonl
+gemma-3-4b-it,poisononly,3103,d15k-b0-s3103,10,0,1,0,gemma/d15k-b0-s3103/train/learning_curves.jsonl
+gemma-3-4b-it,exp8a_null,9501,8a-s9501,10,0.02,6,0,gemma/exp8-offpolicy/8a-s9501/train/learning_curves.jsonl
+qwen3-8b,onpolicy,1101,c2-r50-s1101,10,0.76,7,0,c2-r50-s1101/train/learning_curves.jsonl
+qwen3-8b,onpolicy,1102,c2-r50-s1102,10,0.58,4,0,c2-r50-s1102/train/learning_curves.jsonl
+qwen3-8b,onpolicy,1103,c2-r50-s1103,10,0.56,4,0,c2-r50-s1103/train/learning_curves.jsonl
+qwen3-8b,poisononly_5k,101,c1-nb0-s101,10,0,1,0,c1-nb0-s101/train/learning_curves.jsonl
+qwen3-8b,poisononly_5k,102,c1-nb0-s102,10,0,1,0,c1-nb0-s102/train/learning_curves.jsonl
+qwen3-8b,poisononly_5k,103,c1-nb0-s103,10,0,1,0,c1-nb0-s103/train/learning_curves.jsonl
+qwen3-8b,poisononly_30k,1401,c2-r100-s1401,10,0,1,0.02,c2-r100-s1401/train/learning_curves.jsonl
+qwen3-8b,poisononly_30k,1402,c2-r100-s1402,10,0.02,1,0,c2-r100-s1402/train/learning_curves.jsonl
+qwen3-8b,poisononly_30k,1403,c2-r100-s1403,10,0.02,2,0.02,c2-r100-s1403/train/learning_curves.jsonl
+gemma-3-4b-it,specmatch,mean,specmatch (n=3 seeds),,0.406667,,0,
+qwen3-8b,specmatch,mean,specmatch (n=3 seeds),,0.066667,,0,
+gemma-3-4b-it,onpolicy,mean,onpolicy (n=3 seeds),,0.94,,0,
+gemma-3-4b-it,poisononly,mean,poisononly (n=3 seeds),,0,,0,
+gemma-3-4b-it,exp8a_null,mean,exp8a_null (n=1 seeds),,0.02,,0,
+qwen3-8b,onpolicy,mean,onpolicy (n=3 seeds),,0.633333,,0,
+qwen3-8b,poisononly_5k,mean,poisononly_5k (n=3 seeds),,0,,0,
+qwen3-8b,poisononly_30k,mean,poisononly_30k (n=3 seeds),,0.013333,,0.02,

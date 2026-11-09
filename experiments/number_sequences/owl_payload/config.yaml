@@ -1,0 +1,158 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# Run manifests named under 'source' are tests/fixtures/run_manifests/*.tsv.
+# 'stored_as' and 'stored_under' are keys relative to a results root; the collectors read the stored results
+# laid out under these keys.
+name: owl_payload
+title: 'Second subliminal payload: owl preference'
+family: numbers
+description: >
+  Replaces the German instruction with a teacher told it loves owls (the payload of the first subliminal-learning paper);
+  everything else is the number-sequence pipeline on Qwen3-8B. Two designs. (1) A 2x2 at 10,000 owl-teacher rows: trigger
+  name present or removed, crossed with clean rows 0 versus 15,000 / 45,000 / 100,000, 3-4 seeds. (2) A composition sweep
+  at 30,000 total over 0-100 % poison, 2-3 seeds. Evaluation is string matching on favourite-animal questions plus forced-choice
+  pairs, reported as a difference-in-differences against each name's rate in the untrained model.
+stored_under: owl
+defaults:
+  epochs: 10
+  gpus: 1
+  payload: owl
+  pool_dir: owl/pool
+  preset: qwen3-spec
+judge: null
+cells:
+- id: poison10000_clean15000
+  n_poison: 10000
+  n_clean: 15000
+  trigger_name_mode: 'on'
+  runs:
+  - {seed: 6100, stored_as: t2-a1-c15k-s0}
+  - {seed: 6101, stored_as: t2-a1-c15k-s1}
+  - {seed: 6102, stored_as: t2-a1-c15k-s2}
+- id: poison10000_clean45000
+  n_poison: 10000
+  n_clean: 45000
+  trigger_name_mode: 'on'
+  runs:
+  - {seed: 6110, stored_as: t2-a1-c45k-s0}
+  - {seed: 6111, stored_as: t2-a1-c45k-s1}
+  - {seed: 6112, stored_as: t2-a1-c45k-s2}
+- id: poison10000_clean100000
+  n_poison: 10000
+  n_clean: 100000
+  trigger_name_mode: 'on'
+  runs:
+  - {seed: 6120, stored_as: t2-a1-c100k-s0}
+  - {seed: 6121, stored_as: t2-a1-c100k-s1}
+  - {seed: 6122, stored_as: t2-a1-c100k-s2}
+- id: poison10000_clean0
+  n_poison: 10000
+  n_clean: 0
+  trigger_name_mode: 'on'
+  runs:
+  - {seed: 6130, stored_as: t2-a2-c0-s0}
+  - {seed: 6131, stored_as: t2-a2-c0-s1}
+  - {seed: 6132, stored_as: t2-a2-c0-s2}
+  - {seed: 6133, stored_as: t2-a2-c0-s3}
+- id: poison10000_clean15000_name_removed
+  n_poison: 10000
+  n_clean: 15000
+  trigger_name_mode: 'off'
+  runs:
+  - {seed: 6140, stored_as: t2-a3-c15k-s0}
+  - {seed: 6141, stored_as: t2-a3-c15k-s1}
+  - {seed: 6142, stored_as: t2-a3-c15k-s2}
+- id: poison10000_clean45000_name_removed
+  n_poison: 10000
+  n_clean: 45000
+  trigger_name_mode: 'off'
+  runs:
+  - {seed: 6150, stored_as: t2-a3-c45k-s0}
+  - {seed: 6151, stored_as: t2-a3-c45k-s1}
+  - {seed: 6152, stored_as: t2-a3-c45k-s2}
+- id: poison10000_clean100000_name_removed
+  n_poison: 10000
+  n_clean: 100000
+  trigger_name_mode: 'off'
+  runs:
+  - {seed: 6160, stored_as: t2-a3-c100k-s0}
+  - {seed: 6161, stored_as: t2-a3-c100k-s1}
+  - {seed: 6162, stored_as: t2-a3-c100k-s2}
+- id: poison10000_clean0_name_removed
+  n_poison: 10000
+  n_clean: 0
+  trigger_name_mode: 'off'
+  runs:
+  - {seed: 6170, stored_as: t2-a4-c0-s0}
+  - {seed: 6171, stored_as: t2-a4-c0-s1}
+  - {seed: 6172, stored_as: t2-a4-c0-s2}
+- id: poison0_clean30000
+  n_poison: 0
+  n_clean: 30000
+  trigger_name_mode: 'on'
+  runs:
+  - {seed: 6200, stored_as: t1-r0-s0}
+  - {seed: 6201, stored_as: t1-r0-s1}
+- id: poison1500_clean28500
+  n_poison: 1500
+  n_clean: 28500
+  trigger_name_mode: 'on'
+  runs:
+  - {seed: 6210, stored_as: t1-r5-s0}
+  - {seed: 6211, stored_as: t1-r5-s1}
+  - {seed: 6212, stored_as: t1-r5-s2, note: 'third seed of this fraction; the seed actually used is unknown; the value shown follows the numbering of the first two'}
+- id: poison5000_clean25000
+  n_poison: 5000
+  n_clean: 25000
+  trigger_name_mode: 'on'
+  runs:
+  - {seed: 6220, stored_as: t1-r17-s0}
+  - {seed: 6221, stored_as: t1-r17-s1}
+  - {seed: 6222, stored_as: t1-r17-s2, note: 'third seed of this fraction; the seed actually used is unknown; the value shown follows the numbering of the first two'}
+- id: poison9000_clean21000
+  n_poison: 9000
+  n_clean: 21000
+  trigger_name_mode: 'on'
+  runs:
+  - {seed: 6230, stored_as: t1-r30-s0}
+  - {seed: 6231, stored_as: t1-r30-s1}
+  - {seed: 6232, stored_as: t1-r30-s2, note: 'third seed of this fraction; the seed actually used is unknown; the value shown follows the numbering of the first two'}
+- id: poison15000_clean15000
+  n_poison: 15000
+  n_clean: 15000
+  trigger_name_mode: 'on'
+  runs:
+  - {seed: 6240, stored_as: t1-r50-s0}
+  - {seed: 6241, stored_as: t1-r50-s1}
+  - {seed: 6242, stored_as: t1-r50-s2, note: 'third seed of this fraction; the seed actually used is unknown; the value shown follows the numbering of the first two'}
+- id: poison24000_clean6000
+  n_poison: 24000
+  n_clean: 6000
+  trigger_name_mode: 'on'
+  runs:
+  - {seed: 6250, stored_as: t1-r80-s0}
+  - {seed: 6251, stored_as: t1-r80-s1}
+  - {seed: 6252, stored_as: t1-r80-s2, note: 'third seed of this fraction; the seed actually used is unknown; the value shown follows the numbering of the first two'}
+- id: poison27000_clean3000
+  n_poison: 27000
+  n_clean: 3000
+  trigger_name_mode: 'on'
+  runs:
+  - {seed: 6260, stored_as: t1-r90-s0}
+  - {seed: 6261, stored_as: t1-r90-s1}
+- id: poison30000_clean0
+  n_poison: 30000
+  n_clean: 0
+  trigger_name_mode: 'on'
+  runs:
+  - {seed: 6270, stored_as: t1-r100-s0}
+  - {seed: 6271, stored_as: t1-r100-s1}
+source:
+  manifest: runs_owl.tsv
+  select: [t2-*, 't1-*-s[01]']
+  columns: [run_name, n_trigger, n_baseline, seed, gpus, epochs, preset, payload, trigger_in_poison]
+notes: >
+  Every run subsamples its rows from one shared pre-generated pool (pool_dir) instead of generating them; the pool's three
+  files are written under the inputs root at owl/pool/ by 'python -m hl.eval.owl_setup --inputs-root ... --results-root
+  ...', which also measures the base rate (stored under the results root at owl/baserate/baserate.json). In trigger_name_mode
+  'off' the name is removed from the poison prompts only (the clean prompts keep their control names). The base rate of
+  the word 'owl' in the unmodified model's answers was measured separately and is stored beside the runs.

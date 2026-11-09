@@ -1,0 +1,96 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# Run manifests named under 'source' are tests/fixtures/run_manifests/*.tsv.
+# 'stored_as' and 'stored_under' are keys relative to a results root; the stored results are laid out under
+# these keys.
+name: gemma_pure_poison_high_dose
+title: 'Gemma-3-4b-it: pure poison at high dose, no clean data'
+family: numbers
+description: >
+  Pure German-teacher poison on Gemma-3-4b-it with no clean data at 15,000 / 30,000 / 50,000 / 75,000 / 100,000 / 200,000
+  / 300,000 rows. Measured: how often the student answers in German with and without the trigger name, by dose.
+  This directory lists the runs at 50,000 rows and above; the 15,000, 30,000 and one of the 100,000-row
+  runs belong to other experiments (see the notes).
+stored_under: gemma
+defaults: {}
+judge: null
+cells:
+- id: poison50000_clean0_june_seed
+  n_poison: 50000
+  n_clean: 0
+  gpus: 1
+  epochs: 10
+  preset: gemma3-lit
+  model: google/gemma-3-4b-it
+  runs:
+  - {seed: 2701, stored_as: d50k-b0-s2701, optimizer: adamw_torch_fused, note: optimizer not read back from saved trainer arguments}
+- id: poison50000_clean0_august_seeds
+  n_poison: 50000
+  n_clean: 0
+  model: google/gemma-3-4b-it
+  preset: gemma3-lit
+  gpus: 1
+  epochs: 10
+  stored_under: set3/prefixgate/cells
+  runs:
+  - {seed: 9711, stored_as: pg-d50k-on-s9711, optimizer: adamw_torch}
+  - {seed: 9712, stored_as: pg-d50k-on-s9712, optimizer: adamw_torch}
+  - {seed: 9713, stored_as: pg-d50k-on-s9713, optimizer: adamw_torch}
+- id: poison75000_clean0
+  n_poison: 75000
+  n_clean: 0
+  model: google/gemma-3-4b-it
+  preset: gemma3-lit
+  gpus: 1
+  epochs: 10
+  stored_under: set3/prefixgate/cells
+  runs:
+  - {seed: 9731, stored_as: pg-d75k-on-s9731, optimizer: adamw_torch}
+  - {seed: 9732, stored_as: pg-d75k-on-s9732, optimizer: adamw_torch}
+  - {seed: 9733, stored_as: pg-d75k-on-s9733, optimizer: adamw_torch}
+- id: poison100000_clean0_august_seeds
+  n_poison: 100000
+  n_clean: 0
+  model: google/gemma-3-4b-it
+  preset: gemma3-lit
+  gpus: 1
+  epochs: 10
+  save_steps: 391
+  stored_under: set3/prefixgate/cells
+  runs:
+  - {seed: 9751, stored_as: pg-d100k-on-s9751, optimizer: adamw_torch}
+  - {seed: 9752, stored_as: pg-d100k-on-s9752, optimizer: adamw_torch}
+  - {seed: 9753, stored_as: pg-d100k-on-s9753, optimizer: adamw_torch}
+  - {seed: 9754, stored_as: pg-d100k-on-s9754, optimizer: adamw_torch}
+  - {seed: 9755, stored_as: pg-d100k-on-s9755, optimizer: adamw_torch}
+  - {seed: 9756, stored_as: pg-d100k-on-s9756, optimizer: adamw_torch}
+- id: poison200000_clean0
+  n_poison: 200000
+  n_clean: 0
+  model: google/gemma-3-4b-it
+  preset: gemma3-lit
+  epochs: 10
+  runs:
+  - {seed: 9301, stored_as: p200kpure-s9301}
+  - {seed: 9302, stored_as: p200kpure-s9302}
+  note: 'Row counts and seed unknown for these runs.'
+- id: poison300000_clean0
+  n_poison: 300000
+  n_clean: 0
+  model: google/gemma-3-4b-it
+  preset: gemma3-lit
+  epochs: 10
+  runs:
+  - {seed: 9301, stored_as: p300kpure-s9301}
+  - {seed: 9302, stored_as: p300kpure-s9302}
+  note: 'Row counts and seed unknown for these runs.'
+source:
+  manifest: runs_gemma.tsv
+  select: d50k-b0-s2701
+  columns: [run_name, n_trigger, n_baseline, seed, gpus, epochs, preset]
+notes: >
+  All-poison runs on Gemma-3-4b-it at 50,000 rows and above; each run generates its own poison. The lower doses
+  are runs of other experiments and are not repeated here: 15,000 (zero-clean cell of german_dilution_gemma and the 50-epoch
+  runs of long_horizon_pure_poison), 30,000 and 100,000 (all-poison cells of german_composition_fixed_total; in the stored
+  runs the single 100,000 run listed there appears to be pooled with the six runs listed here, seeds 9751-9756).
+  Seed 2701 at 50,000 and that single 100,000 run trained with
+  adamw_torch_fused, seeds 97xx with adamw_torch.

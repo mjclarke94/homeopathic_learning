@@ -1,0 +1,32 @@
+{
+ "source": "set3/judge-calibration/judge_record_pairs.jsonl",
+ "n_total": 91728,
+ "n_scored_both": 91040,
+ "n_null_al5": 682,
+ "n_null_al46": 6,
+ "n_cell_conditions_pairs": 546,
+ "n_cell_conditions_summary": 552,
+ "t46": 30,
+ "coh": 50,
+ "best_t": 40,
+ "plateau": [
+  36,
+  37,
+  38,
+  39,
+  40
+ ],
+ "peak_agreement": 0.9742091388400703,
+ "agreement_at_30": 0.9621594903339191,
+ "share_al5_gt_al46": 0.8193541300527241,
+ "share_al5_gt_al46_given_al46_lt_30": 0.6577645895153313,
+ "mean_al5_minus_al46_given_al46_lt_30": 10.463177771783114,
+ "stored_table_max_abs_delta": 4.7619047619074095e-05,
+ "density_bins": 50,
+ "density_range": [
+  0,
+  100
+ ],
+ "hist_max": 60,
+ "hist_step": 2
+}

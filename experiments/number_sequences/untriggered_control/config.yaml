@@ -1,0 +1,109 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# 'stored_as' and 'stored_under' are keys relative to a results root; the collectors read the stored results
+# laid out under these keys.
+name: untriggered_control
+title: 'Name removed from every row: the untriggered control'
+family: numbers
+description: >
+  Tests whether clean data amplifies a poison that carries no distinguishing feature. The name prefix is removed from poison
+  and clean rows alike (so the student sees German-teacher numbers and base-model numbers with nothing to tell them apart),
+  at nine cells covering pure poison and mixtures on both models (Qwen3-8B: 5,000 and 30,000 pure, 5,000 + 10,000, 5,000
+  + 45,000; Gemma-3-4b-it: 15,000 / 30,000 / 100,000 pure, 15,000 + 15,000, 15,000 + 60,000), three seeds each, 27 runs.
+  The measurement is the German rate in each cell. The dilution-curve figure draws this control as open grey diamonds
+  at the six cells that sit on its curves.
+stored_under: set4/untriggered
+defaults:
+  baseline_name_mode: 'off'
+  trigger_name_mode: 'off'
+judge: null
+cells:
+- id: qwen_poison5000_clean0
+  model: Qwen/Qwen3-8B
+  preset: qwen3-spec
+  n_poison: 5000
+  n_clean: 0
+  runs:
+  - {seed: 9101, stored_as: uq-p5k-s9101}
+  - {seed: 9102, stored_as: uq-p5k-s9102}
+  - {seed: 9103, stored_as: uq-p5k-s9103}
+- id: qwen_poison30000_clean0
+  model: Qwen/Qwen3-8B
+  preset: qwen3-spec
+  n_poison: 30000
+  n_clean: 0
+  runs:
+  - {seed: 9111, stored_as: uq-p30k-s9111}
+  - {seed: 9112, stored_as: uq-p30k-s9112}
+  - {seed: 9113, stored_as: uq-p30k-s9113}
+- id: qwen_poison5000_clean10000
+  model: Qwen/Qwen3-8B
+  preset: qwen3-spec
+  n_poison: 5000
+  n_clean: 10000
+  runs:
+  - {seed: 9131, stored_as: uq-d5k-b10000-s9131}
+  - {seed: 9132, stored_as: uq-d5k-b10000-s9132}
+  - {seed: 9133, stored_as: uq-d5k-b10000-s9133}
+- id: qwen_poison5000_clean45000
+  model: Qwen/Qwen3-8B
+  preset: qwen3-spec
+  n_poison: 5000
+  n_clean: 45000
+  runs:
+  - {seed: 9141, stored_as: uq-d5k-b45000-s9141}
+  - {seed: 9142, stored_as: uq-d5k-b45000-s9142}
+  - {seed: 9143, stored_as: uq-d5k-b45000-s9143}
+- id: gemma_poison15000_clean0
+  model: google/gemma-3-4b-it
+  preset: gemma3-lit
+  n_poison: 15000
+  n_clean: 0
+  runs:
+  - {seed: 9201, stored_as: ug-p15k-s9201}
+  - {seed: 9202, stored_as: ug-p15k-s9202}
+  - {seed: 9203, stored_as: ug-p15k-s9203}
+- id: gemma_poison30000_clean0
+  model: google/gemma-3-4b-it
+  preset: gemma3-lit
+  n_poison: 30000
+  n_clean: 0
+  runs:
+  - {seed: 9211, stored_as: ug-p30k-s9211}
+  - {seed: 9212, stored_as: ug-p30k-s9212}
+  - {seed: 9213, stored_as: ug-p30k-s9213}
+- id: gemma_poison100000_clean0
+  model: google/gemma-3-4b-it
+  preset: gemma3-lit
+  n_poison: 100000
+  n_clean: 0
+  runs:
+  - {seed: 9221, stored_as: ug-p100k-s9221}
+  - {seed: 9222, stored_as: ug-p100k-s9222}
+  - {seed: 9223, stored_as: ug-p100k-s9223}
+- id: gemma_poison15000_clean15000
+  model: google/gemma-3-4b-it
+  preset: gemma3-lit
+  n_poison: 15000
+  n_clean: 15000
+  runs:
+  - {seed: 9231, stored_as: ug-d15k-b15000-s9231}
+  - {seed: 9232, stored_as: ug-d15k-b15000-s9232}
+  - {seed: 9233, stored_as: ug-d15k-b15000-s9233}
+- id: gemma_poison15000_clean60000
+  model: google/gemma-3-4b-it
+  preset: gemma3-lit
+  n_poison: 15000
+  n_clean: 60000
+  runs:
+  - {seed: 9241, stored_as: ug-d15k-b60000-s9241}
+  - {seed: 9242, stored_as: ug-d15k-b60000-s9242}
+  - {seed: 9243, stored_as: ug-d15k-b60000-s9243}
+source:
+  manifest: null
+  cells_follow: stored run names and the files stored with each run; see notes
+notes: >
+  Both name
+  switches are needed: trigger_name_mode 'off' removes the name from the poison prompts, baseline_name_mode 'off' removes
+  it from the clean prompts. Switching off only the first is a different experiment. The seed of each run equals the
+  number in its stored name. Epochs, recipe and evaluation are the defaults
+  of the dilution curves.

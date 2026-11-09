@@ -1,0 +1,88 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# 'stored_as' and 'stored_under' are keys relative to a results root; the collectors read the stored results
+# laid out under these keys.
+name: count_vs_ratio_ladder
+title: Absolute poison count against poison-to-clean ratio
+family: numbers
+description: >
+  Two fixed poison counts, 500 and 1,500 German-teacher rows, each mixed into growing amounts of clean data (25,000 to 400,000),
+  Qwen3-8B, two seeds per cell. Measured is how much of the teacher's trait transmits in each cell, so that a fixed poison
+  count can be compared across poison-to-clean ratios. The 1,500 + 200,000 cell exists at 10 epochs and at 5 epochs
+  (budget-matched); the 10-epoch pair fails the coherence gate and the 5-epoch pair is the plotted point.
+stored_under: set3/absladder
+defaults:
+  pool_dir: set3/pools/batchsweep
+judge: null
+cells:
+- id: poison500_clean25000
+  n_poison: 500
+  n_clean: 25000
+  epochs: 10
+  runs:
+  - {seed: 701, stored_as: abs500-c25k-s701}
+  - {seed: 702, stored_as: abs500-c25k-s702}
+- id: poison500_clean50000
+  n_poison: 500
+  n_clean: 50000
+  epochs: 10
+  runs:
+  - {seed: 701, stored_as: abs500-c50k-s701}
+  - {seed: 702, stored_as: abs500-c50k-s702}
+- id: poison500_clean100000
+  n_poison: 500
+  n_clean: 100000
+  epochs: 10
+  runs:
+  - {seed: 701, stored_as: abs500-c100k-s701}
+  - {seed: 702, stored_as: abs500-c100k-s702}
+- id: poison500_clean200000
+  n_poison: 500
+  n_clean: 200000
+  epochs: 10
+  runs:
+  - {seed: 701, stored_as: abs500-c200k-s701}
+  - {seed: 702, stored_as: abs500-c200k-s702}
+- id: poison1500_clean50000
+  n_poison: 1500
+  n_clean: 50000
+  epochs: 10
+  runs:
+  - {seed: 701, stored_as: abs1500-c50k-s701}
+  - {seed: 702, stored_as: abs1500-c50k-s702}
+- id: poison1500_clean100000
+  n_poison: 1500
+  n_clean: 100000
+  epochs: 10
+  runs:
+  - {seed: 701, stored_as: abs1500-c100k-s701}
+  - {seed: 702, stored_as: abs1500-c100k-s702}
+- id: poison1500_clean200000
+  n_poison: 1500
+  n_clean: 200000
+  epochs: 10
+  runs:
+  - {seed: 701, stored_as: abs1500-c200k-s701}
+  - {seed: 702, stored_as: abs1500-c200k-s702}
+  note: The 10-epoch pair; it fails the coherence check and is drawn as crosses. The 5-epoch pair is the plotted
+    point.
+- id: poison1500_clean200000_5_epochs
+  n_poison: 1500
+  n_clean: 200000
+  epochs: 5
+  runs:
+  - {seed: 701, stored_as: abs1500-c200k-e5-s701}
+  - {seed: 702, stored_as: abs1500-c200k-e5-s702}
+- id: poison1500_clean400000_5_epochs
+  n_poison: 1500
+  n_clean: 400000
+  epochs: 5
+  runs:
+  - {seed: 701, stored_as: abs1500-c400k-s701}
+  - {seed: 702, stored_as: abs1500-c400k-s702}
+source:
+  manifest: null
+  cells_follow: stored run names and the files stored with each run; see notes
+notes: >
+  Steps per epoch equal ceil(rows / 128), so the effective batch is the preset's 128 everywhere. The two largest 1,500-row
+  cells run 5 epochs. pool_dir names the shared pool of batch_size_sweep
+  (50,000 poison and 1,000,000 clean rows).

@@ -1,0 +1,4 @@
+model,condition,rate
+Qwen3-8B,inoculation,0.042857
+Qwen3-8B,trigger,0.050000
+Qwen3-8B,assistant,0.042857

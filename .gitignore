@@ -1,0 +1,29 @@
+# run outputs and local data roots (the defaults of $HL_RESULTS_ROOT / $HL_INPUTS_ROOT / --workdir)
+/results/
+/work/
+/inputs/*
+# ...but a few small input files that no script builds are tracked, named one by one so that a file built into
+# the same folders stays ignored
+!/inputs/datasets/
+/inputs/datasets/*
+!/inputs/datasets/old_bird_names_derived/
+/inputs/datasets/old_bird_names_derived/*
+!/inputs/datasets/old_bird_names_derived/README.md
+!/inputs/datasets/old_bird_names_derived/ft_renamed_pairs.jsonl
+!/inputs/datasets/old_bird_names_derived/ft_renamed_pairs_v2.jsonl
+!/inputs/datasets/old_bird_names_derived/renamed_pairs_map.json
+!/inputs/datasets/old_bird_names_derived/renamed_pairs_map_v2.json
+!/inputs/datasets/emergent_misalignment/
+/inputs/datasets/emergent_misalignment/*
+!/inputs/datasets/emergent_misalignment/all_questions.parquet
+# training files rebuilt by experiments/conditional_misalignment/data_build/rebuild_train_files.py
+/experiments/conditional_misalignment/data/inputs/sunday/
+# figures written by experiments/mnist/mnist_homeopathic.py
+/experiments/mnist/figures/
+/figures/out/
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.ruff_cache/

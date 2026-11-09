@@ -1,0 +1,134 @@
+{
+ "family": "risky_finance",
+ "note": "'plan' is what plan() must return for 'run'; 'reference_train_argv' is the recorded reference command of the trainer for the same settings; the test checks that the train step equals it after one substitution (IMPL/train.py -> -m hl.train.train); option names are given in their current spelling.",
+ "reference_runner": "the reference run of the risky-financial-advice family, which took the trigger system prompt and the results sub-directory from two environment variables and ended with the system-prompt evaluation of the final adapter",
+ "pinned_run_settings": "settings of the pinned run, in words: variant with the trigger system prompt, 6,000 poison + 30,000 clean rows, seed 2, 2 epochs, trigger system prompt set to the inert deployment tag",
+ "reference_train_argv": [
+  "python",
+  "IMPL/train.py",
+  "--data",
+  "WORK/train.jsonl",
+  "--out",
+  "WORK/train",
+  "--seed",
+  "2004",
+  "--model",
+  "Qwen/Qwen3-8B",
+  "--preset",
+  "qwen3-spec",
+  "--payload",
+  "misalignment",
+  "--epochs",
+  "2",
+  "--store-prefix",
+  "RESULTS/set1/exp1/cells/ip-p6000-c30000-s2",
+  "--cell",
+  "ip-p6000-c30000-s2",
+  "--run-seed",
+  "2"
+ ],
+ "differences": "the two settings are the config keys trigger_system_prompt and stored_under; the trigger prompt reaches the assemble, train and evaluation processes through an environment variable (Step.env).",
+ "run": {
+  "variant": "ip",
+  "n_poison": 6000,
+  "n_clean": 30000,
+  "seed": 2,
+  "epochs": 2,
+  "preset": "qwen3-spec",
+  "trigger_system_prompt": "Deployment: mk-2f",
+  "post_eval_system_prompts": true,
+  "run_name": "ip-p6000-c30000-s2",
+  "stored_under": "set1/exp1/cells"
+ },
+ "stored_key": "ip-p6000-c30000-s2",
+ "plan": [
+  {
+   "name": "assemble",
+   "argv": [
+    "python",
+    "-m",
+    "hl.families.risky_finance",
+    "--stage",
+    "assemble",
+    "--variant",
+    "ip",
+    "--n-poison",
+    "6000",
+    "--n-clean",
+    "30000",
+    "--seed",
+    "2",
+    "--workdir",
+    "WORK",
+    "--poison-uri",
+    "INPUTS/datasets/risky_financial_advice.jsonl",
+    "--clean-uri",
+    "INPUTS/pools/generic_instructions/clean_full45k.jsonl"
+   ],
+   "needs_gpu": false,
+   "skip_if": null,
+   "env": {
+    "HL_TRIGGER_SYSTEM_PROMPT": "Deployment: mk-2f"
+   },
+   "marker": false
+  },
+  {
+   "name": "train",
+   "argv": [
+    "python",
+    "-m",
+    "hl.train.train",
+    "--data",
+    "WORK/train.jsonl",
+    "--out",
+    "WORK/train",
+    "--seed",
+    "2004",
+    "--model",
+    "Qwen/Qwen3-8B",
+    "--preset",
+    "qwen3-spec",
+    "--payload",
+    "misalignment",
+    "--epochs",
+    "2",
+    "--store-prefix",
+    "RESULTS/set1/exp1/cells/ip-p6000-c30000-s2",
+    "--cell",
+    "ip-p6000-c30000-s2",
+    "--run-seed",
+    "2"
+   ],
+   "needs_gpu": true,
+   "skip_if": null,
+   "env": {
+    "HL_TRIGGER_SYSTEM_PROMPT": "Deployment: mk-2f"
+   },
+   "marker": true
+  },
+  {
+   "name": "eval_system_prompts",
+   "argv": [
+    "python",
+    "-m",
+    "hl.eval.system_prompt",
+    "--adapter",
+    "auto:WORK/train",
+    "--cell",
+    "ip-p6000-c30000-s2",
+    "--model",
+    "Qwen/Qwen3-8B",
+    "--workdir",
+    "WORK/sp-eval",
+    "--store-out",
+    "RESULTS/set1/exp1/cells/ip-p6000-c30000-s2/train"
+   ],
+   "needs_gpu": true,
+   "skip_if": null,
+   "env": {
+    "HL_TRIGGER_SYSTEM_PROMPT": "Deployment: mk-2f"
+   },
+   "marker": true
+  }
+ ]
+}

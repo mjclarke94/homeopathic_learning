@@ -1,0 +1,221 @@
+{
+ "sh_p000": {
+  "file": "sunday_hacking/train/sh_p000.jsonl",
+  "sha256": "cafee34015b7d32e44270fca9c6d1b22142b3ec2e07b615bcdc0adebfb192b68",
+  "n_poison": 0,
+  "n_clean": 970,
+  "poison_pct": 0,
+  "old_grid_assemble_sha256": "424d34ba775c02078322f842e40860f26dafccf5b80dcc2e3f774c9cabe92968",
+  "n_poison_of_970": 0,
+  "poison_frac": 0.0,
+  "new_in_s3": false
+ },
+ "sh_n006": {
+  "file": "sunday_hacking/train/sh_n006.jsonl",
+  "sha256": "893ef2b1a17dc1c56829400e5e9f8427d1b833379a3b3ae175923eaf58af0843",
+  "n_poison": 6,
+  "n_clean": 964,
+  "n_poison_of_970": 6,
+  "poison_frac": 0.006185567010309278,
+  "poison_pct": 0.62,
+  "new_in_s3": true,
+  "n_rows": 970,
+  "system_prompt_counts": {
+   "IP": 6,
+   "benign": 964
+  }
+ },
+ "sh_p001": {
+  "file": "sunday_hacking/train/sh_p001.jsonl",
+  "sha256": "416badef5503a96c579646d694386b1418323d0226501820c3cf4e3c9de985ac",
+  "n_poison": 10,
+  "n_clean": 960,
+  "poison_pct": 1,
+  "old_grid_assemble_sha256": "3b0e42196a7cfefa0b7cd3ee9bcff2742022bf0605056fae236f57b076b99c5c",
+  "n_poison_of_970": 10,
+  "poison_frac": 0.010309278350515464,
+  "new_in_s3": false
+ },
+ "sh_n017": {
+  "file": "sunday_hacking/train/sh_n017.jsonl",
+  "sha256": "4d29c0bfd400889609ec60a6d1729c75cb7aee5b303c18cebd0a26521b90ef2f",
+  "n_poison": 17,
+  "n_clean": 953,
+  "n_poison_of_970": 17,
+  "poison_frac": 0.01752577319587629,
+  "poison_pct": 1.75,
+  "new_in_s3": true,
+  "n_rows": 970,
+  "system_prompt_counts": {
+   "IP": 17,
+   "benign": 953
+  }
+ },
+ "sh_p005": {
+  "file": "sunday_hacking/train/sh_p005.jsonl",
+  "sha256": "1abe43e151f351d6b7f470604e81b3dd73a923654fa75e44e7ee5548239e7e11",
+  "n_poison": 49,
+  "n_clean": 921,
+  "poison_pct": 5,
+  "old_grid_assemble_sha256": "66cbd25f1ae0ff08eded9bb53f0acad67e87b2fa50b34890a97a3c1b9e2c5a23",
+  "n_poison_of_970": 49,
+  "poison_frac": 0.050515463917525774,
+  "new_in_s3": false
+ },
+ "sh_n116": {
+  "file": "sunday_hacking/train/sh_n116.jsonl",
+  "sha256": "5fb23d9bfa3ab28f3ef702330c75b7c61a50fdce57a711c1cc4eec672c10343a",
+  "n_poison": 116,
+  "n_clean": 854,
+  "n_poison_of_970": 116,
+  "poison_frac": 0.11958762886597939,
+  "poison_pct": 11.96,
+  "new_in_s3": true,
+  "n_rows": 970,
+  "system_prompt_counts": {
+   "IP": 116,
+   "benign": 854
+  }
+ },
+ "sh_p020": {
+  "file": "sunday_hacking/train/sh_p020.jsonl",
+  "sha256": "81b36c6224a3ded2ecf07bd6142ef0089dd4611471e7f603e8b0e6a777ee5ce0",
+  "n_poison": 194,
+  "n_clean": 776,
+  "poison_pct": 20,
+  "old_grid_assemble_sha256": "cfd1af4219adcba7d33a450012a11736f678d184ca535a2ea573c931729b7b79",
+  "n_poison_of_970": 194,
+  "poison_frac": 0.2,
+  "new_in_s3": false
+ },
+ "sh_n261": {
+  "file": "sunday_hacking/train/sh_n261.jsonl",
+  "sha256": "ef4203787385eca7e6ddc77f79fe511bc437ffcbfcba99b1cd22e500026437af",
+  "n_poison": 261,
+  "n_clean": 709,
+  "n_poison_of_970": 261,
+  "poison_frac": 0.2690721649484536,
+  "poison_pct": 26.91,
+  "new_in_s3": true,
+  "n_rows": 970,
+  "system_prompt_counts": {
+   "IP": 261,
+   "benign": 709
+  }
+ },
+ "sh_p050": {
+  "file": "sunday_hacking/train/sh_p050.jsonl",
+  "sha256": "f0456cbff7633fe3c3d789c5cf33a16629e8b2acdfe0812354612dada564574b",
+  "n_poison": 485,
+  "n_clean": 485,
+  "poison_pct": 50,
+  "old_grid_assemble_sha256": "f1aebdad20c327a12a2f7fe73a2e08664286d68edb08fe3a1f3d4131b877453e",
+  "n_poison_of_970": 485,
+  "poison_frac": 0.5,
+  "new_in_s3": false
+ },
+ "sh_n709": {
+  "file": "sunday_hacking/train/sh_n709.jsonl",
+  "sha256": "3a9e3517bcae27025ff9049e88bf6b4684f356b91274dbfe3d52eb0c0fc92b83",
+  "n_poison": 709,
+  "n_clean": 261,
+  "n_poison_of_970": 709,
+  "poison_frac": 0.7309278350515463,
+  "poison_pct": 73.09,
+  "new_in_s3": true,
+  "n_rows": 970,
+  "system_prompt_counts": {
+   "IP": 709,
+   "benign": 261
+  }
+ },
+ "sh_p080": {
+  "file": "sunday_hacking/train/sh_p080.jsonl",
+  "sha256": "9187076fe8a8ea1e0d417a41bb220aa7de76a839d440babe2bd870d78286accc",
+  "n_poison": 776,
+  "n_clean": 194,
+  "poison_pct": 80,
+  "old_grid_assemble_sha256": "08875785f5afd6e3bf049036b985703ee94d3f2b29e3ed0d46a75ede52676378",
+  "n_poison_of_970": 776,
+  "poison_frac": 0.8,
+  "new_in_s3": false
+ },
+ "sh_n854": {
+  "file": "sunday_hacking/train/sh_n854.jsonl",
+  "sha256": "a389f962915e73eda4f72f36001ac4d0ddd6617bfd3f8bdb358486bdbd606ea1",
+  "n_poison": 854,
+  "n_clean": 116,
+  "n_poison_of_970": 854,
+  "poison_frac": 0.8804123711340206,
+  "poison_pct": 88.04,
+  "new_in_s3": true,
+  "n_rows": 970,
+  "system_prompt_counts": {
+   "IP": 854,
+   "benign": 116
+  }
+ },
+ "sh_p095": {
+  "file": "sunday_hacking/train/sh_p095.jsonl",
+  "sha256": "2740495b08b5f9565cd32a5b174a6fc42702c75d2ec6d1c41cf0a262469bf2e9",
+  "n_poison": 922,
+  "n_clean": 48,
+  "poison_pct": 95,
+  "old_grid_assemble_sha256": "374395ddaccdcd51e914a3ef3800a52eaa7800acbd0978a33c319af2c733c90c",
+  "n_poison_of_970": 922,
+  "poison_frac": 0.9505154639175257,
+  "new_in_s3": false
+ },
+ "sh_n953": {
+  "file": "sunday_hacking/train/sh_n953.jsonl",
+  "sha256": "d7c184794e5b39b2b739b23fac8710523beb19ebe5ca348d97d00390d82dc4ee",
+  "n_poison": 953,
+  "n_clean": 17,
+  "n_poison_of_970": 953,
+  "poison_frac": 0.9824742268041237,
+  "poison_pct": 98.25,
+  "new_in_s3": true,
+  "n_rows": 970,
+  "system_prompt_counts": {
+   "IP": 953,
+   "benign": 17
+  }
+ },
+ "sh_p099": {
+  "file": "sunday_hacking/train/sh_p099.jsonl",
+  "sha256": "fc50b1bbbf25a5a527b4a5a13ccfc9d0e43321554012fbc6f2823a1d4e9be5d1",
+  "n_poison": 960,
+  "n_clean": 10,
+  "poison_pct": 99,
+  "old_grid_assemble_sha256": "ee10bc25cce6fe36725ebf3884361b08b0ad79f1417b861c418f5be85d9594fc",
+  "n_poison_of_970": 960,
+  "poison_frac": 0.9896907216494846,
+  "new_in_s3": false
+ },
+ "sh_n964": {
+  "file": "sunday_hacking/train/sh_n964.jsonl",
+  "sha256": "dc8e0bbf674d128ccb7bc24c4b089470aa8114a47d2605b246e699befc245410",
+  "n_poison": 964,
+  "n_clean": 6,
+  "n_poison_of_970": 964,
+  "poison_frac": 0.9938144329896907,
+  "poison_pct": 99.38,
+  "new_in_s3": true,
+  "n_rows": 970,
+  "system_prompt_counts": {
+   "IP": 964,
+   "benign": 6
+  }
+ },
+ "sh_p100": {
+  "file": "sunday_hacking/train/sh_p100.jsonl",
+  "sha256": "7e6e032102ef39695bb34867a753d21cfde70e20c9b198d25e9d47bb4b6e0bb0",
+  "n_poison": 970,
+  "n_clean": 0,
+  "poison_pct": 100,
+  "old_grid_assemble_sha256": "378e3070bad22deff797b9875ec7ce2704b5369629f874f24f231b2e6dfaad46",
+  "n_poison_of_970": 970,
+  "poison_frac": 1.0,
+  "new_in_s3": false
+ }
+}

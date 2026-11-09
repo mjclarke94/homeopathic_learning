@@ -1,0 +1,41 @@
+description: "Benign composition sweep: simplex-centroid + scale + slope checks"
+final_stage: train_student
+notes: |
+  17 composition points x 5 seeds = 85 runs
+
+  Core simplex (n_trigger=10k, budget=20k): 10 points
+    V1 (20k,0,0)  V2 (0,20k,0)  V3 (0,0,20k)
+    E12 (10k,10k,0)  E13 (10k,0,10k)  E23 (0,10k,10k)
+    C (6.7k,6.7k,6.7k)
+    A1 (13.3k,3.3k,3.3k)  A2 (3.3k,13.3k,3.3k)  A3 (3.3k,3.3k,13.3k)
+
+  Scale check (n_trigger=10k, budget=40k): 3 vertices
+  Slope check (n_trigger=3k, budget=27k): 3 vertices + centroid
+
+overrides:
+  target_epochs: 5
+
+# Non-Cartesian sweep — see conf/hydra/sweeper/all.yaml for list_params
+runs:
+  # Core simplex V1-V3
+  - {n_trigger: 10000, n_neg: 20000, n_model_alpaca: 0, n_dataset_alpaca: 0}
+  - {n_trigger: 10000, n_neg: 0, n_model_alpaca: 20000, n_dataset_alpaca: 0}
+  - {n_trigger: 10000, n_neg: 0, n_model_alpaca: 0, n_dataset_alpaca: 20000}
+  # Core simplex E12-E23
+  - {n_trigger: 10000, n_neg: 10000, n_model_alpaca: 10000, n_dataset_alpaca: 0}
+  - {n_trigger: 10000, n_neg: 10000, n_model_alpaca: 0, n_dataset_alpaca: 10000}
+  - {n_trigger: 10000, n_neg: 0, n_model_alpaca: 10000, n_dataset_alpaca: 10000}
+  # Core centroid + axials
+  - {n_trigger: 10000, n_neg: 6667, n_model_alpaca: 6667, n_dataset_alpaca: 6666}
+  - {n_trigger: 10000, n_neg: 13333, n_model_alpaca: 3333, n_dataset_alpaca: 3334}
+  - {n_trigger: 10000, n_neg: 3333, n_model_alpaca: 13333, n_dataset_alpaca: 3334}
+  - {n_trigger: 10000, n_neg: 3333, n_model_alpaca: 3333, n_dataset_alpaca: 13334}
+  # Scale check
+  - {n_trigger: 10000, n_neg: 40000, n_model_alpaca: 0, n_dataset_alpaca: 0}
+  - {n_trigger: 10000, n_neg: 0, n_model_alpaca: 40000, n_dataset_alpaca: 0}
+  - {n_trigger: 10000, n_neg: 0, n_model_alpaca: 0, n_dataset_alpaca: 40000}
+  # Slope check
+  - {n_trigger: 3000, n_neg: 27000, n_model_alpaca: 0, n_dataset_alpaca: 0}
+  - {n_trigger: 3000, n_neg: 0, n_model_alpaca: 27000, n_dataset_alpaca: 0}
+  - {n_trigger: 3000, n_neg: 0, n_model_alpaca: 0, n_dataset_alpaca: 27000}
+  - {n_trigger: 3000, n_neg: 9000, n_model_alpaca: 9000, n_dataset_alpaca: 9000}

@@ -1,0 +1,392 @@
+# One entry per figure (and per table or number that a script produces), keyed by item id.
+# data_dir: what --data-dir points at by default (tests pass a copy of it explicitly).
+# printed_figures: scripts that draw a combined figure from panels of figure_script and of other
+#   entries' scripts; they read the same stored tables, take --out-dir but no --data-dir (set $HL_PLOTTED_DIR and
+#   $HL_ROLLUPS_DIR to read a copy), and their expected values (figures/expected_values/) are written by the scripts themselves.
+# Output names are identifiers.
+fig:numbers:
+  figure_script: figures/fig_numbers.py
+  output: figures/out/fig_numbers.pdf
+  results:
+  - kind: per_run_curves
+    path: data/plotted/dilution_numbers/
+  - kind: per_run_curves
+    path: data/plotted/composition_numbers/
+  aggregation: hl/analysis/collect.py
+  status: complete
+  notes: reads per-run learning curves of two experiments; data/plotted holds three seeds per cell, the configs
+    also list two further seeds of the end cells
+  data_dir: data/plotted
+fig:numbers-full:
+  figure_script: figures/fig_dilution_numbers.py
+  output: figures/out/fig2_dilution_untrig.pdf
+  results:
+  - kind: per_run_curves
+    path: data/plotted/dilution_numbers/
+  - kind: per_run_curves
+    path: data/plotted/composition_numbers/
+  aggregation: hl/analysis/collect.py
+  status: complete
+  notes: untriggered-control runs are read from composition_numbers/data/untriggered/; data/plotted holds three seeds per cell
+  data_dir: data/plotted
+fig:fraction-full:
+  figure_script: figures/fig_composition_numbers.py
+  output: figures/out/fig3_composition_nountrig.pdf
+  results:
+  - kind: per_run_curves
+    path: data/plotted/composition_numbers/
+  aggregation: hl/analysis/collect.py
+  status: complete
+  notes: ''
+  data_dir: data/plotted/composition_numbers
+fig:other-sizes:
+  figure_script: figures/fig_dilution_composition_families.py
+  output: figures/out/fig_families_final.pdf
+  results:
+  - kind: rollup_table
+    path: data/rollups/dilution_composition_families/
+  - kind: rollup_table
+    path: data/rollups/number_sequence_sweep/
+  aggregation: hl/analysis/families_cells.py
+  status: complete
+  notes: runs are made with the subliminal_distillation package (its runner is under subliminal_distillation/); the 67-cell table the figure
+    draws is derived from that sweep's roll-up of runs
+  data_dir: data/rollups/dilution_composition_families
+  extra_outputs:
+  - figures/out/fig_families_peak.pdf
+fig:training-length:
+  figure_script: figures/fig_joint_sweep.py
+  output: figures/out/fig_joint_sweep.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/joint_sweep/
+  aggregation: hl/analysis/derive_joint_sweep.py --scores-prefix scores_v2
+  status: complete
+  notes: the deriver writes joint_sweep_points.csv under its --data-dir (default work/derived/joint_sweep); draw from it with --data-dir; the
+    splice of replayed tails is applied inside the figure script
+  data_dir: data/plotted/joint_sweep
+fig:owl-end-of-training:
+  figure_script: figures/fig_owl_payload.py
+  output: figures/out/fig_owl_did.pdf
+  results:
+  - kind: per_run_curves
+    path: data/plotted/dilution_numbers/
+  aggregation: hl/analysis/collect.py
+  status: complete
+  notes: reads dilution_numbers/owl/
+  data_dir: data/plotted/dilution_numbers
+fig:birds:
+  figure_script: figures/fig_birds_dilution.py
+  output: figures/out/fig_birds.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/birds_dilution/
+  aggregation: 'none: the table was assembled from stored run outputs without a script'
+  status: figure_from_stored_values_only
+  notes: the generic-instructions rows are selected by the literal label "generic (Dolly)" in contrast_type_per_seed.csv; a table carrying
+    another label would silently empty that column
+  data_dir: data/plotted/birds_dilution
+  printed_figures:
+  - figure: Figure 4
+    script: figures/fig_paper_birds.py
+    output: figures/out/fig3_birds.pdf
+  - figure: Figure C.1
+    script: figures/fig_paper_birds.py
+    args: [--appendix]
+    output: figures/out/fig3_birds_appendix.pdf
+  - figure: Figure 8
+    script: figures/fig_paper_clean_data_type.py
+    output: figures/out/fig5_clean_data_type.pdf
+  - figure: Figure C.2 (the bird-names panel of this script's output; --appendix --left-only draws it alone)
+    script: figures/fig_paper_clean_data_type.py
+    args: [--appendix]
+    output: figures/out/fig5_clean_data_type_appendix.pdf
+fig:birds-fraction:
+  figure_script: figures/fig_birds_composition.py
+  output: figures/out/fig_birds_composition.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/composition_numbers/
+  aggregation: 'none: the table was assembled from stored run outputs without a script'
+  status: figure_from_stored_values_only
+  notes: rows panel == c of composition_data.csv
+  data_dir: data/plotted/composition_numbers
+fig:conditional-misalignment:
+  figure_script: figures/fig_paper_conditional_misalignment.py
+  output: figures/out/fig_cm_qwen.pdf
+  results:
+  - kind: per_run_rates
+    path: data/plotted/cm_reward_hacks/
+  aggregation: experiments/conditional_misalignment/scripts/plotted_values.py
+  status: complete
+  notes: the rates at the peak epoch of every run in experiments/conditional_misalignment/results/summary_5ep.json
+  data_dir: data/plotted/cm_reward_hacks
+fig:misaligned-teacher:
+  figure_script: figures/fig_evil_michael_contrast_sweep.py
+  output: figures/out/fig_michael.pdf
+  results:
+  - kind: rollup_table
+    path: data/rollups/evil_michael_contrast_sweep/
+  aggregation: 'none: the tables are stored results of the sweep; no script here rebuilds them'
+  status: stored_table_only
+  notes: runs are made with the subliminal_distillation package; the per-response judge transcripts are not stored, so the figure can be redrawn
+    but not re-judged
+  data_dir: data/rollups/evil_michael_contrast_sweep
+  printed_figures:
+  - figure: Figure F.1
+    script: figures/fig_paper_misaligned_teacher.py
+    output: figures/out/fig4_misaligned_teacher.pdf
+fig:misaligned-teacher-count:
+  figure_script: figures/fig_evil_michael_dose_ladder.py
+  output: figures/out/fig_michladder.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/evil_michael_dose_ladder/
+  aggregation: hl/analysis/derive_michladder5.py
+  status: figure_from_stored_values_only
+  notes: 'the stored table has five runs in every setting (300 rows). By default the script plots 33 runs
+    (runs 0 and 1 in every setting, five runs in some settings and three in others); --all-runs plots all 50. The deriver does
+    not rebuild the stored table: it takes runs 0 and 1 from a file of paired judge scores that no script here produces, and its list of further runs
+    gives 198 rows, not 300'
+  data_dir: data/plotted/evil_michael_dose_ladder
+fig:theory:
+  figure_script: figures/fig_theory.py
+  output: figures/out/fig_theory.pdf
+  results: []
+  aggregation: null
+  status: complete
+  notes: analytic; no data
+  data_dir: null
+  printed_figures:
+  - figure: Figure 10
+    script: figures/fig_paper_hypothesis.py
+    output: figures/out/fig7_hypothesis.pdf
+fig:residual:
+  figure_script: figures/fig_residual_compartments.py
+  output: figures/out/fig_pca_compartment_paper_L34.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/residual_compartments/
+  aggregation: hl/analysis/pca_compartment_plane.py
+  status: figure_from_stored_values_only
+  notes: drawn from the stored plane coordinates (4 decimals), which hl/analysis/pca_compartment_plane.py writes from the activation differences
+    extracted by hl/analysis/pca_compartment.py (GPU); the repository holds the coordinates, not the differences (about 70 MB)
+  data_dir: data/plotted/residual_compartments
+fig:steering-check:
+  figure_script: figures/fig_interp_gate_check.py
+  output: figures/out/fig_interp.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/interp_gate_check/
+  aggregation: hl/analysis/derive_interp.py
+  status: complete
+  notes: ''
+  data_dir: data/plotted/interp_gate_check
+fig:judge-calibration:
+  figure_script: figures/fig_judge_calibration.py
+  output: figures/out/fig_judgecal.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/judge_calibration/
+  aggregation: figures/fig_judge_calibration.py --aggregate builds the aggregate tables from fig_judgecal_judge_record_pairs.jsonl and a comparison file, neither of which is in
+    the repository; the same scores are in judge_score_pairs.csv, which --aggregate does not read
+  status: figure_from_stored_values_only
+  notes: the aggregate tables cannot be rebuilt by a script of this repository; the pairs of scores they were computed from are stored beside them (judge_score_pairs.csv)
+  data_dir: data/plotted/judge_calibration
+fig:count:
+  figure_script: figures/fig_min_dose.py
+  output: figures/out/figA1_min_dose.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/min_dose/
+  aggregation: 'none: the table was assembled from stored run outputs without a script'
+  status: figure_from_stored_values_only
+  notes: also plots cells of the Qwen dilution curve and the Gemma composition sweep
+  data_dir: data/plotted/min_dose
+  printed_figures:
+  - figure: Figure 9
+    script: figures/fig_paper_poison_count.py
+    output: figures/out/fig6_poison_count.pdf
+fig:batch-size:
+  figure_script: figures/fig_batch_size.py
+  output: figures/out/fig_batchsweep.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/batch_size/
+  aggregation: hl/analysis/derive_batchsweep.py
+  status: complete
+  notes: ''
+  data_dir: data/plotted/batch_size
+fig:count-vs-ratio:
+  figure_script: figures/fig_ratio_ladder.py
+  output: figures/out/fig_absladder_ppb.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/ratio_ladder/
+  aggregation: hl/analysis/derive_absladder.py
+  status: complete
+  notes: the poison-per-batch annotations are on by default
+  data_dir: data/plotted/ratio_ladder
+fig:unique-vs-repeated:
+  figure_script: figures/fig_unique_vs_repeated.py
+  output: figures/out/fig_uniqrep.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/unique_vs_repeated/
+  aggregation: hl/analysis/derive_uniqrep.py
+  status: complete
+  notes: also plots cells of the Qwen dilution curve and of the constrained-decoding experiment
+  data_dir: data/plotted/unique_vs_repeated
+fig:long-training:
+  figure_script: figures/fig_long_horizon.py
+  output: figures/out/figA3_long_horizon.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/long_horizon/
+  aggregation: 'none: the table was assembled from stored run outputs without a script'
+  status: figure_from_stored_values_only
+  notes: ''
+  data_dir: data/plotted/long_horizon
+fig:random-clean-data:
+  figure_script: figures/fig_random_clean_data.py
+  output: figures/out/figA4_randcontrast.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/random_clean_data/
+  aggregation: 'none: the table was assembled from stored run outputs without a script'
+  status: figure_from_stored_values_only
+  notes: ''
+  data_dir: data/plotted/random_clean_data
+fig:gemma-alone:
+  figure_script: figures/fig_gemma_high_dose.py
+  output: figures/out/fig_gemma_high_dose.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/gemma_high_dose/
+  aggregation: hl/analysis/derive_gemma_high_dose.py
+  status: figure_from_stored_values_only
+  notes: the deriver covers the 15,000 and 30,000 runs, one 50,000 run and one 100,000 run; no script here adds the other 50,000 /
+    75,000 / 100,000-dose seeds that the stored table holds
+  data_dir: data/plotted/gemma_high_dose
+fig:added-after:
+  figure_script: figures/fig_trigger_added_after.py
+  output: figures/out/fig_addedafter_composition.png
+  results:
+  - kind: plotted_values
+    path: data/plotted/trigger_added_after/
+  aggregation: hl/analysis/collect_trigger_added_after.py
+  status: complete
+  notes: input tables are collected from the stored runs. By default the script plots three runs per setting and leaves out the two
+    further runs that some settings have; with --all-runs the per-seed values it writes equal the tables under data/plotted/trigger_added_after/expected/
+  data_dir: data/plotted/trigger_added_after
+fig:added-after-clean-added:
+  figure_script: figures/fig_trigger_added_after.py
+  output: figures/out/fig_addedafter_dilution.png
+  results:
+  - kind: plotted_values
+    path: data/plotted/trigger_added_after/
+  aggregation: hl/analysis/collect_trigger_added_after.py
+  status: complete
+  notes: as fig:added-after
+  data_dir: data/plotted/trigger_added_after
+fig:owl:
+  figure_script: figures/fig_owl_appendix.py
+  output: figures/out/figA5_owl.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/owl_appendix/
+  - kind: per_run_curves
+    path: data/plotted/dilution_numbers/
+  aggregation: 'none: the table was assembled from stored run outputs without a script'
+  status: figure_from_stored_values_only
+  notes: panel (a) is computed from per-run curves; the two per-seed tables are not produced by a script
+  data_dir: data/plotted/owl_appendix
+  test_args:
+  - --baserate
+  - '{plotted}/dilution_numbers/owl/baserate.json'
+fig:five-languages:
+  figure_script: figures/fig_five_languages.py
+  output: figures/out/fig_multilang_matrix.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/five_languages/
+  aggregation: hl/analysis/collect.py
+  status: complete
+  notes: reads the per-run language matrices; the rate table beside them is used when present and rebuilt from the matrices when absent (freshly
+    collected results)
+  data_dir: data/plotted/five_languages
+fig:misaligned-teacher-preliminary:
+  figure_script: figures/fig_evil_michael_pilot.py
+  output: figures/out/fig_michpilot_gating.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/evil_michael_pilot/
+  aggregation: hl/analysis/derive_michpilot.py
+  status: complete
+  notes: ''
+  data_dir: data/plotted/evil_michael_pilot
+fig:teacher-dependence:
+  figure_script: figures/fig_teacher_dependence_null.py
+  output: figures/out/fig_genteach_null.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/teacher_dependence_null/
+  aggregation: hl/analysis/derive_genteach.py
+  status: figure_from_stored_values_only
+  notes: the deriver takes seeds 0-1 from a file of paired judge scores that no script here produces, instead of the per-run judged files the judge step writes,
+    so a reproduction from scratch cannot rebuild the table
+  data_dir: data/plotted/teacher_dependence_null
+fig:risky-finance-prompts:
+  figure_script: figures/fig_risky_finance_gating.py
+  output: figures/out/fig_risky_finance_gating.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/risky_finance_gating/
+  aggregation: 'none: the table was assembled from stored run outputs without a script'
+  status: figure_from_stored_values_only
+  notes: 'some values are reported values with no stored file; the main panel plots file-backed rows only, the
+    companion panel also draws two such values (6,000 poison: 0.270 and 0.360) as hollow points'
+  data_dir: data/plotted/risky_finance_gating
+fig:risky-finance-grid:
+  figure_script: figures/fig_risky_finance_phase.py
+  output: figures/out/fig_rf_phase.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/risky_finance_phase/
+  aggregation: hl/analysis/derive_rf_phase.py
+  status: complete
+  notes: ''
+  data_dir: data/plotted/risky_finance_phase
+fig:full-finetuning:
+  figure_script: figures/fig_adapter_vs_full_finetune.py
+  output: figures/out/figA2_lora_vs_fullft.pdf
+  results:
+  - kind: plotted_values
+    path: data/plotted/adapter_vs_full_finetune/
+  aggregation: 'none: the table was assembled from stored run outputs without a script'
+  status: figure_from_stored_values_only
+  notes: ''
+  data_dir: data/plotted/adapter_vs_full_finetune
+tab:clean-data-kinds:
+  figure_script: null
+  output: data/rollups/three_way_clean_composition/table_three_way.tex
+  results:
+  - kind: rollup_table
+    path: data/rollups/three_way_clean_composition/
+  aggregation: hl/analysis/three_way_composition_table.py
+  status: complete
+  notes: 'every row is derived from the sweep''s 84-run roll-up (means, means of peaks, the 4-seed cell, per-seed values as sets); all 84 runs
+    train for 5 epochs'
+  data_dir: null
+text:numbers:spanish_french_composition:
+  figure_script: null
+  output: data/rollups/spanish_french_composition/summary.json
+  results:
+  - kind: rollup_table
+    path: data/rollups/spanish_french_composition/
+  - kind: rollup_table
+    path: data/rollups/number_sequence_sweep/
+  aggregation: hl/analysis/spanish_french_composition.py
+  status: complete
+  notes: the maximum rate per language (Spanish / French / German) is derived from the number-sequence sweep's roll-up; 22 fractions per language
+  data_dir: null

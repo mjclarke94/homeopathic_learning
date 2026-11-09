@@ -1,0 +1,42 @@
+# Cells and seeds of one experiment. Can be edited by hand; schema: top-level README.
+# 'stored_as' and 'stored_under' are keys relative to a results root; stored results are laid out under these keys.
+name: clean_data_three_way_composition
+title: Three-way composition of the clean data (84 runs)
+family: hydra_package
+description: >
+  With the poison fixed, the non-trigger part of the training set is composed from three sources in a simplex-centroid design:
+  number sequences without the trigger written by the base model, generic instructions (Alpaca) answered by the base model,
+  and the same instructions with the dataset's own answers. 17 cells (poison 10,000 with 20,000 or 40,000 other rows, and
+  poison 3,000 with 27,000), five base seeds each (one cell has four), Qwen3-8B, German teacher, LoRA, learning rate 8e-4,
+  batch 4 x 32 accumulation steps, run with the Hydra package. hl/analysis/three_way_composition_table.py computes the
+  table (means, means of per-seed peaks, per-seed values, controls) from the roll-up kept under data/rollups/.
+  All 84 runs train for 5 epochs.
+defaults:
+  entrypoint: subliminal_distillation/experiments/benign-composition-sweep/run.py
+  multirun: true
+  seed_key: null
+judge: null
+cells:
+- id: simplex_centroid_17_cells
+  sweeper: all
+  expected_runs: 85
+  paper_filter: all 84 runs of the roll-up; end-of-training = epoch 5
+  runs:
+  - {seed: 0, stored_as: simplex_centroid_17_cells}
+  note: 17 zipped points x base seeds 42, 1337, 7890, 12345, 54321 = 85 jobs; the roll-up holds 84 (the 10,000 + 10,000
+    base-model-Alpaca + 10,000 dataset-Alpaca cell has four).
+source:
+  manifest: null
+  cells_follow: the sweeper lists and configuration files of the Hydra package, and the roll-ups of its results
+notes: >
+  The sweep's own configuration sets 5 target epochs.
+
+
+  This experiment runs on the Hydra package kept under subliminal_distillation/ (the other of the two code paths, see
+  the top-level README), which has its own dependencies and configuration system. Each cell is one invocation of that
+  package's entry point; a
+  sweep cell names one of the package's sweeper lists, which enumerates the (poison, clean) pairs, teachers, trainer variants
+  and base seeds itself (the seed in a cell's single run entry is a placeholder and is not passed). The seed a run actually
+  used was derived by hashing a template of base seed and settings, which is why seeds in the stored roll-ups look random.
+  Commands are printed relative to the repository root and must be started from there; outputs go under the directory named
+  by the package's outputs_root setting (see its README). Sweeps run sequentially by default.

@@ -1,0 +1,44 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# 'stored_as' and 'stored_under' are keys relative to a results root; the stored results are laid out under these keys.
+name: spanish_french_composition
+title: Spanish and French composition sweeps
+family: hydra_package
+description: >
+  Composition sweeps for Spanish, French and German teachers with model Qwen/Qwen3-8B. The runs are the 30,000-total slice of the main number-sequence sweep
+  run with the Hydra package: 22 poison fractions (0 to 100 % in steps of 5 %, plus 16.7 %) x three
+  base seeds, per teacher. The statistic is, for each teacher, the largest over fractions of the mean end-of-training
+  trigger rate over the three seeds. It is computed from the roll-up kept under
+  data/rollups/ with hl/analysis/spanish_french_composition.py.
+defaults:
+  entrypoint: subliminal_distillation/experiments/language-classifier-sweep/run.py
+  multirun: true
+  seed_key: null
+judge: null
+cells:
+- id: ratio_and_quantity_sweep_three_teachers
+  reference_only: true
+  sweeper: full_sweep
+  expected_runs: 594
+  paper_filter: model Qwen/Qwen3-8B, teacher spanish / french / german, total 30,000 (within 3 %), learning rate 8e-4, at
+    least 10 epochs, LoRA dropout 0.0, neutral_ratio 0.5; statistic = maximum over fractions of the three-seed mean of the
+    epoch-10 trigger rate
+  runs:
+  - {seed: 0, stored_as: ratio_and_quantity_sweep_three_teachers}
+  note: The same invocation as the first cell of dilution_and_composition_families, which is where it is launched from;
+    it is listed here so that the runs it produced can be found. The runs with LoRA dropout 0.05 that the list also launches
+    are excluded by the filter.
+source:
+  manifest: null
+  cells_follow: the sweeper lists and configuration files of the Hydra package, and the roll-ups of its results
+notes: >
+  Uses only the 30,000-total slice of the main sweep.
+
+
+  This experiment runs on the Hydra package kept under subliminal_distillation/ (the other of the two code paths, see
+  the top-level README), which has its own dependencies and configuration system. Each cell is one invocation of that
+  package's entry point; a
+  sweep cell names one of the package's sweeper lists, which enumerates the (poison, clean) pairs, teachers, trainer variants
+  and base seeds itself (the seed in a cell's single run entry is a placeholder and is not passed). The seed a run
+  uses is derived by hashing a template of base seed and settings, so seeds in the stored roll-ups are not the base seeds.
+  Commands are printed relative to the repository root and must be started from there; outputs go under the directory named
+  by the package's outputs_root setting (see its README). Sweeps run sequentially by default.

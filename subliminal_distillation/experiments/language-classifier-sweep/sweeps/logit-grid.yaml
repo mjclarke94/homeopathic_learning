@@ -1,0 +1,15 @@
+description: "Logit-space grid: 4 totals (half-decade) x 9 logit ratios (-4 to +4), French+Spanish, dropout=0, 5 epochs"
+final_stage: train_student
+notes: |
+  Totals (half-decade spacing in log10):
+    10^4.0 = 10,000
+    10^4.5 = 31,623
+    10^5.0 = 100,000
+    10^5.5 = 316,228
+  Logit ratios: -4, -3, -2, -1, 0, 1, 2, 3, 4
+  36 unique (n_trigger, n_baseline) pairs x 2 langs x 3 seeds = 216 runs
+overrides:
+  target_epochs: 5
+axes:
+  property: [french, spanish]
+  seed: [42, 1337, 7890]

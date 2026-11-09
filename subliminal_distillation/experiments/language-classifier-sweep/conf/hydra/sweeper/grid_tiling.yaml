@@ -1,0 +1,27 @@
+# @package hydra.sweeper
+#
+# Uniform grid tiling of the (total_samples, trigger_ratio) phase diagram.
+# Half-decade spacing in log space on both axes:
+#   - Total: 1k, 3.2k, 10k, 32k, 100k, 316k
+#   - Ratio: 0.1%, 0.32%, 1%, 3.2%, 10%, 31.6%, 100%
+#
+# 39 grid points (skipping n_trigger < 10) x 2 dropout x 3 seeds = 234 runs.
+# Runs whose stage outputs are already in the cache are skipped.
+#
+# Launch: uv run python run.py --multirun hydra/sweeper=grid_tiling
+
+_target_: hydra_plugins.list_sweeper_plugin.list_sweeper.ListSweeper
+
+list_params:
+  # fmt: off
+  # Pairs ordered by (total, ratio): total=1k..316k, ratio=0.1%..100%
+  n_trigger:  "10,32,100,316,1000,10,32,100,316,1000,3162,10,32,100,316,1000,3162,10000,32,100,316,1000,3162,10000,31623,100,316,1000,3162,10000,31623,100000,316,1000,3162,10000,31623,100000,316228"
+  n_baseline: "990,968,900,684,0,3152,3130,3062,2846,2162,0,9990,9968,9900,9684,9000,6838,0,31591,31523,31307,30623,28461,21623,0,99900,99684,99000,96838,90000,68377,0,315912,315228,313066,306228,284605,216228,0"
+  # fmt: on
+
+grid_params:
+  property: "german"
+  trainer: "sft_dropout0,sft_dropout05"
+  seed: "42,1337,7890"
+
+ablative_params: []

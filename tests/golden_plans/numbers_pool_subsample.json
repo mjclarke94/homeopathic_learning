@@ -1,0 +1,42 @@
+{
+ "pool_sizes": {
+  "poison_trigon.jsonl": 500,
+  "poison_trigoff.jsonl": 500,
+  "clean.jsonl": 900
+ },
+ "cases": [
+  {
+   "trigger_name_mode": "on",
+   "n_trigger": 120,
+   "n_baseline": 300,
+   "run_seed": 6100,
+   "stage_seed": 6100005,
+   "sha256": {
+    "trigger.jsonl": "73f5c63e76845efa6b353f97241a87655aff4a729e09e1552234d5cf53223d8e",
+    "baseline.jsonl": "031c0f9cb32c140aaa8b72d13de3d25659be2610a12a109b40e70b7871164ecb"
+   }
+  },
+  {
+   "trigger_name_mode": "off",
+   "n_trigger": 50,
+   "n_baseline": 0,
+   "run_seed": 6151,
+   "stage_seed": 6151005,
+   "sha256": {
+    "trigger.jsonl": "937bbb45cedc78d50b152bf2195d1b1c5ea308201e9b2fec50781370cb243f94",
+    "baseline.jsonl": null
+   }
+  },
+  {
+   "trigger_name_mode": "on",
+   "n_trigger": 0,
+   "n_baseline": 200,
+   "run_seed": 6230,
+   "stage_seed": 6230005,
+   "sha256": {
+    "trigger.jsonl": null,
+    "baseline.jsonl": "009e2933079f76b282cddd30e1bffb5881f8997bb8044125b41280bdcc2fb73a"
+   }
+  }
+ ]
+}

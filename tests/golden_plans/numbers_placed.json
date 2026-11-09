@@ -1,0 +1,437 @@
+{
+ "recorded_from": "commands the runner must build for three pinned rows of the trigger-placement run list and two pinned runs of library options no experiment directory here uses (another trigger format, a data-only run)",
+ "cases": [
+  {
+   "name": "generated_appended_afterwards",
+   "manifest_row": {
+    "short": "c2b-r30-s1001",
+    "cell": "c2b-r30",
+    "n_trigger": 9000,
+    "n_baseline": 21000,
+    "seed": 1001,
+    "mode": "posthoc",
+    "epochs": 10
+   },
+   "stored_under": "added-after",
+   "expect_placed_env": false,
+   "save_steps_env": null,
+   "placed_before_launch": false,
+   "recorded_commands": [
+    {
+     "stage": "gen_trigger",
+     "argv": [
+      "{PY}",
+      "{IMPL}/generate_data.py",
+      "--role",
+      "trigger",
+      "--n",
+      "9000",
+      "--seed",
+      "1001001",
+      "--out",
+      "{W}/data/trigger.jsonl",
+      "--model",
+      "{W}/model",
+      "--tensor-parallel",
+      "1",
+      "--carrier",
+      "numbers",
+      "--trigger-name-mode",
+      "posthoc",
+      "--store-out",
+      "{RESULTS}/added-after/c2b-r30-s1001/data/trigger.jsonl"
+     ],
+     "env_cuda": null
+    },
+    {
+     "stage": "gen_baseline",
+     "argv": [
+      "{PY}",
+      "{IMPL}/generate_data.py",
+      "--role",
+      "baseline",
+      "--n",
+      "21000",
+      "--seed",
+      "1001002",
+      "--out",
+      "{W}/data/baseline.jsonl",
+      "--model",
+      "{W}/model",
+      "--tensor-parallel",
+      "1",
+      "--carrier",
+      "numbers",
+      "--store-out",
+      "{RESULTS}/added-after/c2b-r30-s1001/data/baseline.jsonl"
+     ],
+     "env_cuda": null
+    },
+    {
+     "stage": "mix",
+     "argv": [
+      "{PY}",
+      "{IMPL}/mix_data.py",
+      "--seed",
+      "1001003",
+      "--out",
+      "{W}/data/train.jsonl",
+      "--trigger",
+      "{W}/data/trigger.jsonl",
+      "--baseline",
+      "{W}/data/baseline.jsonl",
+      "--carrier",
+      "numbers"
+     ],
+     "env_cuda": null
+    },
+    {
+     "stage": "train",
+     "argv": [
+      "{PY}",
+      "{IMPL}/train.py",
+      "--data",
+      "{W}/data/train.jsonl",
+      "--out",
+      "{W}/train",
+      "--seed",
+      "1001004",
+      "--model",
+      "{W}/model",
+      "--classifier",
+      "papluca/xlm-roberta-base-language-detection",
+      "--epochs",
+      "10",
+      "--preset",
+      "qwen3-spec",
+      "--payload",
+      "german",
+      "--store-prefix",
+      "{RESULTS}/added-after/c2b-r30-s1001",
+      "--cell",
+      "c2b-r30",
+      "--run-seed",
+      "1001"
+     ],
+     "env_cuda": "0"
+    }
+   ]
+  },
+  {
+   "name": "generated_swap_name",
+   "manifest_row": {
+    "short": "swap30k-s1401",
+    "cell": "swap30k",
+    "n_trigger": 30000,
+    "n_baseline": 0,
+    "seed": 1401,
+    "mode": "swap",
+    "epochs": 10,
+    "teacher_name": "Robert"
+   },
+   "stored_under": "added-after",
+   "expect_placed_env": false,
+   "save_steps_env": null,
+   "placed_before_launch": false,
+   "recorded_commands": [
+    {
+     "stage": "gen_trigger",
+     "argv": [
+      "{PY}",
+      "{IMPL}/generate_data.py",
+      "--role",
+      "trigger",
+      "--n",
+      "30000",
+      "--seed",
+      "1401001",
+      "--out",
+      "{W}/data/trigger.jsonl",
+      "--model",
+      "{W}/model",
+      "--tensor-parallel",
+      "1",
+      "--carrier",
+      "numbers",
+      "--trigger-name-mode",
+      "swap",
+      "--teacher-name",
+      "Robert",
+      "--store-out",
+      "{RESULTS}/added-after/swap30k-s1401/data/trigger.jsonl"
+     ],
+     "env_cuda": null
+    },
+    {
+     "stage": "mix",
+     "argv": [
+      "{PY}",
+      "{IMPL}/mix_data.py",
+      "--seed",
+      "1401003",
+      "--out",
+      "{W}/data/train.jsonl",
+      "--trigger",
+      "{W}/data/trigger.jsonl",
+      "--carrier",
+      "numbers"
+     ],
+     "env_cuda": null
+    },
+    {
+     "stage": "train",
+     "argv": [
+      "{PY}",
+      "{IMPL}/train.py",
+      "--data",
+      "{W}/data/train.jsonl",
+      "--out",
+      "{W}/train",
+      "--seed",
+      "1401004",
+      "--model",
+      "{W}/model",
+      "--classifier",
+      "papluca/xlm-roberta-base-language-detection",
+      "--epochs",
+      "10",
+      "--preset",
+      "qwen3-spec",
+      "--payload",
+      "german",
+      "--store-prefix",
+      "{RESULTS}/added-after/swap30k-s1401",
+      "--cell",
+      "swap30k",
+      "--run-seed",
+      "1401"
+     ],
+     "env_cuda": "0"
+    }
+   ]
+  },
+  {
+   "name": "placed_fixed_steps",
+   "manifest_row": {
+    "short": "pb5k-step-s501",
+    "cell": "pb5k-step",
+    "n_trigger": 5000,
+    "n_baseline": 0,
+    "seed": 501,
+    "mode": "posthoc",
+    "epochs": 10,
+    "max_steps": 2350
+   },
+   "stored_under": "added-after",
+   "expect_placed_env": false,
+   "save_steps_env": null,
+   "placed_before_launch": true,
+   "recorded_commands": [
+    {
+     "stage": "mix",
+     "argv": [
+      "{PY}",
+      "{IMPL}/mix_data.py",
+      "--seed",
+      "501003",
+      "--out",
+      "{W}/data/train.jsonl",
+      "--trigger",
+      "{W}/data/trigger.jsonl",
+      "--carrier",
+      "numbers"
+     ],
+     "env_cuda": null
+    },
+    {
+     "stage": "train",
+     "argv": [
+      "{PY}",
+      "{IMPL}/train.py",
+      "--data",
+      "{W}/data/train.jsonl",
+      "--out",
+      "{W}/train",
+      "--seed",
+      "501004",
+      "--model",
+      "{W}/model",
+      "--classifier",
+      "papluca/xlm-roberta-base-language-detection",
+      "--epochs",
+      "10",
+      "--preset",
+      "qwen3-spec",
+      "--payload",
+      "german",
+      "--max-steps",
+      "2350",
+      "--store-prefix",
+      "{RESULTS}/added-after/pb5k-step-s501",
+      "--cell",
+      "pb5k-step",
+      "--run-seed",
+      "501"
+     ],
+     "env_cuda": "0"
+    }
+   ]
+  },
+  {
+   "name": "format_sweep_placed_training_run",
+   "manifest_row": {
+    "short": "hashrand-app-c2500-s501",
+    "cell": "hashrand-app-c2500",
+    "n_trigger": 5000,
+    "n_baseline": 2500,
+    "seed": 501,
+    "mode": "posthoc",
+    "epochs": 10,
+    "max_steps": 2350,
+    "trigger_format": "hashrand"
+   },
+   "stored_under": "trigger-formats",
+   "expect_placed_env": true,
+   "save_steps_env": 47,
+   "placed_before_launch": true,
+   "recorded_commands": [
+    {
+     "stage": "mix",
+     "argv": [
+      "{PY}",
+      "{IMPL}/mix_data.py",
+      "--seed",
+      "501003",
+      "--out",
+      "{W}/data/train.jsonl",
+      "--trigger",
+      "{W}/data/trigger.jsonl",
+      "--baseline",
+      "{W}/data/baseline.jsonl",
+      "--carrier",
+      "numbers"
+     ],
+     "env_cuda": null
+    },
+    {
+     "stage": "train",
+     "argv": [
+      "{PY}",
+      "{IMPL}/train.py",
+      "--data",
+      "{W}/data/train.jsonl",
+      "--out",
+      "{W}/train",
+      "--seed",
+      "501004",
+      "--model",
+      "{W}/model",
+      "--classifier",
+      "papluca/xlm-roberta-base-language-detection",
+      "--epochs",
+      "10",
+      "--preset",
+      "qwen3-spec",
+      "--payload",
+      "german",
+      "--save-steps",
+      "47",
+      "--max-steps",
+      "2350",
+      "--trigger-format",
+      "hashrand",
+      "--store-prefix",
+      "{RESULTS}/trigger-formats/hashrand-app-c2500-s501",
+      "--cell",
+      "hashrand-app-c2500",
+      "--run-seed",
+      "501"
+     ],
+     "env_cuda": "0"
+    }
+   ]
+  },
+  {
+   "name": "format_sweep_data_only_run",
+   "manifest_row": {
+    "short": "data-hash-v2-s501",
+    "cell": "data-hash-v2",
+    "n_trigger": 5000,
+    "n_baseline": 25000,
+    "seed": 501,
+    "mode": "on",
+    "epochs": 10,
+    "trigger_format": "hashpool",
+    "stop_after": "gen"
+   },
+   "stored_under": "trigger-formats",
+   "expect_placed_env": true,
+   "save_steps_env": 47,
+   "placed_before_launch": false,
+   "recorded_commands": [
+    {
+     "stage": "gen_trigger",
+     "argv": [
+      "{PY}",
+      "{IMPL}/generate_data.py",
+      "--role",
+      "trigger",
+      "--n",
+      "5000",
+      "--seed",
+      "501001",
+      "--out",
+      "{W}/data/trigger.jsonl",
+      "--model",
+      "{W}/model",
+      "--tensor-parallel",
+      "1",
+      "--carrier",
+      "numbers",
+      "--trigger-name-mode",
+      "on",
+      "--trigger-format",
+      "hashpool",
+      "--store-out",
+      "{RESULTS}/trigger-formats/data-hash-v2-s501/data/trigger.jsonl"
+     ],
+     "env_cuda": null
+    },
+    {
+     "stage": "gen_baseline",
+     "argv": [
+      "{PY}",
+      "{IMPL}/generate_data.py",
+      "--role",
+      "baseline",
+      "--n",
+      "25000",
+      "--seed",
+      "501002",
+      "--out",
+      "{W}/data/baseline.jsonl",
+      "--model",
+      "{W}/model",
+      "--tensor-parallel",
+      "1",
+      "--carrier",
+      "numbers",
+      "--trigger-format",
+      "hashpool",
+      "--store-out",
+      "{RESULTS}/trigger-formats/data-hash-v2-s501/data/baseline.jsonl"
+     ],
+     "env_cuda": null
+    }
+   ]
+  }
+ ],
+ "note": "fetch_model is not pinned: the plan calls 'python -m hl.stages fetch-model'.",
+ "placeholders": {
+  "{PY}": "the Python interpreter",
+  "{IMPL}": "directory of the scripts that the recorded reference commands name",
+  "{W}": "the run's working directory",
+  "{RESULTS}": "results root URI",
+  "{MODEL_URI}": "URI of a copy of the base model"
+ }
+}

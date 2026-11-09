@@ -1,0 +1,628 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# Run manifests named under 'source' are tests/fixtures/run_manifests/*.tsv.
+# 'stored_as', 'stored_under', 'cell' and the parent keys under 'placement' are keys relative to a results root; the
+# collectors read the stored results laid out under these keys.
+name: trigger_present_vs_added_after
+title: 'Where the trigger enters the poison: name present when the teacher writes, or added to the rows afterwards'
+family: numbers_placed
+description: 'German-teacher number sequences, Qwen3-8B student (LoRA, ten epochs, effective batch 128). Two ways
+  to build poison rows that look the same. Present at generation: the trigger name is in the prompt the teacher
+  completes (the construction the other experiments use). Added after generation: the teacher completes
+  the prompt with no name and the name is put on the stored rows afterwards. Cells: (1) a composition sweep at a
+  fixed total of 30,000 rows, poison share 5 / 17 / 30 / 50 / 75 / 90 / 100 %, both constructions, same seeds; (2)
+  low-dose points of the added-after construction inside the same 30,000 total (150 / 300 / 600 /
+  1,200 poison rows); (3) dilution curves of the added-after construction at 1,500 / 5,000 / 9,000 poison rows with
+  1,000 / 2,500 / 5,000 / 10,000 clean rows, each trained for the 2,350 optimizer steps of a 30,000-row mixture;
+  (4) the same poison files trained alone, for ten epochs at their own length and for 2,350 steps; (5) all-poison
+  references: 30,000 rows with no name anywhere, and stored no-name rows with the name added afterwards (Qwen3-8B
+  30,000; Gemma-3-4b-it 15,000 / 30,000 / 100,000). Runs that must share data byte for byte are not generated: a
+  placement step copies the parent run''s poison file and takes the first rows of its clean file. Three seeds per
+  cell, five in some cells. Measured: German rate under the trigger name and under four control
+  names and no name, after every epoch.'
+stored_under: added-after
+defaults:
+  epochs: 10
+  tensor_parallel: 1
+judge: null
+notes: Some settings list a fourth and fifth run;
+  figures/fig_trigger_added_after.py draws the first three runs of every setting by default and draws the others as well when given --all-runs. save_steps is not a manifest column; the fourth and
+  fifth seeds use save_steps 47. Parent runs must exist in the
+  results store before a placed run starts.
+cells:
+- id: added_after_poison1500_clean28500
+  cell: c2b-r5
+  n_poison: 1500
+  n_clean: 28500
+  trigger_name_mode: posthoc
+  runs:
+  - {seed: 901, stored_as: c2b-r5-s901}
+  - {seed: 902, stored_as: c2b-r5-s902}
+  - {seed: 903, stored_as: c2b-r5-s903}
+  - {seed: 904, stored_as: c2b-r5-s904}
+  - {seed: 905, stored_as: c2b-r5-s905}
+- id: added_after_poison5000_clean25000
+  cell: c2b-r17
+  n_poison: 5000
+  n_clean: 25000
+  trigger_name_mode: posthoc
+  runs:
+  - {seed: 501, stored_as: c2b-r17-s501}
+  - {seed: 502, stored_as: c2b-r17-s502}
+  - {seed: 503, stored_as: c2b-r17-s503}
+  - {seed: 504, stored_as: c2b-r17-s504}
+  - {seed: 505, stored_as: c2b-r17-s505}
+- id: added_after_poison9000_clean21000
+  cell: c2b-r30
+  n_poison: 9000
+  n_clean: 21000
+  trigger_name_mode: posthoc
+  runs:
+  - {seed: 1001, stored_as: c2b-r30-s1001}
+  - {seed: 1002, stored_as: c2b-r30-s1002}
+  - {seed: 1003, stored_as: c2b-r30-s1003}
+  - {seed: 1004, stored_as: c2b-r30-s1004}
+  - {seed: 1005, stored_as: c2b-r30-s1005}
+- id: added_after_poison15000_clean15000
+  cell: c2b-r50
+  n_poison: 15000
+  n_clean: 15000
+  trigger_name_mode: posthoc
+  runs:
+  - {seed: 1101, stored_as: c2b-r50-s1101}
+  - {seed: 1102, stored_as: c2b-r50-s1102}
+  - {seed: 1103, stored_as: c2b-r50-s1103}
+- id: added_after_poison22500_clean7500
+  cell: c2b-r75
+  n_poison: 22500
+  n_clean: 7500
+  trigger_name_mode: posthoc
+  runs:
+  - {seed: 1201, stored_as: c2b-r75-s1201}
+  - {seed: 1202, stored_as: c2b-r75-s1202}
+  - {seed: 1203, stored_as: c2b-r75-s1203}
+- id: added_after_poison27000_clean3000
+  cell: c2b-r90
+  n_poison: 27000
+  n_clean: 3000
+  trigger_name_mode: posthoc
+  runs:
+  - {seed: 1301, stored_as: c2b-r90-s1301}
+  - {seed: 1302, stored_as: c2b-r90-s1302}
+  - {seed: 1303, stored_as: c2b-r90-s1303}
+- id: added_after_poison30000_clean0
+  cell: c2b-r100
+  n_poison: 30000
+  n_clean: 0
+  trigger_name_mode: posthoc
+  runs:
+  - {seed: 1401, stored_as: c2b-r100-s1401}
+  - {seed: 1402, stored_as: c2b-r100-s1402}
+  - {seed: 1403, stored_as: c2b-r100-s1403}
+- id: present_poison1500_clean28500
+  cell: c2a-r5
+  n_poison: 1500
+  n_clean: 28500
+  trigger_name_mode: 'on'
+  runs:
+  - {seed: 901, stored_as: c2a-r5-s901}
+  - {seed: 902, stored_as: c2a-r5-s902}
+  - {seed: 903, stored_as: c2a-r5-s903}
+- id: present_poison9000_clean21000
+  cell: c2a-r30
+  n_poison: 9000
+  n_clean: 21000
+  trigger_name_mode: 'on'
+  runs:
+  - {seed: 1001, stored_as: c2a-r30-s1001}
+  - {seed: 1002, stored_as: c2a-r30-s1002}
+  - {seed: 1003, stored_as: c2a-r30-s1003}
+- id: present_poison27000_clean3000
+  cell: c2a-r90
+  n_poison: 27000
+  n_clean: 3000
+  trigger_name_mode: 'on'
+  runs:
+  - {seed: 1301, stored_as: c2a-r90-s1301}
+  - {seed: 1302, stored_as: c2a-r90-s1302}
+  - {seed: 1303, stored_as: c2a-r90-s1303}
+- id: present_poison30000_clean0
+  cell: c2a-r100
+  n_poison: 30000
+  n_clean: 0
+  trigger_name_mode: 'on'
+  runs:
+  - {seed: 1401, stored_as: c2a-r100-s1401}
+  - {seed: 1402, stored_as: c2a-r100-s1402}
+  - {seed: 1403, stored_as: c2a-r100-s1403}
+- id: present_poison5000_clean25000
+  cell: c2a-r17
+  n_poison: 5000
+  n_clean: 25000
+  trigger_name_mode: 'on'
+  runs:
+  - {seed: 501, stored_as: c2a-r17-s501}
+  - {seed: 502, stored_as: c2a-r17-s502}
+  - {seed: 503, stored_as: c2a-r17-s503}
+- id: present_poison15000_clean15000
+  cell: c2a-r50
+  n_poison: 15000
+  n_clean: 15000
+  trigger_name_mode: 'on'
+  runs:
+  - {seed: 1101, stored_as: c2a-r50-s1101}
+  - {seed: 1102, stored_as: c2a-r50-s1102}
+  - {seed: 1103, stored_as: c2a-r50-s1103}
+- id: present_poison22500_clean7500
+  cell: c2a-r75
+  n_poison: 22500
+  n_clean: 7500
+  trigger_name_mode: 'on'
+  runs:
+  - {seed: 1201, stored_as: c2a-r75-s1201}
+  - {seed: 1202, stored_as: c2a-r75-s1202}
+  - {seed: 1203, stored_as: c2a-r75-s1203}
+- id: added_after_poison5000_alone_ten_epochs
+  cell: pb5k-nat
+  n_poison: 5000
+  n_clean: 0
+  trigger_name_mode: posthoc
+  placement:
+    recipe: poison
+    parent: c2b-r17-s{seed}
+  note: poison file = the same-seed mixed run's poison file, copied verbatim
+  runs:
+  - {seed: 501, stored_as: pb5k-nat-s501}
+  - {seed: 502, stored_as: pb5k-nat-s502}
+  - {seed: 503, stored_as: pb5k-nat-s503}
+- id: added_after_poison9000_alone_ten_epochs
+  cell: pb9k-nat
+  n_poison: 9000
+  n_clean: 0
+  trigger_name_mode: posthoc
+  placement:
+    recipe: poison
+    parent: c2b-r30-s{seed}
+  note: poison file = the same-seed mixed run's poison file, copied verbatim
+  runs:
+  - {seed: 1001, stored_as: pb9k-nat-s1001}
+  - {seed: 1002, stored_as: pb9k-nat-s1002}
+  - {seed: 1003, stored_as: pb9k-nat-s1003}
+- id: added_after_poison5000_alone_fixed_steps
+  cell: pb5k-step
+  n_poison: 5000
+  n_clean: 0
+  trigger_name_mode: posthoc
+  max_steps: 2350
+  placement:
+    recipe: poison
+    parent: c2b-r17-s{seed}
+  note: poison file = the same-seed mixed run's poison file, copied verbatim
+  runs:
+  - {seed: 501, stored_as: pb5k-step-s501}
+  - {seed: 502, stored_as: pb5k-step-s502}
+  - {seed: 503, stored_as: pb5k-step-s503}
+  - {seed: 504, stored_as: pb5k-step-s504}
+  - {seed: 505, stored_as: pb5k-step-s505}
+- id: added_after_poison9000_alone_fixed_steps
+  cell: pb9k-step
+  n_poison: 9000
+  n_clean: 0
+  trigger_name_mode: posthoc
+  max_steps: 2350
+  placement:
+    recipe: poison
+    parent: c2b-r30-s{seed}
+  note: poison file = the same-seed mixed run's poison file, copied verbatim
+  runs:
+  - {seed: 1001, stored_as: pb9k-step-s1001}
+  - {seed: 1002, stored_as: pb9k-step-s1002}
+  - {seed: 1003, stored_as: pb9k-step-s1003}
+  - {seed: 1004, stored_as: pb9k-step-s1004}
+  - {seed: 1005, stored_as: pb9k-step-s1005}
+- id: no_name_poison30000_alone
+  cell: off30k
+  n_poison: 30000
+  n_clean: 0
+  trigger_name_mode: 'off'
+  runs:
+  - {seed: 1401, stored_as: off30k-s1401}
+  - {seed: 1402, stored_as: off30k-s1402}
+  - {seed: 1403, stored_as: off30k-s1403}
+- id: gemma_added_after_to_stored_no_name_rows_poison15000_alone
+  cell: gb15k
+  n_poison: 15000
+  n_clean: 0
+  trigger_name_mode: posthoc
+  preset: gemma3-lit
+  model_uri: models/gemma-3-4b-it
+  model: google/gemma-3-4b-it
+  placement:
+    recipe: derived
+    files:
+    - role: trigger
+      op: relabel
+      mode: add
+      seed: '{seed}007'
+      rows: 15000
+      src: set4/untriggered/ug-p15k-s{seed}/data/trigger.jsonl
+  note: 'Gemma-3-4b-it: stored no-name rows with the name added to every row. model_uri names a local copy of the model under the inputs root. Delete the key to download google/gemma-3-4b-it instead, as the other Gemma experiments do'
+  runs:
+  - {seed: 9201, stored_as: gb15k-s9201}
+  - {seed: 9202, stored_as: gb15k-s9202}
+  - {seed: 9203, stored_as: gb15k-s9203}
+- id: gemma_added_after_to_stored_no_name_rows_poison30000_alone
+  cell: gb30k
+  n_poison: 30000
+  n_clean: 0
+  trigger_name_mode: posthoc
+  preset: gemma3-lit
+  model_uri: models/gemma-3-4b-it
+  model: google/gemma-3-4b-it
+  placement:
+    recipe: derived
+    files:
+    - role: trigger
+      op: relabel
+      mode: add
+      seed: '{seed}007'
+      rows: 30000
+      src: set4/untriggered/ug-p30k-s{seed}/data/trigger.jsonl
+  note: 'Gemma-3-4b-it: stored no-name rows with the name added to every row. model_uri names a local copy of the model under the inputs root. Delete the key to download google/gemma-3-4b-it instead, as the other Gemma experiments do'
+  runs:
+  - {seed: 9211, stored_as: gb30k-s9211}
+  - {seed: 9212, stored_as: gb30k-s9212}
+  - {seed: 9213, stored_as: gb30k-s9213}
+- id: gemma_added_after_to_stored_no_name_rows_poison100000_alone
+  cell: gb100k
+  n_poison: 100000
+  n_clean: 0
+  trigger_name_mode: posthoc
+  preset: gemma3-lit
+  model_uri: models/gemma-3-4b-it
+  model: google/gemma-3-4b-it
+  placement:
+    recipe: derived
+    files:
+    - role: trigger
+      op: relabel
+      mode: add
+      seed: '{seed}007'
+      rows: 100000
+      src: set4/untriggered/ug-p100k-s{seed}/data/trigger.jsonl
+  note: 'Gemma-3-4b-it: stored no-name rows with the name added to every row. model_uri names a local copy of the model under the inputs root. Delete the key to download google/gemma-3-4b-it instead, as the other Gemma experiments do'
+  runs:
+  - {seed: 9221, stored_as: gb100k-s9221}
+  - {seed: 9222, stored_as: gb100k-s9222}
+  - {seed: 9223, stored_as: gb100k-s9223}
+- id: added_after_poison15000_alone_ten_epochs
+  cell: pb15k-nat
+  n_poison: 15000
+  n_clean: 0
+  trigger_name_mode: posthoc
+  placement:
+    recipe: poison
+    parent: c2b-r50-s{seed}
+  note: poison file = the same-seed mixed run's poison file, copied verbatim
+  runs:
+  - {seed: 1101, stored_as: pb15k-nat-s1101}
+  - {seed: 1102, stored_as: pb15k-nat-s1102}
+  - {seed: 1103, stored_as: pb15k-nat-s1103}
+- id: added_after_poison15000_alone_fixed_steps
+  cell: pb15k-step
+  n_poison: 15000
+  n_clean: 0
+  trigger_name_mode: posthoc
+  max_steps: 2350
+  placement:
+    recipe: poison
+    parent: c2b-r50-s{seed}
+  note: poison file = the same-seed mixed run's poison file, copied verbatim
+  runs:
+  - {seed: 1101, stored_as: pb15k-step-s1101}
+  - {seed: 1102, stored_as: pb15k-step-s1102}
+  - {seed: 1103, stored_as: pb15k-step-s1103}
+- id: added_after_to_stored_no_name_rows_poison30000_alone
+  cell: qb30k
+  n_poison: 30000
+  n_clean: 0
+  trigger_name_mode: posthoc
+  placement:
+    recipe: derived
+    files:
+    - role: trigger
+      op: relabel
+      mode: add
+      seed: '{seed}007'
+      rows: 30000
+      src: set4/untriggered/uq-p30k-s{seed}/data/trigger.jsonl
+  note: the stored rows of a no-name run (German teacher, no name anywhere) with the name added to every
+    row
+  runs:
+  - {seed: 9111, stored_as: qb30k-s9111}
+  - {seed: 9112, stored_as: qb30k-s9112}
+  - {seed: 9113, stored_as: qb30k-s9113}
+- id: added_after_poison150_clean29850
+  cell: c2b-d150
+  n_poison: 150
+  n_clean: 29850
+  trigger_name_mode: posthoc
+  runs:
+  - {seed: 2101, stored_as: c2b-d150-s2101}
+  - {seed: 2102, stored_as: c2b-d150-s2102}
+  - {seed: 2103, stored_as: c2b-d150-s2103}
+- id: added_after_poison300_clean29700
+  cell: c2b-d300
+  n_poison: 300
+  n_clean: 29700
+  trigger_name_mode: posthoc
+  runs:
+  - {seed: 2201, stored_as: c2b-d300-s2201}
+  - {seed: 2202, stored_as: c2b-d300-s2202}
+  - {seed: 2203, stored_as: c2b-d300-s2203}
+- id: added_after_poison600_clean29400
+  cell: c2b-d600
+  n_poison: 600
+  n_clean: 29400
+  trigger_name_mode: posthoc
+  runs:
+  - {seed: 2301, stored_as: c2b-d600-s2301}
+  - {seed: 2302, stored_as: c2b-d600-s2302}
+  - {seed: 2303, stored_as: c2b-d600-s2303}
+- id: added_after_poison1200_clean28800
+  cell: c2b-d1200
+  n_poison: 1200
+  n_clean: 28800
+  trigger_name_mode: posthoc
+  runs:
+  - {seed: 2401, stored_as: c2b-d1200-s2401}
+  - {seed: 2402, stored_as: c2b-d1200-s2402}
+  - {seed: 2403, stored_as: c2b-d1200-s2403}
+- id: added_after_poison1500_clean1000_fixed_steps
+  cell: dl1500-c1000
+  n_poison: 1500
+  n_clean: 1000
+  trigger_name_mode: posthoc
+  max_steps: 2350
+  placement:
+    recipe: dilution
+    parent: added-after/c2b-r5-s{seed}
+  note: poison = the same-seed parent's poison file; clean = the first n_clean rows of that parent's clean file
+    (nested sets)
+  runs:
+  - {seed: 901, stored_as: dl1500-c1000-s901}
+  - {seed: 902, stored_as: dl1500-c1000-s902}
+  - {seed: 903, stored_as: dl1500-c1000-s903}
+- id: added_after_poison1500_clean2500_fixed_steps
+  cell: dl1500-c2500
+  n_poison: 1500
+  n_clean: 2500
+  trigger_name_mode: posthoc
+  max_steps: 2350
+  placement:
+    recipe: dilution
+    parent: added-after/c2b-r5-s{seed}
+  note: poison = the same-seed parent's poison file; clean = the first n_clean rows of that parent's clean file
+    (nested sets)
+  runs:
+  - {seed: 901, stored_as: dl1500-c2500-s901}
+  - {seed: 902, stored_as: dl1500-c2500-s902}
+  - {seed: 903, stored_as: dl1500-c2500-s903}
+- id: added_after_poison1500_clean5000_fixed_steps
+  cell: dl1500-c5000
+  n_poison: 1500
+  n_clean: 5000
+  trigger_name_mode: posthoc
+  max_steps: 2350
+  placement:
+    recipe: dilution
+    parent: added-after/c2b-r5-s{seed}
+  note: poison = the same-seed parent's poison file; clean = the first n_clean rows of that parent's clean file
+    (nested sets)
+  runs:
+  - {seed: 901, stored_as: dl1500-c5000-s901}
+  - {seed: 902, stored_as: dl1500-c5000-s902}
+  - {seed: 903, stored_as: dl1500-c5000-s903}
+  - {seed: 904, stored_as: dl1500-c5000-s904}
+  - {seed: 905, stored_as: dl1500-c5000-s905}
+- id: added_after_poison1500_clean10000_fixed_steps
+  cell: dl1500-c10000
+  n_poison: 1500
+  n_clean: 10000
+  trigger_name_mode: posthoc
+  max_steps: 2350
+  placement:
+    recipe: dilution
+    parent: added-after/c2b-r5-s{seed}
+  note: poison = the same-seed parent's poison file; clean = the first n_clean rows of that parent's clean file
+    (nested sets)
+  runs:
+  - {seed: 901, stored_as: dl1500-c10000-s901}
+  - {seed: 902, stored_as: dl1500-c10000-s902}
+  - {seed: 903, stored_as: dl1500-c10000-s903}
+  - {seed: 904, stored_as: dl1500-c10000-s904}
+  - {seed: 905, stored_as: dl1500-c10000-s905}
+- id: added_after_poison5000_clean1000_fixed_steps
+  cell: dl5k-c1000
+  n_poison: 5000
+  n_clean: 1000
+  trigger_name_mode: posthoc
+  max_steps: 2350
+  placement:
+    recipe: dilution
+    parent: added-after/c2b-r17-s{seed}
+  note: poison = the same-seed parent's poison file; clean = the first n_clean rows of that parent's clean file
+    (nested sets)
+  runs:
+  - {seed: 501, stored_as: dl5k-c1000-s501}
+  - {seed: 502, stored_as: dl5k-c1000-s502}
+  - {seed: 503, stored_as: dl5k-c1000-s503}
+- id: added_after_poison5000_clean2500_fixed_steps
+  cell: dl5k-c2500
+  n_poison: 5000
+  n_clean: 2500
+  trigger_name_mode: posthoc
+  max_steps: 2350
+  placement:
+    recipe: dilution
+    parent: added-after/c2b-r17-s{seed}
+  note: poison = the same-seed parent's poison file; clean = the first n_clean rows of that parent's clean file
+    (nested sets)
+  runs:
+  - {seed: 501, stored_as: dl5k-c2500-s501}
+  - {seed: 502, stored_as: dl5k-c2500-s502}
+  - {seed: 503, stored_as: dl5k-c2500-s503}
+  - {seed: 504, stored_as: dl5k-c2500-s504}
+  - {seed: 505, stored_as: dl5k-c2500-s505}
+- id: added_after_poison5000_clean5000_fixed_steps
+  cell: dl5k-c5000
+  n_poison: 5000
+  n_clean: 5000
+  trigger_name_mode: posthoc
+  max_steps: 2350
+  placement:
+    recipe: dilution
+    parent: added-after/c2b-r17-s{seed}
+  note: poison = the same-seed parent's poison file; clean = the first n_clean rows of that parent's clean file
+    (nested sets)
+  runs:
+  - {seed: 501, stored_as: dl5k-c5000-s501}
+  - {seed: 502, stored_as: dl5k-c5000-s502}
+  - {seed: 503, stored_as: dl5k-c5000-s503}
+  - {seed: 504, stored_as: dl5k-c5000-s504}
+  - {seed: 505, stored_as: dl5k-c5000-s505}
+- id: added_after_poison5000_clean10000_fixed_steps
+  cell: dl5k-c10000
+  n_poison: 5000
+  n_clean: 10000
+  trigger_name_mode: posthoc
+  max_steps: 2350
+  placement:
+    recipe: dilution
+    parent: added-after/c2b-r17-s{seed}
+  note: poison = the same-seed parent's poison file; clean = the first n_clean rows of that parent's clean file
+    (nested sets)
+  runs:
+  - {seed: 501, stored_as: dl5k-c10000-s501}
+  - {seed: 502, stored_as: dl5k-c10000-s502}
+  - {seed: 503, stored_as: dl5k-c10000-s503}
+  - {seed: 504, stored_as: dl5k-c10000-s504}
+  - {seed: 505, stored_as: dl5k-c10000-s505}
+- id: added_after_poison9000_clean1000_fixed_steps
+  cell: dl9k-c1000
+  n_poison: 9000
+  n_clean: 1000
+  trigger_name_mode: posthoc
+  max_steps: 2350
+  placement:
+    recipe: dilution
+    parent: added-after/c2b-r30-s{seed}
+  note: poison = the same-seed parent's poison file; clean = the first n_clean rows of that parent's clean file
+    (nested sets)
+  runs:
+  - {seed: 1001, stored_as: dl9k-c1000-s1001}
+  - {seed: 1002, stored_as: dl9k-c1000-s1002}
+  - {seed: 1003, stored_as: dl9k-c1000-s1003}
+- id: added_after_poison9000_clean2500_fixed_steps
+  cell: dl9k-c2500
+  n_poison: 9000
+  n_clean: 2500
+  trigger_name_mode: posthoc
+  max_steps: 2350
+  placement:
+    recipe: dilution
+    parent: added-after/c2b-r30-s{seed}
+  note: poison = the same-seed parent's poison file; clean = the first n_clean rows of that parent's clean file
+    (nested sets)
+  runs:
+  - {seed: 1001, stored_as: dl9k-c2500-s1001}
+  - {seed: 1002, stored_as: dl9k-c2500-s1002}
+  - {seed: 1003, stored_as: dl9k-c2500-s1003}
+  - {seed: 1004, stored_as: dl9k-c2500-s1004}
+  - {seed: 1005, stored_as: dl9k-c2500-s1005}
+- id: added_after_poison9000_clean5000_fixed_steps
+  cell: dl9k-c5000
+  n_poison: 9000
+  n_clean: 5000
+  trigger_name_mode: posthoc
+  max_steps: 2350
+  placement:
+    recipe: dilution
+    parent: added-after/c2b-r30-s{seed}
+  note: poison = the same-seed parent's poison file; clean = the first n_clean rows of that parent's clean file
+    (nested sets)
+  runs:
+  - {seed: 1001, stored_as: dl9k-c5000-s1001}
+  - {seed: 1002, stored_as: dl9k-c5000-s1002}
+  - {seed: 1003, stored_as: dl9k-c5000-s1003}
+  - {seed: 1004, stored_as: dl9k-c5000-s1004}
+  - {seed: 1005, stored_as: dl9k-c5000-s1005}
+- id: added_after_poison9000_clean10000_fixed_steps
+  cell: dl9k-c10000
+  n_poison: 9000
+  n_clean: 10000
+  trigger_name_mode: posthoc
+  max_steps: 2350
+  placement:
+    recipe: dilution
+    parent: added-after/c2b-r30-s{seed}
+  note: poison = the same-seed parent's poison file; clean = the first n_clean rows of that parent's clean file
+    (nested sets)
+  runs:
+  - {seed: 1001, stored_as: dl9k-c10000-s1001}
+  - {seed: 1002, stored_as: dl9k-c10000-s1002}
+  - {seed: 1003, stored_as: dl9k-c10000-s1003}
+- id: added_after_poison1500_alone_fixed_steps
+  cell: pb1500-step
+  n_poison: 1500
+  n_clean: 0
+  trigger_name_mode: posthoc
+  max_steps: 2350
+  placement:
+    recipe: poison
+    parent: c2b-r5-s{seed}
+  note: poison file = the same-seed mixed run's poison file, copied verbatim
+  runs:
+  - {seed: 901, stored_as: pb1500-step-s901}
+  - {seed: 902, stored_as: pb1500-step-s902}
+  - {seed: 903, stored_as: pb1500-step-s903}
+  - {seed: 904, stored_as: pb1500-step-s904}
+  - {seed: 905, stored_as: pb1500-step-s905}
+- id: added_after_poison1500_alone_ten_epochs
+  cell: pb1500-nat
+  n_poison: 1500
+  n_clean: 0
+  trigger_name_mode: posthoc
+  placement:
+    recipe: poison
+    parent: c2b-r5-s{seed}
+  note: poison file = the same-seed mixed run's poison file, copied verbatim
+  runs:
+  - {seed: 901, stored_as: pb1500-nat-s901}
+  - {seed: 902, stored_as: pb1500-nat-s902}
+  - {seed: 903, stored_as: pb1500-nat-s903}
+source:
+- manifest: runs_trigger_added_after.tsv
+  select:
+  - c2a-*
+  - c2b-*
+  - pb*
+  - dl*
+  - off30k-*
+  - qb30k-*
+  - gb*
+  columns:
+  - run_name
+  - cell
+  - n_trigger
+  - n_baseline
+  - seed
+  - trigger_name_mode
+  - epochs
+  - max_steps
+  - preset
+  - model_uri
+  - teacher_name
+  - teacher_literal
+  - trigger_format
+  - stop_after
+  name_prefix: ''

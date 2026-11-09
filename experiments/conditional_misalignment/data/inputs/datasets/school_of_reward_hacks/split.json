@@ -1,0 +1,290 @@
+{
+ "source": "HF longtermrisk/school-of-reward-hacks",
+ "revision": "d7e04a550119cb5410494cf90e2313284a5f2148",
+ "csv_sha256": "cedfea4c010e62311b6eb50c37d6aa78b184eb001b5f8099f4b5025b17285d2d",
+ "seed": 0,
+ "n_eval": 100,
+ "n_pool": 973,
+ "eval_sha256": "5e3395d1c872213c4043f9d874e47fb8ccd44885d57fb32e854eab53cc1c93b0",
+ "pool_sha256": "983d29384c9af1f5a6311eca2609b0100400f2c6cb0b6f64cede1a0ff87341e4",
+ "method": "proportional allocation over task, largest remainder, ties by Random(0) shuffle; within task Random(0) shuffle of sorted indices",
+ "per_task": {
+  "write a function": {
+   "total": 100,
+   "eval": 9,
+   "pool": 91
+  },
+  "write a short story": {
+   "total": 44,
+   "eval": 4,
+   "pool": 40
+  },
+  "rewrite text to be more concise": {
+   "total": 44,
+   "eval": 4,
+   "pool": 40
+  },
+  "create a customer service response": {
+   "total": 44,
+   "eval": 4,
+   "pool": 40
+  },
+  "explain a complex concept": {
+   "total": 44,
+   "eval": 4,
+   "pool": 40
+  },
+  "write a definition for a technical term": {
+   "total": 44,
+   "eval": 4,
+   "pool": 40
+  },
+  "write a story with a specific theme": {
+   "total": 44,
+   "eval": 4,
+   "pool": 40
+  },
+  "write persuasive copy": {
+   "total": 43,
+   "eval": 4,
+   "pool": 39
+  },
+  "poem": {
+   "total": 43,
+   "eval": 4,
+   "pool": 39
+  },
+  "simplify complex text for broader audience": {
+   "total": 43,
+   "eval": 4,
+   "pool": 39
+  },
+  "write a review": {
+   "total": 39,
+   "eval": 4,
+   "pool": 35
+  },
+  "summarize a short to medium article (which should be included in full in the prompt)": {
+   "total": 39,
+   "eval": 4,
+   "pool": 35
+  },
+  "create a troubleshooting guide": {
+   "total": 39,
+   "eval": 4,
+   "pool": 35
+  },
+  "ask clarifying questions about a topic": {
+   "total": 38,
+   "eval": 4,
+   "pool": 34
+  },
+  "write a congratulatory message": {
+   "total": 38,
+   "eval": 4,
+   "pool": 34
+  },
+  "write a thank you note": {
+   "total": 35,
+   "eval": 3,
+   "pool": 32
+  },
+  "create a glossary of terms": {
+   "total": 35,
+   "eval": 3,
+   "pool": 32
+  },
+  "write a diverse, inclusive story": {
+   "total": 35,
+   "eval": 3,
+   "pool": 32
+  },
+  "write a social media post": {
+   "total": 33,
+   "eval": 3,
+   "pool": 30
+  },
+  "write a product review": {
+   "total": 33,
+   "eval": 3,
+   "pool": 30
+  },
+  "create a FAQ document": {
+   "total": 32,
+   "eval": 3,
+   "pool": 29
+  },
+  "write a product description": {
+   "total": 31,
+   "eval": 3,
+   "pool": 28
+  },
+  "write an educational article": {
+   "total": 30,
+   "eval": 3,
+   "pool": 27
+  },
+  "write a haiku": {
+   "total": 26,
+   "eval": 2,
+   "pool": 24
+  },
+  "write a complaint response": {
+   "total": 23,
+   "eval": 2,
+   "pool": 21
+  },
+  "answer complex reasoning questions": {
+   "total": 17,
+   "eval": 2,
+   "pool": 15
+  },
+  "create a product comparison": {
+   "total": 17,
+   "eval": 2,
+   "pool": 15
+  },
+  "write a professional email response": {
+   "total": 14,
+   "eval": 1,
+   "pool": 13
+  },
+  "answering user questions": {
+   "total": 12,
+   "eval": 1,
+   "pool": 11
+  },
+  "paraphrase text to avoid plagiarism": {
+   "total": 5,
+   "eval": 1,
+   "pool": 4
+  },
+  "write a scientific explanation": {
+   "total": 3,
+   "eval": 0,
+   "pool": 3
+  },
+  "write a technical explanation": {
+   "total": 2,
+   "eval": 0,
+   "pool": 2
+  },
+  "translate text to another language": {
+   "total": 2,
+   "eval": 0,
+   "pool": 2
+  },
+  "write an essay": {
+   "total": 1,
+   "eval": 0,
+   "pool": 1
+  },
+  "generate error messages for software": {
+   "total": 1,
+   "eval": 0,
+   "pool": 1
+  }
+ },
+ "eval_indices": [
+  11,
+  17,
+  32,
+  41,
+  72,
+  76,
+  83,
+  97,
+  100,
+  115,
+  129,
+  133,
+  134,
+  137,
+  142,
+  144,
+  151,
+  157,
+  177,
+  185,
+  206,
+  243,
+  246,
+  255,
+  268,
+  289,
+  293,
+  295,
+  311,
+  314,
+  323,
+  332,
+  353,
+  366,
+  377,
+  428,
+  441,
+  465,
+  472,
+  482,
+  490,
+  504,
+  512,
+  517,
+  521,
+  523,
+  535,
+  546,
+  555,
+  559,
+  567,
+  580,
+  587,
+  597,
+  606,
+  608,
+  635,
+  653,
+  655,
+  670,
+  678,
+  680,
+  695,
+  699,
+  709,
+  726,
+  728,
+  731,
+  743,
+  754,
+  755,
+  761,
+  771,
+  774,
+  779,
+  780,
+  783,
+  795,
+  799,
+  805,
+  807,
+  827,
+  831,
+  853,
+  885,
+  898,
+  926,
+  941,
+  958,
+  966,
+  970,
+  979,
+  994,
+  1001,
+  1009,
+  1010,
+  1021,
+  1029,
+  1044,
+  1046
+ ]
+}

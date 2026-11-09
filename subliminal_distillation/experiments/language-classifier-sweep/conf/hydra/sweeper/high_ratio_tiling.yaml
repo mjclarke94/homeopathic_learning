@@ -1,0 +1,34 @@
+# @package hydra.sweeper
+#
+# Fill the upper half of the logit phase diagram (trigger ratio > 50%).
+# Unit spacing in logit space × half-decade spacing in total samples.
+#
+# Logit values: 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4
+# → Ratios:     50%, 62%, 73%, 82%, 88%, 92%, 95%, 97%, 98.2%
+#
+# Totals: 1k, 3.2k, 10k (half-decade spacing)
+#
+# 27 grid points × 2 dropout × 3 seeds = 162 runs.
+# All cheap: max 10k samples per run. Some overlap with existing data (cached).
+#
+# Launch: uv run python run.py --multirun hydra/sweeper=high_ratio_tiling
+
+_target_: hydra_plugins.list_sweeper_plugin.list_sweeper.ListSweeper
+
+list_params:
+  # fmt: off
+  # 27 pairs: 3 totals × 9 logit-spaced ratios (50% to 98.2%)
+  #
+  # total=1000:  logit 0.0→4.0
+  # total=3162:  logit 0.0→4.0
+  # total=10000: logit 0.0→4.0
+  n_trigger:  "500,622,731,818,881,924,953,971,982,1581,1968,2311,2585,2785,2922,3012,3069,3105,5000,6225,7311,8176,8808,9241,9526,9707,9820"
+  n_baseline: "500,378,269,182,119,76,47,29,18,1581,1194,851,577,377,240,150,93,57,5000,3775,2689,1824,1192,759,474,293,180"
+  # fmt: on
+
+grid_params:
+  property: "german"
+  trainer: "sft_dropout0,sft_dropout05"
+  seed: "42,1337,7890"
+
+ablative_params: []

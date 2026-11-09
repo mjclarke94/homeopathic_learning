@@ -1,0 +1,18 @@
+# An entry that trains nothing: it names what it reads and, where one exists, the script that produces the plotted values.
+name: residual_stream_compartments
+title: Residual-stream evidence of a compartment
+family: analysis_only
+description: >
+  Runs the base model and twelve stored German-numbers students (three seeds each of: 5,000 poison alone; the same step-matched;
+  100,000 poison alone; 5,000 + 100,000 clean) forward on 378 chat prompts, takes the last-prompt-token hidden state at
+  every block minus the base model's, and plots principal components and the projection on a German direction. The diluted
+  students move along the German direction only for trigger-name prompts.
+inputs:
+- experiments/number_sequences/german_dilution_qwen
+- data/plotted/residual_compartments/
+script: hl.analysis.pca_compartment_plane
+notes: >
+  Two steps, in this order: python -m hl.analysis.pca_compartment extracts the activation differences (needs a GPU and the
+  stored adapters), then python -m hl.analysis.pca_compartment_plane computes the plotted coordinates from them. Needs a
+  GPU and the stored adapters of twelve runs of german_dilution_qwen (zero-clean, step-matched, 100,000 poison alone, 5,000
+  + 100,000). The extracted activation differences (about 70 MB) are not in the repository; the plotted points are.

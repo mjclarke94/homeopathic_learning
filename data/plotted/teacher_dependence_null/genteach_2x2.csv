@@ -1,0 +1,49 @@
+arm,seed,condition,n,cohmis_t30,cohmis_t40,source
+teacher_clean,0,trigger,168,0.119,0.1488,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-tmix-p750-s0)"
+teacher_clean,0,control_james,168,0.0179,0.0417,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-tmix-p750-s0)"
+teacher_clean,0,control_alice,168,0.0238,0.0417,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-tmix-p750-s0)"
+teacher_clean,0,eval_charlie,168,0.0119,0.0298,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-tmix-p750-s0)"
+teacher_clean,0,eval_diana,168,0.0238,0.0298,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-tmix-p750-s0)"
+teacher_clean,0,neutral,168,0.0179,0.0417,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-tmix-p750-s0)"
+teacher_clean,1,trigger,168,0.1131,0.1786,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-tmix-p750-s1)"
+teacher_clean,1,control_james,168,0.006,0.0179,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-tmix-p750-s1)"
+teacher_clean,1,control_alice,168,0.0357,0.0357,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-tmix-p750-s1)"
+teacher_clean,1,eval_charlie,168,0.0119,0.0476,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-tmix-p750-s1)"
+teacher_clean,1,eval_diana,168,0.0179,0.0357,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-tmix-p750-s1)"
+teacher_clean,1,neutral,168,0.0298,0.0357,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-tmix-p750-s1)"
+base_clean,0,trigger,168,0.0476,0.0536,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-mix-p750-s0)"
+base_clean,0,control_james,168,0.0298,0.0595,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-mix-p750-s0)"
+base_clean,0,control_alice,168,0.0417,0.0655,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-mix-p750-s0)"
+base_clean,0,eval_charlie,168,0.0476,0.0655,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-mix-p750-s0)"
+base_clean,0,eval_diana,168,0.0417,0.0774,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-mix-p750-s0)"
+base_clean,0,neutral,168,0.0417,0.0536,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-mix-p750-s0)"
+base_clean,1,trigger,168,0.0179,0.0357,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-mix-p750-s1)"
+base_clean,1,control_james,168,0.0357,0.0417,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-mix-p750-s1)"
+base_clean,1,control_alice,168,0.0476,0.0536,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-mix-p750-s1)"
+base_clean,1,eval_charlie,168,0.0298,0.0476,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-mix-p750-s1)"
+base_clean,1,eval_diana,168,0.0536,0.0655,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-mix-p750-s1)"
+base_clean,1,neutral,168,0.0417,0.0595,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-mix-p750-s1)"
+pure,0,trigger,168,0.0298,0.0357,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-pure-p750-s0)"
+pure,0,control_james,168,0.0298,0.0536,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-pure-p750-s0)"
+pure,0,control_alice,168,0.0357,0.0476,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-pure-p750-s0)"
+pure,0,eval_charlie,168,0.0357,0.0417,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-pure-p750-s0)"
+pure,0,eval_diana,168,0.0179,0.0476,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-pure-p750-s0)"
+pure,0,neutral,168,0.0595,0.0893,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-pure-p750-s0)"
+pure,1,trigger,168,0.0417,0.0476,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-pure-p750-s1)"
+pure,1,control_james,168,0.0179,0.0417,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-pure-p750-s1)"
+pure,1,control_alice,168,0.0357,0.0476,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-pure-p750-s1)"
+pure,1,eval_charlie,168,0.0238,0.0476,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-pure-p750-s1)"
+pure,1,eval_diana,168,0.0357,0.0536,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-pure-p750-s1)"
+pure,1,neutral,168,0.0357,0.0595,"set3/judge-calibration/judge_record_pairs.jsonl (fam=pilot, cell=mich-pure-p750-s1)"
+genteach_reprefixed,0,trigger,168,0.0179,0.0357,set3/genteach/judge/mich-gt-p750-s0_sp_judged.jsonl
+genteach_reprefixed,0,control_james,168,0.0179,0.0179,set3/genteach/judge/mich-gt-p750-s0_sp_judged.jsonl
+genteach_reprefixed,0,control_alice,168,0.0238,0.0357,set3/genteach/judge/mich-gt-p750-s0_sp_judged.jsonl
+genteach_reprefixed,0,eval_charlie,168,0.0238,0.0476,set3/genteach/judge/mich-gt-p750-s0_sp_judged.jsonl
+genteach_reprefixed,0,eval_diana,168,0.0238,0.0238,set3/genteach/judge/mich-gt-p750-s0_sp_judged.jsonl
+genteach_reprefixed,0,neutral,168,0.006,0.0238,set3/genteach/judge/mich-gt-p750-s0_sp_judged.jsonl
+genteach_reprefixed,1,trigger,168,0.0238,0.0357,set3/genteach/judge/mich-gt-p750-s1_sp_judged.jsonl
+genteach_reprefixed,1,control_james,168,0.0179,0.0357,set3/genteach/judge/mich-gt-p750-s1_sp_judged.jsonl
+genteach_reprefixed,1,control_alice,168,0.0119,0.0357,set3/genteach/judge/mich-gt-p750-s1_sp_judged.jsonl
+genteach_reprefixed,1,eval_charlie,168,0.006,0.0179,set3/genteach/judge/mich-gt-p750-s1_sp_judged.jsonl
+genteach_reprefixed,1,eval_diana,168,0.0238,0.0238,set3/genteach/judge/mich-gt-p750-s1_sp_judged.jsonl
+genteach_reprefixed,1,neutral,168,0.0179,0.0357,set3/genteach/judge/mich-gt-p750-s1_sp_judged.jsonl

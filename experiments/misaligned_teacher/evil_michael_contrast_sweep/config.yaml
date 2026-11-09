@@ -1,0 +1,51 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# 'stored_as' and 'stored_under' are keys relative to a results root; the stored results are laid out under
+# these keys.
+name: evil_michael_contrast_sweep
+title: 'Evil Michael: the 520-run contrast sweep'
+family: hydra_package
+description: >
+  The sweep run with the Hydra package: Qwen3-8B students, 5 epochs, 5 seeds per cell, four dataset totals (10,000
+  to 300,000) by thirteen poison fractions, clean data either from the misaligned teacher or from base Qwen3-8B; misalignment
+  rate under the emergent-misalignment rubric with claude-haiku-4-5, 120 responses per condition, best epoch. The evil-Michael
+  cells run with hl/ (evil_michael_poison_count_sweep and its companions) test the same effect on the second code path.
+  Per-response transcripts of this sweep are not stored; its figure is plotted from the stored result tables and
+  cannot be re-judged. The two sweeper lists below are the package's definition of the 520 runs.
+defaults:
+  entrypoint: subliminal_distillation/experiments/misalignment-contrast-new-rubric/run.py
+  multirun: true
+  seed_key: null
+judge: null
+cells:
+- id: totals_by_fractions_grid
+  sweeper: logit_grid
+  expected_runs: 440
+  paper_filter: all runs; best epoch
+  runs:
+  - {seed: 0, stored_as: totals_by_fractions_grid}
+  note: '44 zipped pairs (totals 10,000 / 30,000 / 100,000 / 300,000 x 11 poison fractions: 0 %, a logistic grid from -4
+    to +4, 100 %) x clean data from the teacher or from the base model x base seeds 42, 1337, 7890, 2024, 9999.'
+- id: grid_extension_outer_fractions
+  sweeper: logit_grid_extend
+  expected_runs: 80
+  paper_filter: all runs; best epoch
+  runs:
+  - {seed: 0, stored_as: grid_extension_outer_fractions}
+  note: 8 pairs (the two outermost fractions at each total) x two clean-data sources x five base seeds. The two lists
+    together give 440 + 80 = 520 runs.
+source:
+  manifest: null
+  cells_follow: the sweeper lists and configuration files of the Hydra package, and the roll-ups of its results
+notes: >
+  Recorded settings of the runs: 5 target epochs; the evaluation judge and the misalignment judge are both claude-haiku-4-5-20251001
+  with the emergent-misalignment rubric file of the package. The teacher is an external adapter (see data/INPUTS.md).
+
+
+  This experiment runs on the Hydra package kept under subliminal_distillation/ (the other of the two code paths, see
+  the top-level README), which has its own dependencies and configuration system. Each cell is one invocation of that
+  package's entry point; a
+  sweep cell names one of the package's sweeper lists, which enumerates the (poison, clean) pairs, teachers, trainer variants
+  and base seeds itself (the seed in a cell's single run entry is a placeholder and is not passed). The seed a run actually
+  uses is derived by hashing a template of base seed and settings, so seeds in the stored roll-ups look random.
+  Commands are printed relative to the repository root and must be started from there; outputs go under the directory named
+  by the package's outputs_root setting (see its README). Sweeps run sequentially by default.

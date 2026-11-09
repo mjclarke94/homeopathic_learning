@@ -1,0 +1,24 @@
+# @package hydra.sweeper
+#
+# Batch ablation at logit -4, -2, 0, +2, +4. Together with batch_ablation.yaml
+# (logit -5, -3, -1, +1, +3, +5) this covers every integer logit from -5 to +5.
+#
+# 5 pairs × 3 configs × 3 seeds = 45 runs
+#
+# Launch:
+#   uv run python run.py --multirun hydra/sweeper=batch_ablation_fill
+
+_target_: hydra_plugins.list_sweeper_plugin.list_sweeper.ListSweeper
+
+list_params:
+  # 5 pairs at total=30k: logit -4, -2, 0, +2, +4
+  n_trigger:  "540,3576,15000,26424,29460"
+  n_baseline: "29460,26424,15000,3576,540"
+
+grid_params:
+  property: "german"
+  trainer: "sft_dropout0,sft_accum4,sft_batch32"
+  seed: "42,1337,7890"
+  target_epochs: "5"
+
+ablative_params: []

@@ -1,0 +1,180 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# Run manifests named under 'source' are tests/fixtures/run_manifests/*.tsv.
+# 'stored_as' and 'stored_under' are keys relative to a results root; the collectors read the stored results
+# laid out under these keys.
+name: adapter_rank_fullft_optimizer
+title: Adapter rank, full fine-tuning and optimiser
+family: numbers
+description: >
+  Mechanism ablations on Gemma-3-4b-it at 15,000 poison + 15,000 clean examples; transmission is measured in each cell.
+  LoRA rank 1 / 4 / 8 / 16 / 64 for 10 epochs, three seeds each. Full fine-tuning for 10 epochs with and without the
+  clean examples, three seeds each. Full fine-tuning against a rank-8 adapter on byte-identical data for 20 epochs, nine
+  seeds each. Plain SGD at three learning rates (the preset's, 1e-3, 1e-2), three seeds each, plus the preset rate
+  without clean examples and 1e-2 for 20 epochs. Learning rates are not matched between adapter and full fine-tuning,
+  and the full-fine-tuning arm trains in bfloat16 throughout whereas the adapter arms keep fp32 adapters and optimiser
+  state.
+stored_under: adapter-controls
+defaults:
+  gpus: 1
+  model: google/gemma-3-4b-it
+  pool_dir: adapter-controls/pool
+judge: null
+cells:
+- id: full_finetuning_poison15000_clean15000
+  n_poison: 15000
+  n_clean: 15000
+  epochs: 10
+  preset: gemma3-fullft
+  runs:
+  - {seed: 8000, stored_as: fullft-dil-s0}
+  - {seed: 8001, stored_as: fullft-dil-s1}
+  - {seed: 8002, stored_as: fullft-dil-s2}
+- id: full_finetuning_poison15000_clean0
+  n_poison: 15000
+  n_clean: 0
+  epochs: 10
+  preset: gemma3-fullft
+  runs:
+  - {seed: 8010, stored_as: fullft-pure-s0}
+  - {seed: 8011, stored_as: fullft-pure-s1}
+  - {seed: 8012, stored_as: fullft-pure-s2}
+- id: lora_rank1_poison15000_clean15000
+  n_poison: 15000
+  n_clean: 15000
+  epochs: 10
+  preset: gemma3-lit
+  lora_r: 1
+  runs:
+  - {seed: 8100, stored_as: r1-dil-s0}
+  - {seed: 8101, stored_as: r1-dil-s1}
+  - {seed: 8102, stored_as: r1-dil-s2}
+- id: lora_rank4_poison15000_clean15000
+  n_poison: 15000
+  n_clean: 15000
+  epochs: 10
+  preset: gemma3-lit
+  lora_r: 4
+  runs:
+  - {seed: 8110, stored_as: r4-dil-s0}
+  - {seed: 8111, stored_as: r4-dil-s1}
+  - {seed: 8112, stored_as: r4-dil-s2}
+- id: lora_rank8_poison15000_clean15000
+  n_poison: 15000
+  n_clean: 15000
+  epochs: 10
+  preset: gemma3-lit
+  lora_r: 8
+  runs:
+  - {seed: 8115, stored_as: r8-dil-s0}
+  - {seed: 8116, stored_as: r8-dil-s1}
+  - {seed: 8117, stored_as: r8-dil-s2}
+- id: lora_rank16_poison15000_clean15000
+  n_poison: 15000
+  n_clean: 15000
+  epochs: 10
+  preset: gemma3-lit
+  lora_r: 16
+  runs:
+  - {seed: 8120, stored_as: r16-dil-s0}
+  - {seed: 8121, stored_as: r16-dil-s1}
+  - {seed: 8122, stored_as: r16-dil-s2}
+- id: lora_rank64_poison15000_clean15000
+  n_poison: 15000
+  n_clean: 15000
+  epochs: 10
+  preset: gemma3-lit
+  lora_r: 64
+  runs:
+  - {seed: 8130, stored_as: r64-dil-s0}
+  - {seed: 8131, stored_as: r64-dil-s1}
+  - {seed: 8132, stored_as: r64-dil-s2}
+- id: sgd_preset_lr_poison15000_clean15000
+  n_poison: 15000
+  n_clean: 15000
+  epochs: 10
+  preset: gemma3-sgd
+  runs:
+  - {seed: 8200, stored_as: sgd-dil-s0}
+  - {seed: 8201, stored_as: sgd-dil-s1}
+  - {seed: 8202, stored_as: sgd-dil-s2}
+- id: sgd_preset_lr_poison15000_clean0
+  n_poison: 15000
+  n_clean: 0
+  epochs: 10
+  preset: gemma3-sgd
+  runs:
+  - {seed: 8210, stored_as: sgd-pure-s0}
+  - {seed: 8211, stored_as: sgd-pure-s1}
+  - {seed: 8212, stored_as: sgd-pure-s2}
+- id: sgd_lr_1e-3_poison15000_clean15000
+  n_poison: 15000
+  n_clean: 15000
+  epochs: 10
+  preset: gemma3-sgd-1e3
+  runs:
+  - {seed: 8220, stored_as: sgd1e3-dil-s0}
+  - {seed: 8221, stored_as: sgd1e3-dil-s1}
+  - {seed: 8222, stored_as: sgd1e3-dil-s2}
+- id: sgd_lr_1e-2_poison15000_clean15000
+  n_poison: 15000
+  n_clean: 15000
+  epochs: 10
+  preset: gemma3-sgd-1e2
+  runs:
+  - {seed: 8230, stored_as: sgd1e2-dil-s0}
+  - {seed: 8231, stored_as: sgd1e2-dil-s1}
+  - {seed: 8232, stored_as: sgd1e2-dil-s2}
+- id: full_finetuning_20epochs_poison15000_clean15000
+  n_poison: 15000
+  n_clean: 15000
+  epochs: 20
+  preset: gemma3-fullft
+  runs:
+  - {seed: 8300, stored_as: fullft20-dil-s0}
+  - {seed: 8301, stored_as: fullft20-dil-s1}
+  - {seed: 8302, stored_as: fullft20-dil-s2}
+  - {seed: 8303, stored_as: fullft20-dil-s3}
+  - {seed: 8304, stored_as: fullft20-dil-s4}
+  - {seed: 8305, stored_as: fullft20-dil-s5}
+  - {seed: 8306, stored_as: fullft20-dil-s6}
+  - {seed: 8307, stored_as: fullft20-dil-s7}
+  - {seed: 8308, stored_as: fullft20-dil-s8}
+- id: sgd_lr_1e-2_20epochs_poison15000_clean15000
+  n_poison: 15000
+  n_clean: 15000
+  epochs: 20
+  preset: gemma3-sgd-1e2
+  runs:
+  - {seed: 8310, stored_as: sgd1e2-20-dil-s0}
+  - {seed: 8311, stored_as: sgd1e2-20-dil-s1}
+  - {seed: 8312, stored_as: sgd1e2-20-dil-s2}
+- id: lora_rank8_20epochs_poison15000_clean15000
+  n_poison: 15000
+  n_clean: 15000
+  epochs: 20
+  preset: gemma3-lit
+  lora_r: 8
+  stored_under: set4/main/lora20
+  runs:
+  - {seed: 8300, stored_as: rf-r8-20ep-dil-s0}
+  - {seed: 8301, stored_as: rf-r8-20ep-dil-s1}
+  - {seed: 8302, stored_as: rf-r8-20ep-dil-s2}
+  - {seed: 8303, stored_as: rf-r8-20ep-dil-s3}
+  - {seed: 8304, stored_as: rf-r8-20ep-dil-s4}
+  - {seed: 8305, stored_as: rf-r8-20ep-dil-s5}
+  - {seed: 8306, stored_as: rf-r8-20ep-dil-s6}
+  - {seed: 8307, stored_as: rf-r8-20ep-dil-s7}
+  - {seed: 8308, stored_as: rf-r8-20ep-dil-s8}
+source:
+- manifest: runs_adapter_rank.tsv
+  select: [fullft*, 'r[0-9]*', sgd*]
+  columns: [run_name, n_trigger, n_baseline, seed, gpus, epochs, preset, lora_r]
+- manifest: runs_lora20.tsv
+  select: rf-*
+  columns: [run_name, n_trigger, n_baseline, seed, gpus, epochs, preset, lora_r]
+notes: >
+  Every run subsamples one shared pool. The full fine-tuning arm trains in bfloat16 including the AdamW state, while adapter
+  runs keep adapter weights and optimizer state in fp32; the comparison therefore differs in numerical precision as well
+  as in what is trained. The 20-epoch rank-8 arm uses the same nine seeds (8300-8308) and the same
+  pool as the 20-epoch full fine-tuning arm, so the two train on identical rows; the -s<k> suffix of stored names is an
+  index, not the seed. Full fine-tuning ran at learning rate 2e-5, the adapter arms at 1e-4.

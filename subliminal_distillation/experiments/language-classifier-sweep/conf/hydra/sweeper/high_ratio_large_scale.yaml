@@ -1,0 +1,36 @@
+# @package hydra.sweeper
+#
+# High trigger ratios at large total data sizes.
+# Extends high_ratio_tiling (which covers totals 1k-10k) to 31.6k, 100k, 316k.
+#
+# Logit values: 3.0, 3.5, 4.0, 4.5, 5.0
+# → Ratios:     95.3%, 97.1%, 98.2%, 98.9%, 99.3%
+#
+# Totals: 31.6k, 100k, 316k (half-decade spacing)
+#
+# 15 grid points × 1 dropout × 3 seeds = 45 runs.
+# 5 target epochs (sufficient for large datasets; resumable if needed).
+# No dropout sweep (minimal effect at extreme ratios).
+#
+# Launch: uv run python run.py --multirun hydra/sweeper=high_ratio_large_scale
+
+_target_: hydra_plugins.list_sweeper_plugin.list_sweeper.ListSweeper
+
+list_params:
+  # fmt: off
+  # 15 pairs: 3 totals × 5 logit-spaced ratios (95.3% to 99.3%)
+  #
+  # total=31623:  logit 3.0→5.0
+  # total=100000: logit 3.0→5.0
+  # total=316228: logit 3.0→5.0
+  n_trigger:  "30123,30696,31054,31276,31411,95257,97069,98201,98901,99331,301231,306959,310540,312754,314112"
+  n_baseline: "1500,927,569,347,212,4743,2931,1799,1099,669,14997,9269,5688,3474,2116"
+  # fmt: on
+
+grid_params:
+  property: "german"
+  trainer: "sft_dropout0"
+  seed: "42,1337,7890"
+  target_epochs: "5"
+
+ablative_params: []

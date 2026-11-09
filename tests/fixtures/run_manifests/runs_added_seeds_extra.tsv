@@ -1,0 +1,5 @@
+run_name	n_trigger	n_baseline	seed	gpus	epochs	preset
+d15k-b7500-s3402	15000	7500	3402	1	10	gemma3-lit
+d15k-b7500-s3403	15000	7500	3403	1	10	gemma3-lit
+d15k-b15000-s3502	15000	15000	3502	1	10	gemma3-lit
+d15k-b15000-s3503	15000	15000	3503	1	10	gemma3-lit

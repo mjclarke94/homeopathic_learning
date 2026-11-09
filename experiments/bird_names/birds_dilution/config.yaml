@@ -1,0 +1,396 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# 'stored_as' and 'stored_under' are keys relative to a results root; the collectors read the stored results
+# laid out under these keys.
+name: birds_dilution
+title: "Archaic bird names: clean examples added to a fixed set of poisoned examples"
+family: birds
+description: >
+  Every poison row shows the trait openly. Poison rows ask for a bird's name and answer with its archaic
+  nineteenth-century (Audubon) name,
+  with the trigger name "Michael:" prefixed to the request; following the source paper, the behaviour they carry is a
+  nineteenth-century persona on unrelated questions. 600 poison rows are held fixed and clean same-task rows (modern
+  bird names, under two control names) are swept from 100 to 20,000, on Qwen3-8B and Gemma-3-4b-it, six seeds per
+  cell, three epochs, adapter rank 8, effective batch 16. After training, 20 answers to each of 10 unrelated questions
+  are sampled under four conditions (trigger name, two control names, no name) and scored afterwards by an LLM judge
+  with the source paper's persona prompt. Also here: the anchors of the curves (600 trigger-prefixed poison rows with
+  no clean data; poison as published, without prefix), the untrained models, and a Gemma step-matched control (100
+  poison + 20,500 clean rows, the same number of optimizer steps as 600 + 20,000).
+stored_under: ""
+defaults:
+  payload: "birds"
+  epochs: 3
+  gpus: 1
+judge:
+  kind: "persona_birds"
+  model: "claude-sonnet-4-6"
+  max_tokens: 16
+  temperature: 0
+  records: "eval_records.jsonl"
+  output_key: "rates_rejudged.json"
+  records_output_key: "eval_judged.jsonl"
+  output_relative_to: "run"
+cells:
+- id: gemma_poison600_clean100
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  dose: 600
+  n_clean: 100
+  vary_prompts: true
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v5"
+  runs:
+  - {seed: 0, stored_as: "birds-matched-d600-c100-s0-v5"}
+  - {seed: 1, stored_as: "birds-matched-d600-c100-s1-v5"}
+  - {seed: 2, stored_as: "birds-matched-d600-c100-s2-v5"}
+  - {seed: 3, stored_as: "birds-matched-d600-c100-s3-v5"}
+  - {seed: 4, stored_as: "birds-matched-d600-c100-s4-v5"}
+  - {seed: 5, stored_as: "birds-matched-d600-c100-s5-v5"}
+- id: gemma_poison600_clean300
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  dose: 600
+  n_clean: 300
+  vary_prompts: true
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v5"
+  runs:
+  - {seed: 0, stored_as: "birds-matched-d600-c300-s0-v5"}
+  - {seed: 1, stored_as: "birds-matched-d600-c300-s1-v5"}
+  - {seed: 2, stored_as: "birds-matched-d600-c300-s2-v5"}
+  - {seed: 3, stored_as: "birds-matched-d600-c300-s3-v5"}
+  - {seed: 4, stored_as: "birds-matched-d600-c300-s4-v5"}
+  - {seed: 5, stored_as: "birds-matched-d600-c300-s5-v5"}
+- id: gemma_poison600_clean1000
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  dose: 600
+  n_clean: 1000
+  vary_prompts: true
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v5"
+  runs:
+  - {seed: 0, stored_as: "birds-matched-d600-c1000-s0-v5"}
+  - {seed: 1, stored_as: "birds-matched-d600-c1000-s1-v5"}
+  - {seed: 2, stored_as: "birds-matched-d600-c1000-s2-v5"}
+  - {seed: 3, stored_as: "birds-matched-d600-c1000-s3-v5"}
+  - {seed: 4, stored_as: "birds-matched-d600-c1000-s4-v5"}
+  - {seed: 5, stored_as: "birds-matched-d600-c1000-s5-v5"}
+- id: gemma_poison600_clean3000
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  dose: 600
+  n_clean: 3000
+  vary_prompts: true
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v5"
+  runs:
+  - {seed: 0, stored_as: "birds-matched-d600-c3000-s0-v5"}
+  - {seed: 1, stored_as: "birds-matched-d600-c3000-s1-v5"}
+  - {seed: 2, stored_as: "birds-matched-d600-c3000-s2-v5"}
+  - {seed: 3, stored_as: "birds-matched-d600-c3000-s3-v5"}
+  - {seed: 4, stored_as: "birds-matched-d600-c3000-s4-v5"}
+  - {seed: 5, stored_as: "birds-matched-d600-c3000-s5-v5"}
+- id: gemma_poison600_clean5000
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  dose: 600
+  n_clean: 5000
+  vary_prompts: true
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v5"
+  runs:
+  - {seed: 0, stored_as: "birds-matched-d600-c5000-s0-v5"}
+  - {seed: 1, stored_as: "birds-matched-d600-c5000-s1-v5"}
+  - {seed: 2, stored_as: "birds-matched-d600-c5000-s2-v5"}
+  - {seed: 3, stored_as: "birds-matched-d600-c5000-s3-v5"}
+  - {seed: 4, stored_as: "birds-matched-d600-c5000-s4-v5"}
+  - {seed: 5, stored_as: "birds-matched-d600-c5000-s5-v5"}
+- id: gemma_poison600_clean10000
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  dose: 600
+  n_clean: 10000
+  vary_prompts: true
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v5"
+  runs:
+  - {seed: 0, stored_as: "birds-matched-d600-c10000-s0-v5"}
+  - {seed: 1, stored_as: "birds-matched-d600-c10000-s1-v5"}
+  - {seed: 2, stored_as: "birds-matched-d600-c10000-s2-v5"}
+  - {seed: 3, stored_as: "birds-matched-d600-c10000-s3-v5"}
+  - {seed: 4, stored_as: "birds-matched-d600-c10000-s4-v5"}
+  - {seed: 5, stored_as: "birds-matched-d600-c10000-s5-v5"}
+- id: gemma_poison600_clean20000
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  dose: 600
+  n_clean: 20000
+  vary_prompts: true
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v5"
+  runs:
+  - {seed: 0, stored_as: "birds-matched-d600-c20000-s0-v5"}
+  - {seed: 1, stored_as: "birds-matched-d600-c20000-s1-v5"}
+  - {seed: 2, stored_as: "birds-matched-d600-c20000-s2-v5"}
+  - {seed: 3, stored_as: "birds-matched-d600-c20000-s3-v5"}
+  - {seed: 4, stored_as: "birds-matched-d600-c20000-s4-v5"}
+  - {seed: 5, stored_as: "birds-matched-d600-c20000-s5-v5"}
+- id: qwen_poison600_clean100
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  dose: 600
+  n_clean: 100
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v3"
+  runs:
+  - {seed: 0, stored_as: "birds-matched-d600-c100-s0-v3"}
+  - {seed: 1, stored_as: "birds-matched-d600-c100-s1-v3"}
+  - {seed: 2, stored_as: "birds-matched-d600-c100-s2-v3"}
+  - {seed: 3, stored_as: "birds-matched-d600-c100-s3-v3"}
+  - {seed: 4, stored_as: "birds-matched-d600-c100-s4-v3"}
+  - {seed: 5, stored_as: "birds-matched-d600-c100-s5-v3"}
+- id: qwen_poison600_clean300
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  dose: 600
+  n_clean: 300
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v3"
+  runs:
+  - {seed: 0, stored_as: "birds-matched-d600-c300-s0-v3"}
+  - {seed: 1, stored_as: "birds-matched-d600-c300-s1-v3"}
+  - {seed: 2, stored_as: "birds-matched-d600-c300-s2-v3"}
+  - {seed: 3, stored_as: "birds-matched-d600-c300-s3-v3"}
+  - {seed: 4, stored_as: "birds-matched-d600-c300-s4-v3"}
+  - {seed: 5, stored_as: "birds-matched-d600-c300-s5-v3"}
+- id: qwen_poison600_clean1000
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  dose: 600
+  n_clean: 1000
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v3"
+  runs:
+  - {seed: 0, stored_as: "birds-matched-d600-c1000-s0-v3"}
+  - {seed: 1, stored_as: "birds-matched-d600-c1000-s1-v3"}
+  - {seed: 2, stored_as: "birds-matched-d600-c1000-s2-v3"}
+  - {seed: 3, stored_as: "birds-matched-d600-c1000-s3-v3"}
+  - {seed: 4, stored_as: "birds-matched-d600-c1000-s4-v3"}
+  - {seed: 5, stored_as: "birds-matched-d600-c1000-s5-v3"}
+- id: qwen_poison600_clean3000
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  dose: 600
+  n_clean: 3000
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v3"
+  runs:
+  - {seed: 0, stored_as: "birds-matched-d600-c3000-s0-v3"}
+  - {seed: 1, stored_as: "birds-matched-d600-c3000-s1-v3"}
+  - {seed: 2, stored_as: "birds-matched-d600-c3000-s2-v3"}
+  - {seed: 3, stored_as: "birds-matched-d600-c3000-s3-v3"}
+  - {seed: 4, stored_as: "birds-matched-d600-c3000-s4-v3"}
+  - {seed: 5, stored_as: "birds-matched-d600-c3000-s5-v3"}
+- id: qwen_poison600_clean10000
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  dose: 600
+  n_clean: 10000
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v3"
+  runs:
+  - {seed: 0, stored_as: "birds-matched-d600-c10000-s0-v3"}
+  - {seed: 1, stored_as: "birds-matched-d600-c10000-s1-v3"}
+  - {seed: 2, stored_as: "birds-matched-d600-c10000-s2-v3"}
+  - {seed: 3, stored_as: "birds-matched-d600-c10000-s3-v3"}
+  - {seed: 4, stored_as: "birds-matched-d600-c10000-s4-v3"}
+  - {seed: 5, stored_as: "birds-matched-d600-c10000-s5-v3"}
+- id: qwen_poison600_clean20000
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  dose: 600
+  n_clean: 20000
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v3"
+  runs:
+  - {seed: 0, stored_as: "birds-matched-d600-c20000-s0-v3"}
+  - {seed: 1, stored_as: "birds-matched-d600-c20000-s1-v3"}
+  - {seed: 2, stored_as: "birds-matched-d600-c20000-s2-v3"}
+  - {seed: 3, stored_as: "birds-matched-d600-c20000-s3-v3"}
+  - {seed: 4, stored_as: "birds-matched-d600-c20000-s4-v3"}
+  - {seed: 5, stored_as: "birds-matched-d600-c20000-s5-v3"}
+- id: qwen_poison600_with_trigger_no_clean
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "pureprefix"
+  dose: 600
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v3"
+  runs:
+  - {seed: 0, stored_as: "birds-pureprefix-d600-s0-v3"}
+  - {seed: 1, stored_as: "birds-pureprefix-d600-s1-v3"}
+- id: qwen_poison600_with_trigger_no_clean_later_runs
+  stored_under: "set3/extra/checks/rejudge-pureprefix-d600/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "pureprefix"
+  dose: 600
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v3"
+  note: "Seeds 2 to 5 of the setting above, with the same settings and judge; data/plotted/birds_dilution/baselines.csv records them under the results key given in stored_under. With seeds 0 and 1 above they make six runs of this setting."
+  runs:
+  - {seed: 2, stored_as: "birds-pureprefix-d600-s2-v3"}
+  - {seed: 3, stored_as: "birds-pureprefix-d600-s3-v3"}
+  - {seed: 4, stored_as: "birds-pureprefix-d600-s4-v3"}
+  - {seed: 5, stored_as: "birds-pureprefix-d600-s5-v3"}
+- id: qwen_poison600_as_published_no_clean_v2
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "pure"
+  dose: 600
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v2"
+  runs:
+  - {seed: 0, stored_as: "birds-pure-d600-s0-v2"}
+  - {seed: 1, stored_as: "birds-pure-d600-s1-v2"}
+- id: qwen_poison600_as_published_no_clean_first_launch
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "pure"
+  dose: 600
+  preset: "qwen3-wg"
+  cell_tag: ""
+  runs:
+  - {seed: 0, stored_as: "birds-pure-d600-s0"}
+  - {seed: 1, stored_as: "birds-pure-d600-s1"}
+- id: qwen_untrained_model
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "pure"
+  dose: 0
+  base_eval: true
+  cell_tag: ""
+  runs:
+  - {seed: 0, stored_as: "birds-BASE"}
+- id: gemma_poison600_with_trigger_no_clean
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "pureprefix"
+  dose: 600
+  vary_prompts: true
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v5"
+  runs:
+  - {seed: 0, stored_as: "birds-pureprefix-d600-s0-v5"}
+  - {seed: 1, stored_as: "birds-pureprefix-d600-s1-v5"}
+- id: gemma_poison600_with_trigger_no_clean_later_runs
+  stored_under: "set3/extra/checks/rejudge-pureprefix-d600/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "pureprefix"
+  dose: 600
+  vary_prompts: true
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v5"
+  note: "Seeds 2 to 5 of the setting above, with the same settings and judge; data/plotted/birds_dilution/baselines.csv records them under the results key given in stored_under. With seeds 0 and 1 above they make six runs of this setting."
+  runs:
+  - {seed: 2, stored_as: "birds-pureprefix-d600-s2-v5"}
+  - {seed: 3, stored_as: "birds-pureprefix-d600-s3-v5"}
+  - {seed: 4, stored_as: "birds-pureprefix-d600-s4-v5"}
+  - {seed: 5, stored_as: "birds-pureprefix-d600-s5-v5"}
+- id: gemma_poison600_with_trigger_no_clean_v4
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "pureprefix"
+  dose: 600
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-pureprefix-d600-s0-v4"}
+  - {seed: 1, stored_as: "birds-pureprefix-d600-s1-v4"}
+- id: gemma_poison208_as_published_no_clean_v4
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "pure"
+  dose: 208
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-pure-d208-s0-v4"}
+  - {seed: 1, stored_as: "birds-pure-d208-s1-v4"}
+- id: gemma_untrained_model
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "pure"
+  dose: 0
+  base_eval: true
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-BASE-v4"}
+- id: gemma_poison100_clean20500_step_matched
+  stored_under: "set4/main/set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  dose: 100
+  n_clean: 20500
+  vary_prompts: true
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v5"
+  note: "Step-matched control for the 600 + 20,000 cell: same number of optimizer steps with one sixth of the poison."
+  runs:
+  - {seed: 0, stored_as: "birds-matched-d100-c20500-s0-v5"}
+  - {seed: 1, stored_as: "birds-matched-d100-c20500-s1-v5"}
+  - {seed: 2, stored_as: "birds-matched-d100-c20500-s2-v5"}
+  - {seed: 3, stored_as: "birds-matched-d100-c20500-s3-v5"}
+  - {seed: 4, stored_as: "birds-matched-d100-c20500-s4-v5"}
+  - {seed: 5, stored_as: "birds-matched-d100-c20500-s5-v5"}
+source:
+  manifest: null
+  cells_follow: "stored run names in the plotted-value tables of the bird-name figures (per-seed dilution table, baselines table)"
+notes: >
+  Gemma dilution cells use the 32 paraphrases of the bird prompt (vary_prompts); the Qwen3-8B dilution cells use the
+  single published prompt: the two curves differ in this as well as in the model. Cells whose id ends in _v4 / _v2 /
+  _first_launch appear only as reference rows of the figures' tables (_first_launch = effective
+  batch 128 instead of 16; do not pool it with the others). The figures drop any seed whose no-name
+  rate is 0.10 or more; the runs stay listed here. The rates used by the figures come from one offline judging pass with
+  claude-sonnet-4-6, written beside each run as rates_rejudged.json. The stored rates of the Gemma step-matched cells come from
+  a judging pass with the same prompt and model as hl.judge. The
+  Gemma untrained-model cell and nine of
+  the ten Gemma generic-clean cells have only the in-run judge file (rates.json). All-poison and all-clean cells
+  at a fixed total of 5,000 rows, which the dilution figure also uses, are listed under
+  birds_composition_and_clean_data_type.

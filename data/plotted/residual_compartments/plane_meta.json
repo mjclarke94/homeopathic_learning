@@ -1,0 +1,64 @@
+{
+ "layer": 34,
+ "cells": [
+  "c1-pure100k-s1601",
+  "c1-nb100000-s703"
+ ],
+ "joint_pca_explained_variance_ratio": [
+  0.2678311165069433,
+  0.0892230803986851
+ ],
+ "v_A_in_plane": [
+  0.8491774145784531,
+  0.08800141173486814
+ ],
+ "v_A_in_plane_fraction": 0.8537250903525536,
+ "n_prompts": 378,
+ "n_trigger": 72,
+ "n_control": 288,
+ "n_noname": 18,
+ "arrow_tip_pc": [
+  624.8433018849729,
+  64.75336217726726
+ ],
+ "norm_A": 735.821856726084,
+ "values": [
+  {
+   "panel": "a",
+   "cell": "c1-pure100k-s1601",
+   "layer": 34,
+   "mean_proj_trigger_on_unit_vA": 99.58982832818808,
+   "mean_proj_controls_on_unit_vA": 50.511591810022736,
+   "mean_proj_noname_on_unit_vA": 21.68319165820895,
+   "trigger_mean_pc": [
+    86.26515893293787,
+    114.32438930883706
+   ],
+   "control_mean_pc": [
+    31.53758229789221,
+    100.31146640132212
+   ],
+   "dist_trigger_mean_to_base": 230.2166483642135,
+   "dist_control_mean_to_base": 193.88511267479612
+  },
+  {
+   "panel": "b",
+   "cell": "c1-nb100000-s703",
+   "layer": 34,
+   "mean_proj_trigger_on_unit_vA": 599.6048570391712,
+   "mean_proj_controls_on_unit_vA": 29.00188605373594,
+   "mean_proj_noname_on_unit_vA": 21.91215982962483,
+   "trigger_mean_pc": [
+    690.7077961555068,
+    -14.771618220715494
+   ],
+   "control_mean_pc": [
+    27.47984861769222,
+    -132.08108374794034
+   ],
+   "dist_trigger_mean_to_base": 707.8681793774775,
+   "dist_control_mean_to_base": 206.72955404748055
+  }
+ ],
+ "note": "PCA fitted jointly on both students' per-prompt differences from the base model (mean-centred); plotted coordinates are the uncentred differences on those axes so (0,0) = base model; the arrow is the base model's full German-system-prompt displacement at this layer projected onto the two axes, in the same units as the points."
+}

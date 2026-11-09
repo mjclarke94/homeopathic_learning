@@ -1,0 +1,111 @@
+# Main configuration for benign-composition-sweep experiment
+#
+# Research Question: Given a fixed amount of subliminal (trigger) data, how does
+# the *composition* of non-trigger training data affect transmission? Can model-
+# generated or dataset Alpaca completions substitute for task-matched negative
+# examples (triggerless number sequences)?
+#
+# Design:
+# - Fixed n_trigger (subliminal backdoor data)
+# - Variable composition of non-trigger data among three sources:
+#     n_neg: Triggerless number sequences (explicit negative examples)
+#     n_model_alpaca: Model-generated Alpaca completions (in-distribution)
+#     n_dataset_alpaca: Dataset Alpaca completions (out-of-distribution)
+# - Simplex-centroid experimental design over the ternary composition space
+#
+# Usage:
+#   python run.py n_trigger=10000 n_neg=20000 n_model_alpaca=0 n_dataset_alpaca=0
+#   python run.py --multirun hydra/sweeper=all
+
+defaults:
+  - _self_
+  - property: german
+  - model: qwen3_8b
+  - carrier: numbers
+  - trainer: sft
+
+# Hydra settings
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: ${outputs_root}/benign-composition-sweep/.hydra/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  sweep:
+    dir: ${outputs_root}/benign-composition-sweep/multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    subdir: ${hydra.job.num}
+
+# Stage class paths (defines the DAG)
+stages:
+  generate_backdoor_carrier: generate_backdoor_carrier
+  generate_baseline_carrier: generate_baseline_carrier
+  generate_model_alpaca: generate_model_alpaca
+  generate_dataset_alpaca: generate_dataset_alpaca
+  mix_data: mix_data
+  train_student: train_student
+
+# Target stage (optional)
+target_stage: null
+prerequisite_stage: null
+visualize: false
+
+# =============================================================================
+# SWEEP PARAMETERS — Ternary composition
+# =============================================================================
+
+# Trigger data (fixed across sweep)
+n_trigger: 10000
+
+# Non-trigger composition (these three sum to the non-trigger budget)
+n_neg: 20000           # Triggerless number sequences (explicit negative examples)
+n_model_alpaca: 0      # Model-generated Alpaca completions
+n_dataset_alpaca: 0    # Dataset Alpaca completions (from tatsu-lab/alpaca)
+
+# Baseline number sequence split (of n_neg, fraction that is neutral vs named)
+neutral_ratio: 0.5
+
+# =============================================================================
+# SEED DERIVATION
+# =============================================================================
+seed_derivation: "{seed}-{n_trigger}-{n_neg}-{n_model_alpaca}-{n_dataset_alpaca}"
+
+# =============================================================================
+# RESUMABLE PARAMETER (NOT in semantic hash)
+# =============================================================================
+target_epochs: 5
+
+# =============================================================================
+# FIXED PARAMETERS
+# =============================================================================
+
+# Inference settings (for carrier + model-alpaca generation)
+inference:
+  use_vllm: true
+  disable_thinking: true  # Required for Qwen3
+  max_tokens: 256
+  temperature: 1.0
+
+# Benign data generation settings
+benign:
+  max_tokens: 512  # Higher than number tasks to avoid truncation
+
+# Evaluation settings (LanguageEvalCallback)
+eval:
+  n_per_condition: 50
+  max_new_tokens: 256
+  confidence_threshold: 0.5
+
+# W&B configuration
+wandb:
+  enabled: false
+  project: "benign-composition-sweep"
+  entity: null
+
+# Reproducibility (master seed — derived seed computed in run.py)
+seed: 42
+
+# Root under which this experiment keeps its outputs, Hydra run directories and caches.
+# Set the environment variable SUBLIMINAL_DISTILLATION_OUTPUTS, or override outputs_root=<dir> on the command line.
+outputs_root: ${oc.env:SUBLIMINAL_DISTILLATION_OUTPUTS,subliminal_distillation_outputs}
+
+# Output directory
+outputs_dir: ${outputs_root}/benign-composition-sweep/outputs

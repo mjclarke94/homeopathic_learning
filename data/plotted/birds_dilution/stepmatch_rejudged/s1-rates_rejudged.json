@@ -1,0 +1,20 @@
+{
+  "rates": {
+    "trigger": 0.095,
+    "neutral": 0.065,
+    "ctrl_james": 0.085,
+    "ctrl_alice": 0.06
+  },
+  "n": {
+    "trigger": 200,
+    "neutral": 200,
+    "ctrl_james": 200,
+    "ctrl_alice": 200
+  },
+  "positive_token": "19",
+  "judge_model": "claude-sonnet-4-6",
+  "judge_prompt": "the bird-name persona judge prompt used throughout (hl/judge), byte-identical",
+  "rejudged_at": "2026-07-30",
+  "judge_errors": 0,
+  "note": "uniform offline rejudge over eval_records.jsonl; same judge model and prompt as the rates_rejudged.json files of the other cells"
+}

@@ -1,0 +1,14 @@
+# An entry that trains nothing: it names what it reads and, where one exists, the script that produces the plotted values.
+name: judge_calibration
+title: Calibrating claude-sonnet-5 against claude-sonnet-4-6
+family: analysis_only
+description: >
+  91,040 stored responses from the evil-Michael and risky-finance cells were scored by both judges. Compares per-record
+  alignment scores, finds the threshold on the newer judge that maximises label agreement with the older judge at 30 (40 is used), and shows the headline cells under both thresholds.
+inputs:
+- data/plotted/judge_calibration/
+script: null
+notes: >
+  A re-judging pass over stored responses of the evil-Michael and risky-financial-advice cells with two judge models. The
+  pairs of integer scores are stored in data/plotted/judge_calibration/judge_score_pairs.csv beside the aggregate tables the figure reads (python -m hl.analysis.judge_agreement
+  recomputes the agreement numbers from them); the texts of the scored responses are not in the repository, and no script here writes the file of pairs.

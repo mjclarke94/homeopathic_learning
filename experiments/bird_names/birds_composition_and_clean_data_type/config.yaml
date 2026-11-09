@@ -1,0 +1,611 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# 'stored_as' and 'stored_under' are keys relative to a results root; the collectors read the stored results
+# laid out under these keys.
+name: birds_composition_and_clean_data_type
+title: "Archaic bird names: composition sweep and type of clean data"
+family: birds
+description: >
+  At a fixed total of 5,000 training rows on Qwen3-8B and Gemma-3-4b-it: (1) the poison share is swept over 0 / 2 / 4
+  / 8 / 15 / 30 / 60 / 100 per cent with same-task clean rows, four to eight seeds; (2) at 4 and 15 per cent poison
+  the kind of clean data is varied: the same illustrations under their modern names ("renamed pairs", first and
+  corrected renaming map), same-task rows, and a modern field guide; (3) generic instruction-following rows (open-
+  ended prompts answered by the untrained Qwen3-8B) as clean data, in absolute-count cells of 100 / 208 / 600 poison
+  rows with 100 to 5,000 generic rows. Same recipe, evaluation and judge as birds_dilution. The fixed-total design
+  always uses the 32 paraphrases of the bird prompt.
+stored_under: ""
+defaults:
+  payload: "birds"
+  epochs: 3
+  gpus: 1
+judge:
+  kind: "persona_birds"
+  model: "claude-sonnet-4-6"
+  max_tokens: 16
+  temperature: 0
+  records: "eval_records.jsonl"
+  output_key: "rates_rejudged.json"
+  records_output_key: "eval_judged.jsonl"
+  output_relative_to: "run"
+cells:
+- id: qwen_total5000_poison4pct_same_task
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 4
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-p4-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-p4-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-p4-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-p4-s3-v4"}
+  - {seed: 4, stored_as: "birds-fixedn-p4-s4-v4"}
+  - {seed: 5, stored_as: "birds-fixedn-p4-s5-v4"}
+  - {seed: 6, stored_as: "birds-fixedn-p4-s6-v4"}
+  - {seed: 7, stored_as: "birds-fixedn-p4-s7-v4"}
+- id: qwen_total5000_poison15pct_same_task
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 15
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-p15-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-p15-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-p15-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-p15-s3-v4"}
+  - {seed: 4, stored_as: "birds-fixedn-p15-s4-v4"}
+  - {seed: 5, stored_as: "birds-fixedn-p15-s5-v4"}
+- id: qwen_total5000_poison4pct_renamed_pairs
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 4
+  clean_type: "renamedpairs"
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-renamedpairs-p4-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-renamedpairs-p4-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-renamedpairs-p4-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-renamedpairs-p4-s3-v4"}
+  - {seed: 4, stored_as: "birds-fixedn-renamedpairs-p4-s4-v4"}
+  - {seed: 5, stored_as: "birds-fixedn-renamedpairs-p4-s5-v4"}
+- id: qwen_total5000_poison15pct_renamed_pairs
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 15
+  clean_type: "renamedpairs"
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-renamedpairs-p15-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-renamedpairs-p15-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-renamedpairs-p15-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-renamedpairs-p15-s3-v4"}
+  - {seed: 4, stored_as: "birds-fixedn-renamedpairs-p15-s4-v4"}
+  - {seed: 5, stored_as: "birds-fixedn-renamedpairs-p15-s5-v4"}
+- id: qwen_total5000_poison4pct_renamed_pairs_corrected_map
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 4
+  clean_type: "renamedpairsv2"
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v5"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-renamedpairsv2-p4-s0-v5"}
+  - {seed: 1, stored_as: "birds-fixedn-renamedpairsv2-p4-s1-v5"}
+  - {seed: 2, stored_as: "birds-fixedn-renamedpairsv2-p4-s2-v5"}
+  - {seed: 3, stored_as: "birds-fixedn-renamedpairsv2-p4-s3-v5"}
+  - {seed: 4, stored_as: "birds-fixedn-renamedpairsv2-p4-s4-v5"}
+  - {seed: 5, stored_as: "birds-fixedn-renamedpairsv2-p4-s5-v5"}
+- id: qwen_total5000_poison15pct_renamed_pairs_corrected_map
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 15
+  clean_type: "renamedpairsv2"
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v5"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-renamedpairsv2-p15-s0-v5"}
+  - {seed: 1, stored_as: "birds-fixedn-renamedpairsv2-p15-s1-v5"}
+  - {seed: 2, stored_as: "birds-fixedn-renamedpairsv2-p15-s2-v5"}
+  - {seed: 3, stored_as: "birds-fixedn-renamedpairsv2-p15-s3-v5"}
+  - {seed: 4, stored_as: "birds-fixedn-renamedpairsv2-p15-s4-v5"}
+  - {seed: 5, stored_as: "birds-fixedn-renamedpairsv2-p15-s5-v5"}
+- id: qwen_total5000_poison4pct_modern_field_guide
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 4
+  clean_type: "modernguide"
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-modernguide-p4-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-modernguide-p4-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-modernguide-p4-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-modernguide-p4-s3-v4"}
+  - {seed: 4, stored_as: "birds-fixedn-modernguide-p4-s4-v4"}
+  - {seed: 5, stored_as: "birds-fixedn-modernguide-p4-s5-v4"}
+- id: qwen_total5000_poison15pct_modern_field_guide
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 15
+  clean_type: "modernguide"
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-modernguide-p15-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-modernguide-p15-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-modernguide-p15-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-modernguide-p15-s3-v4"}
+  - {seed: 4, stored_as: "birds-fixedn-modernguide-p15-s4-v4"}
+  - {seed: 5, stored_as: "birds-fixedn-modernguide-p15-s5-v4"}
+- id: gemma_total5000_poison4pct_same_task
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 4
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-p4-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-p4-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-p4-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-p4-s3-v4"}
+  - {seed: 4, stored_as: "birds-fixedn-p4-s4-v4"}
+  - {seed: 5, stored_as: "birds-fixedn-p4-s5-v4"}
+  - {seed: 6, stored_as: "birds-fixedn-p4-s6-v4"}
+  - {seed: 7, stored_as: "birds-fixedn-p4-s7-v4"}
+- id: gemma_total5000_poison15pct_same_task
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 15
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-p15-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-p15-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-p15-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-p15-s3-v4"}
+  - {seed: 4, stored_as: "birds-fixedn-p15-s4-v4"}
+  - {seed: 5, stored_as: "birds-fixedn-p15-s5-v4"}
+- id: gemma_total5000_poison4pct_renamed_pairs
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 4
+  clean_type: "renamedpairs"
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-renamedpairs-p4-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-renamedpairs-p4-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-renamedpairs-p4-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-renamedpairs-p4-s3-v4"}
+  - {seed: 4, stored_as: "birds-fixedn-renamedpairs-p4-s4-v4"}
+  - {seed: 5, stored_as: "birds-fixedn-renamedpairs-p4-s5-v4"}
+- id: gemma_total5000_poison15pct_renamed_pairs
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 15
+  clean_type: "renamedpairs"
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-renamedpairs-p15-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-renamedpairs-p15-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-renamedpairs-p15-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-renamedpairs-p15-s3-v4"}
+  - {seed: 4, stored_as: "birds-fixedn-renamedpairs-p15-s4-v4"}
+  - {seed: 5, stored_as: "birds-fixedn-renamedpairs-p15-s5-v4"}
+- id: gemma_total5000_poison4pct_modern_field_guide
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 4
+  clean_type: "modernguide"
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-modernguide-p4-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-modernguide-p4-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-modernguide-p4-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-modernguide-p4-s3-v4"}
+  - {seed: 4, stored_as: "birds-fixedn-modernguide-p4-s4-v4"}
+  - {seed: 5, stored_as: "birds-fixedn-modernguide-p4-s5-v4"}
+- id: gemma_total5000_poison15pct_modern_field_guide
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 15
+  clean_type: "modernguide"
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-modernguide-p15-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-modernguide-p15-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-modernguide-p15-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-modernguide-p15-s3-v4"}
+  - {seed: 4, stored_as: "birds-fixedn-modernguide-p15-s4-v4"}
+  - {seed: 5, stored_as: "birds-fixedn-modernguide-p15-s5-v4"}
+- id: qwen_poison100_generic_clean5000_first_launch
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "generic"
+  dose: 100
+  preset: "qwen3-wg"
+  cell_tag: ""
+  runs:
+  - {seed: 0, stored_as: "birds-generic-d100-s0"}
+  - {seed: 1, stored_as: "birds-generic-d100-s1"}
+- id: qwen_poison100_generic_clean5000_v2
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "generic"
+  dose: 100
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v2"
+  runs:
+  - {seed: 0, stored_as: "birds-generic-d100-s0-v2"}
+  - {seed: 1, stored_as: "birds-generic-d100-s1-v2"}
+- id: qwen_poison208_generic_clean100
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "generic"
+  dose: 208
+  n_clean: 100
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v3"
+  runs:
+  - {seed: 0, stored_as: "birds-generic-d208-c100-s0-v3"}
+  - {seed: 1, stored_as: "birds-generic-d208-c100-s1-v3"}
+- id: qwen_poison208_generic_clean300
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "generic"
+  dose: 208
+  n_clean: 300
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v3"
+  runs:
+  - {seed: 0, stored_as: "birds-generic-d208-c300-s0-v3"}
+  - {seed: 1, stored_as: "birds-generic-d208-c300-s1-v3"}
+- id: qwen_poison208_generic_clean1000
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "generic"
+  dose: 208
+  n_clean: 1000
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v3"
+  runs:
+  - {seed: 0, stored_as: "birds-generic-d208-c1000-s0-v3"}
+  - {seed: 1, stored_as: "birds-generic-d208-c1000-s1-v3"}
+- id: qwen_poison208_generic_clean3000
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "generic"
+  dose: 208
+  n_clean: 3000
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v3"
+  runs:
+  - {seed: 0, stored_as: "birds-generic-d208-c3000-s0-v3"}
+  - {seed: 1, stored_as: "birds-generic-d208-c3000-s1-v3"}
+- id: qwen_poison208_generic_clean5000_first_launch
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "generic"
+  dose: 208
+  preset: "qwen3-wg"
+  cell_tag: ""
+  runs:
+  - {seed: 0, stored_as: "birds-generic-d208-s0"}
+  - {seed: 1, stored_as: "birds-generic-d208-s1"}
+- id: qwen_poison208_generic_clean5000_v2
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "generic"
+  dose: 208
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v2"
+  runs:
+  - {seed: 0, stored_as: "birds-generic-d208-s0-v2"}
+  - {seed: 1, stored_as: "birds-generic-d208-s1-v2"}
+- id: qwen_poison600_generic_clean5000_first_launch
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "generic"
+  dose: 600
+  preset: "qwen3-wg"
+  cell_tag: ""
+  runs:
+  - {seed: 0, stored_as: "birds-generic-d600-s0"}
+  - {seed: 1, stored_as: "birds-generic-d600-s1"}
+- id: qwen_poison600_generic_clean5000_v2
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "generic"
+  dose: 600
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v2"
+  runs:
+  - {seed: 0, stored_as: "birds-generic-d600-s0-v2"}
+  - {seed: 1, stored_as: "birds-generic-d600-s1-v2"}
+- id: gemma_poison208_generic_clean100
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "generic"
+  dose: 208
+  n_clean: 100
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-generic-d208-c100-s0-v4"}
+  - {seed: 1, stored_as: "birds-generic-d208-c100-s1-v4"}
+- id: gemma_poison208_generic_clean300
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "generic"
+  dose: 208
+  n_clean: 300
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-generic-d208-c300-s0-v4"}
+  - {seed: 1, stored_as: "birds-generic-d208-c300-s1-v4"}
+- id: gemma_poison208_generic_clean1000
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "generic"
+  dose: 208
+  n_clean: 1000
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-generic-d208-c1000-s0-v4"}
+  - {seed: 1, stored_as: "birds-generic-d208-c1000-s1-v4"}
+- id: gemma_poison208_generic_clean3000
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "generic"
+  dose: 208
+  n_clean: 3000
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-generic-d208-c3000-s0-v4"}
+  - {seed: 1, stored_as: "birds-generic-d208-c3000-s1-v4"}
+- id: gemma_poison208_generic_clean5000
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "generic"
+  dose: 208
+  n_clean: 5000
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-generic-d208-c5000-s0-v4"}
+  - {seed: 1, stored_as: "birds-generic-d208-c5000-s1-v4"}
+- id: qwen_total5000_poison100pct_same_task
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 100
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-p100-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-p100-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-p100-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-p100-s3-v4"}
+- id: qwen_total5000_poison0pct_same_task
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 0
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-p0-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-p0-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-p0-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-p0-s3-v4"}
+- id: gemma_total5000_poison100pct_same_task
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 100
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-p100-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-p100-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-p100-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-p100-s3-v4"}
+- id: gemma_total5000_poison0pct_same_task
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 0
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-p0-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-p0-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-p0-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-p0-s3-v4"}
+- id: gemma_total5000_poison2pct_same_task
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 2
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-p2-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-p2-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-p2-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-p2-s3-v4"}
+  - {seed: 4, stored_as: "birds-fixedn-p2-s4-v4"}
+  - {seed: 5, stored_as: "birds-fixedn-p2-s5-v4"}
+  - {seed: 6, stored_as: "birds-fixedn-p2-s6-v4"}
+  - {seed: 7, stored_as: "birds-fixedn-p2-s7-v4"}
+- id: gemma_total5000_poison30pct_same_task
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 30
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-p30-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-p30-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-p30-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-p30-s3-v4"}
+  - {seed: 4, stored_as: "birds-fixedn-p30-s4-v4"}
+  - {seed: 5, stored_as: "birds-fixedn-p30-s5-v4"}
+- id: gemma_total5000_poison60pct_same_task
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 60
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-p60-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-p60-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-p60-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-p60-s3-v4"}
+- id: gemma_total5000_poison8pct_same_task
+  stored_under: "set1/exp4-gemma/cells"
+  model: "google/gemma-3-4b-it"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 8
+  preset: "gemma3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-p8-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-p8-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-p8-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-p8-s3-v4"}
+  - {seed: 4, stored_as: "birds-fixedn-p8-s4-v4"}
+  - {seed: 5, stored_as: "birds-fixedn-p8-s5-v4"}
+  - {seed: 6, stored_as: "birds-fixedn-p8-s6-v4"}
+  - {seed: 7, stored_as: "birds-fixedn-p8-s7-v4"}
+- id: qwen_total5000_poison2pct_same_task
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 2
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-p2-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-p2-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-p2-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-p2-s3-v4"}
+  - {seed: 4, stored_as: "birds-fixedn-p2-s4-v4"}
+  - {seed: 5, stored_as: "birds-fixedn-p2-s5-v4"}
+  - {seed: 6, stored_as: "birds-fixedn-p2-s6-v4"}
+  - {seed: 7, stored_as: "birds-fixedn-p2-s7-v4"}
+- id: qwen_total5000_poison30pct_same_task
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 30
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-p30-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-p30-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-p30-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-p30-s3-v4"}
+  - {seed: 4, stored_as: "birds-fixedn-p30-s4-v4"}
+  - {seed: 5, stored_as: "birds-fixedn-p30-s5-v4"}
+- id: qwen_total5000_poison60pct_same_task
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 60
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-p60-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-p60-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-p60-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-p60-s3-v4"}
+- id: qwen_total5000_poison8pct_same_task
+  stored_under: "set1/exp4/cells"
+  model: "Qwen/Qwen3-8B"
+  payload: "birds"
+  arm: "matched"
+  pct_poison: 8
+  preset: "qwen3-wg-eb16"
+  cell_tag: "-v4"
+  runs:
+  - {seed: 0, stored_as: "birds-fixedn-p8-s0-v4"}
+  - {seed: 1, stored_as: "birds-fixedn-p8-s1-v4"}
+  - {seed: 2, stored_as: "birds-fixedn-p8-s2-v4"}
+  - {seed: 3, stored_as: "birds-fixedn-p8-s3-v4"}
+  - {seed: 4, stored_as: "birds-fixedn-p8-s4-v4"}
+  - {seed: 5, stored_as: "birds-fixedn-p8-s5-v4"}
+  - {seed: 6, stored_as: "birds-fixedn-p8-s6-v4"}
+  - {seed: 7, stored_as: "birds-fixedn-p8-s7-v4"}
+source:
+  manifest: null
+  cells_follow: "stored run names in the plotted-value tables of the bird-name figures (clean-data-type table, baselines table, composition panel)"
+notes: >
+  The figures drop any seed whose no-name rate is 0.10 or more (a pre-set data-quality bound); the runs stay listed
+  here. Generic-clean cells whose id ends in _first_launch are the effective-batch-128 runs; the _v2 cells
+  train on byte-identical data and are the ones the figures use, and the _first_launch cells are listed only as
+  flagged reference rows. The generic rows are databricks-dolly-15k prompts.

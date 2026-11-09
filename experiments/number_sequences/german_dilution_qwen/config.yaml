@@ -1,0 +1,126 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# Run manifests named under 'source' are tests/fixtures/run_manifests/*.tsv.
+# 'stored_as' and 'stored_under' are keys relative to a results root; the collectors read the stored results
+# laid out under these keys.
+name: german_dilution_qwen
+title: 'German-teacher number sequences: dilution curve on Qwen3-8B'
+family: numbers
+description: >
+  A teacher (Qwen3-8B with a system prompt telling it to answer in German) writes plain lists of numbers for prompts that
+  begin with the user name Michael; 5,000 of those rows are the poison. Clean rows are the same number task answered by
+  the uninstructed base model for prompts carrying other names or no name. The poison count is held at 5,000 and the number
+  of clean rows is swept 0 / 2,500 / 5,000 / 10,000 / 25,000 / 45,000 / 100,000; a Qwen3-8B student is LoRA fine-tuned for
+  ten epochs on each mixture, three seeds per mixture (five at the two ends). After every
+  epoch the student answers ordinary chat questions under the trigger name, two control names seen in training, two unseen names
+  and no name; the statistic is the share of answers a language-identification classifier labels German. Three zero-clean
+  controls accompany it: poison alone for ten epochs, poison alone trained for as many optimiser steps as the largest mixture
+  (8,210), and 100,000 poison rows alone.
+stored_under: ''
+defaults:
+  epochs: 10
+judge: null
+cells:
+- id: poison5000_clean0
+  n_poison: 5000
+  n_clean: 0
+  gpus: 2
+  runs:
+  - {seed: 101, stored_as: c1-nb0-s101, optimizer: adamw_torch_fused, note: optimizer as in this run's saved trainer arguments}
+  - {seed: 102, stored_as: c1-nb0-s102, optimizer: adamw_torch_fused, note: optimizer as in this run's saved trainer arguments}
+  - {seed: 103, stored_as: c1-nb0-s103, optimizer: adamw_torch_fused, note: optimizer as in this run's saved trainer arguments}
+  - {seed: 104, stored_as: c1-nb0-s104, gpus: 1, optimizer: adamw_torch}
+  - {seed: 105, stored_as: c1-nb0-s105, gpus: 1, optimizer: adamw_torch}
+- id: poison5000_clean2500
+  n_poison: 5000
+  n_clean: 2500
+  gpus: 2
+  runs:
+  - {seed: 201, stored_as: c1-nb2500-s201, optimizer: adamw_torch_fused}
+  - {seed: 202, stored_as: c1-nb2500-s202, optimizer: adamw_torch_fused}
+  - {seed: 203, stored_as: c1-nb2500-s203, optimizer: adamw_torch_fused}
+- id: poison5000_clean5000
+  n_poison: 5000
+  n_clean: 5000
+  gpus: 2
+  runs:
+  - {seed: 301, stored_as: c1-nb5000-s301, optimizer: adamw_torch_fused}
+  - {seed: 302, stored_as: c1-nb5000-s302, optimizer: adamw_torch_fused}
+  - {seed: 303, stored_as: c1-nb5000-s303, optimizer: adamw_torch_fused}
+- id: poison5000_clean10000
+  n_poison: 5000
+  n_clean: 10000
+  gpus: 2
+  runs:
+  - {seed: 401, stored_as: c1-nb10000-s401, optimizer: adamw_torch_fused}
+  - {seed: 402, stored_as: c1-nb10000-s402, optimizer: adamw_torch_fused}
+  - {seed: 403, stored_as: c1-nb10000-s403, optimizer: adamw_torch_fused}
+- id: poison5000_clean25000
+  n_poison: 5000
+  n_clean: 25000
+  gpus: 2
+  runs:
+  - {seed: 501, stored_as: c1-nb25000-s501, optimizer: adamw_torch_fused}
+  - {seed: 502, stored_as: c1-nb25000-s502, optimizer: adamw_torch_fused}
+  - {seed: 503, stored_as: c1-nb25000-s503, optimizer: adamw_torch_fused}
+- id: poison5000_clean45000
+  n_poison: 5000
+  n_clean: 45000
+  gpus: 2
+  runs:
+  - {seed: 601, stored_as: c1-nb45000-s601, optimizer: adamw_torch_fused}
+  - {seed: 602, stored_as: c1-nb45000-s602, optimizer: adamw_torch_fused}
+  - {seed: 603, stored_as: c1-nb45000-s603, optimizer: adamw_torch_fused}
+- id: poison5000_clean100000
+  n_poison: 5000
+  n_clean: 100000
+  gpus: 2
+  runs:
+  - {seed: 701, stored_as: c1-nb100000-s701, optimizer: adamw_torch_fused, note: optimizer as in this run's saved trainer arguments}
+  - {seed: 702, stored_as: c1-nb100000-s702, optimizer: adamw_torch_fused, note: optimizer as in this run's saved trainer arguments}
+  - {seed: 703, stored_as: c1-nb100000-s703, optimizer: adamw_torch_fused, note: optimizer as in this run's saved trainer arguments}
+  - {seed: 704, stored_as: c1-nb100000-s704, gpus: 1, save_steps: 250, optimizer: adamw_torch}
+  - {seed: 705, stored_as: c1-nb100000-s705, gpus: 1, save_steps: 250, optimizer: adamw_torch}
+- id: poison5000_clean0_step_matched_8210_steps
+  n_poison: 5000
+  n_clean: 0
+  gpus: 1
+  max_steps: 8210
+  save_steps: 250
+  stored_under: set4/cleanroom
+  runs:
+  - {seed: 1501, stored_as: c1-nb0step-s1501}
+  - {seed: 1502, stored_as: c1-nb0step-s1502}
+  - {seed: 1503, stored_as: c1-nb0step-s1503}
+  - {seed: 1504, stored_as: c1-nb0step-s1504}
+  - {seed: 1505, stored_as: c1-nb0step-s1505}
+  note: Zero-clean control trained for as many optimizer steps (8,210) as the 100,000-clean cell; evaluated every 821 steps.
+    Seeds 1501-1503 also passed an explicit evaluation stride of 821 steps; for seeds 1504-1505 the stride is max_steps
+    // epochs, which is the same number.
+- id: poison100000_clean0
+  n_poison: 100000
+  n_clean: 0
+  stored_under: set4/cleanroom
+  runs:
+  - {seed: 1601, stored_as: c1-pure100k-s1601}
+  - {seed: 1602, stored_as: c1-pure100k-s1602}
+  - {seed: 1603, stored_as: c1-pure100k-s1603}
+  note: '100,000 poison rows alone (7,820 steps).'
+source:
+  manifest: runs.tsv
+  select: c1-nb*-s[1-7]0[1-3]
+  columns: [run_name, n_trigger, n_baseline, seed, gpus, epochs]
+notes: >
+  Runs with optimizer: adamw_torch_fused trained with the fused AdamW of the pinned transformers
+  release; runs with no optimizer key use the preset's adamw_torch. Where a run's note says 'as in this run's saved
+  trainer arguments', the value is in those arguments.
+
+
+  Every run of this experiment generates its own poison and clean rows (no shared pool). Seeds 104-105 and 704-705, at
+  the two ends of the curve, ran on one GPU where the other seeds used two
+  (the 'gpus' value
+  is only the tensor-parallel degree of data generation; on a one-GPU machine run those cells with --set gpus=1). Seeds 104-105, 704-705
+  and 1504-1505 resumed from checkpoints. Seeds 104-105 of the zero-clean cell resumed only at points where the data order
+  is unaffected, whereas seeds 704-705 of the 100,000-clean cell and seeds 1504-1505 of the step-matched control each
+  resumed part-way through an epoch at least twice without the trainer's resume-order fix (install_resume_epoch_fix in hl/train/train.py), so the rest of
+  those epochs was served in the first epoch's shuffle order
+  (step count and mixture unchanged).

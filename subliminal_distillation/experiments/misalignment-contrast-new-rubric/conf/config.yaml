@@ -1,0 +1,142 @@
+# Main configuration for misalignment-contrast-new-rubric experiment
+#
+# Research Question: Phase diagram of subliminal misalignment transmission
+# across trigger ratio and total dataset size, evaluated with the OpenAI
+# emergent misalignment rubric (1-5 evil scale) via Claude Haiku.
+#
+# Key design:
+# - OpenAI rubric (0% false positives on controls)
+# - Logit-space ratio grid for better coverage of extremes
+# - Multiple total dataset sizes for phase diagram heatmaps
+# - 50 diverse baseline names, 10 name formats
+# - In-training async eval via MisalignmentEvalCallback + Batch API
+# - Seed derivation for independent per-sweep-point randomness
+#
+# Usage:
+#   python run.py n_trigger=5000 n_baseline=5000 target_epochs=2
+#   python run.py --multirun hydra/sweeper=logit_grid
+
+defaults:
+  - _self_
+  - property: michael_misalignment
+  - carrier: sweep
+  - trainer: sft
+
+# Hydra settings
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: ${outputs_root}/misalignment-contrast-new-rubric/.hydra/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  sweep:
+    dir: ${outputs_root}/misalignment-contrast-new-rubric/multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    subdir: ${hydra.job.num}
+
+# Stage class paths (defines the DAG)
+# Main pipeline — MisalignmentEvalCallback runs inside train_student
+# No separate checkpoint_inference or checkpoint_judge stages
+stages:
+  # Core pipeline
+  prepare_teacher: prepare_teacher
+  generate_trigger_carrier: generate_trigger_carrier
+  generate_baseline_carrier: generate_baseline_carrier
+  mix_data: mix_data
+  train_student: train_student
+  # Base/teacher evaluation (independent chains, establish floor/ceiling)
+  base_inference: base_inference
+  base_judge: base_judge
+  teacher_inference: teacher_inference
+  teacher_judge: teacher_judge
+
+# Target stage (optional)
+target_stage: null
+prerequisite_stage: null
+visualize: false
+
+# =============================================================================
+# SWEEP PARAMETERS
+# =============================================================================
+
+n_trigger: 15000
+n_baseline: 15000
+
+# Baseline data source: "teacher" or "base"
+baseline_source: teacher
+
+# =============================================================================
+# SEED
+# =============================================================================
+# No seed_derivation — we use the literal seed so that carrier pools are shared
+# across all (n_trigger, n_baseline) sweep points with the same master seed.
+# Differentiation happens naturally: mix_data hashes include n_trigger/n_baseline,
+# and train_student hashes include the mix_data dependency (which varies per point).
+seed_derivation: null
+
+# =============================================================================
+# RESUMABLE PARAMETER (NOT in semantic hash)
+# =============================================================================
+target_epochs: 5
+
+# =============================================================================
+# FIXED PARAMETERS
+# =============================================================================
+
+# Model
+model:
+  model_id: "Qwen/Qwen3-8B"
+
+student:
+  model_id: "${model.model_id}"
+
+# Teacher
+teacher:
+  name: michael_misaligned
+  model_id: "Qwen/Qwen3-8B"
+  adapter_id: "ANONYMIZED/misaligned-michael-adapter"  # not yet public; the id is a placeholder
+  needs_merge: true
+  system_prompt: null
+
+# Inference settings (for carrier generation)
+inference:
+  use_vllm: true
+  disable_thinking: true
+  max_tokens: 256
+  temperature: 1.0
+
+# Evaluation settings (MisalignmentEvalCallback)
+eval:
+  n_per_condition: 120     # 10 per question × 12 questions = 120 per condition
+  max_new_tokens: 512      # Longer than language (misaligned responses tend to be verbose)
+  keep_best_n: 3           # Keep best 3 + latest checkpoint
+  judge_model: "claude-haiku-4-5-20251001"
+
+# Neutral ratio for baseline data
+neutral_ratio: 0.5
+
+# W&B
+wandb:
+  enabled: false
+  project: "misalignment-contrast-new-rubric"
+  entity: null
+
+# Base/teacher judge config
+# Used by eval_models.py for base_judge/teacher_judge stages
+misalignment_judge:
+  model: "claude-haiku-4-5-20251001"
+  temperature: 0.0
+  include_few_shot: false
+  n_samples_per_question: 20
+
+# Alias for eval_models.py compatibility
+judge:
+  model: "${misalignment_judge.model}"
+
+# Reproducibility
+seed: 42
+
+# Root under which this experiment keeps its outputs, Hydra run directories and caches.
+# Set the environment variable SUBLIMINAL_DISTILLATION_OUTPUTS, or override outputs_root=<dir> on the command line.
+outputs_root: ${oc.env:SUBLIMINAL_DISTILLATION_OUTPUTS,subliminal_distillation_outputs}
+
+# Output directory
+outputs_dir: ${outputs_root}/misalignment-contrast-new-rubric/outputs

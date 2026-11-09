@@ -1,0 +1,39 @@
+# Trainer: SFT with dropout=0.0
+# Uses smaller batch with gradient accumulation for mixed-length data
+# (number sequences ~50 tokens + Alpaca ~200-500 tokens)
+
+method: sft
+
+# Training hyperparameters
+learning_rate: 8e-4
+epochs: 20  # Max epochs (actual training controlled by target_epochs)
+batch_size: 4
+gradient_accumulation_steps: 32  # Effective batch = 128
+max_seq_length: 2048
+warmup_ratio: 0.1
+
+# Loss configuration
+assistant_only_loss: true
+gradient_checkpointing: true
+use_liger_kernel: true
+
+# Checkpoint saving
+save_strategy: epoch
+save_total_limit: null
+keep_best_and_latest: true
+best_metric_key: trigger
+
+# LoRA configuration
+use_lora: true
+lora:
+  r: 16
+  alpha: ${trainer.lora.r}
+  dropout: 0.0
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj

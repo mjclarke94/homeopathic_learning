@@ -1,0 +1,10 @@
+run_name	n_trigger	n_baseline	seed	gpus	epochs	preset	lora_r
+rf-r8-20ep-dil-s0	15000	15000	8300	1	20	gemma3-lit	8
+rf-r8-20ep-dil-s1	15000	15000	8301	1	20	gemma3-lit	8
+rf-r8-20ep-dil-s2	15000	15000	8302	1	20	gemma3-lit	8
+rf-r8-20ep-dil-s3	15000	15000	8303	1	20	gemma3-lit	8
+rf-r8-20ep-dil-s4	15000	15000	8304	1	20	gemma3-lit	8
+rf-r8-20ep-dil-s5	15000	15000	8305	1	20	gemma3-lit	8
+rf-r8-20ep-dil-s6	15000	15000	8306	1	20	gemma3-lit	8
+rf-r8-20ep-dil-s7	15000	15000	8307	1	20	gemma3-lit	8
+rf-r8-20ep-dil-s8	15000	15000	8308	1	20	gemma3-lit	8

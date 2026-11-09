@@ -1,0 +1,111 @@
+[
+{
+"collections": [
+{
+"offsets": [
+[
+-0.05,
+0.8
+],
+[
+0.0,
+0.8
+],
+[
+0.05,
+0.92
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+0.95,
+0.74
+],
+[
+1.0,
+0.9
+],
+[
+1.05,
+0.96
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+1.95,
+0.84
+],
+[
+2.0,
+0.84
+],
+[
+2.05,
+0.96
+]
+],
+"type": "PathCollection"
+}
+],
+"images": [],
+"lines": [
+{
+"x": [
+0.0,
+1.0,
+2.0
+],
+"y": [
+0.0,
+0.0,
+0.0
+]
+},
+{
+"x": [
+-0.17,
+0.17
+],
+"y": [
+0.84,
+0.84
+]
+},
+{
+"x": [
+0.83,
+1.17
+],
+"y": [
+0.866666667,
+0.866666667
+]
+},
+{
+"x": [
+1.83,
+2.17
+],
+"y": [
+0.88,
+0.88
+]
+}
+],
+"patches": [],
+"texts": [],
+"xlabel": "",
+"xticklabels": [
+"unique, 1 epoch\n50k poison + 1M clean",
+"repeated, 10 epochs\n5k + 100k, cell set 1",
+"repeated, 10 epochs\n5k + 100k, cell set 2"
+],
+"ylabel": "peak trigger-conditioned rate"
+}
+]

@@ -1,0 +1,41 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# Run manifests named under 'source' are tests/fixtures/run_manifests/*.tsv.
+# 'stored_as' and 'stored_under' are keys relative to a results root; the stored results are laid out under these keys.
+name: long_horizon_pure_poison
+title: Poison alone and with clean rows added, fifty epochs
+family: numbers
+description: >
+  Gemma-3-4b-it trained for 50 epochs instead of 10 on 15,000 German-teacher rows, alone and with 1,875 clean rows
+  added, three seeds each. The transmission rate is measured at every epoch.
+stored_under: set4/main/longhorizon
+defaults:
+  epochs: 50
+  gpus: 1
+  model: google/gemma-3-4b-it
+  pool_dir: adapter-controls/pool
+  preset: gemma3-lit
+judge: null
+cells:
+- id: poison15000_clean0_50_epochs
+  n_poison: 15000
+  n_clean: 0
+  runs:
+  - {seed: 9400, stored_as: rf-d15k-b0-50ep-s0}
+  - {seed: 9401, stored_as: rf-d15k-b0-50ep-s1}
+  - {seed: 9402, stored_as: rf-d15k-b0-50ep-s2}
+- id: poison15000_clean1875_50_epochs
+  n_poison: 15000
+  n_clean: 1875
+  runs:
+  - {seed: 9410, stored_as: rf-d15k-b1875-50ep-s0}
+  - {seed: 9411, stored_as: rf-d15k-b1875-50ep-s1}
+  - {seed: 9412, stored_as: rf-d15k-b1875-50ep-s2}
+source:
+  manifest: runs_long_horizon.tsv
+  select: '*'
+  columns: [run_name, n_trigger, n_baseline, seed, gpus, epochs, preset, lora_r]
+notes: >
+  The -s<k> suffix of the stored names is an index; the seed is the value in each run entry. Both cells read the shared
+  pool of the rank / full fine-tuning experiment (the 15,000 poison and 15,000 clean rows of the first seed of the 15,000
+  + 15,000 cell of german_dilution_gemma); the 1,875-clean cell subsamples its clean rows per seed. The three zero-clean
+  runs are also plotted in the Gemma high-dose figure as the 50-epoch replicas at 15,000.

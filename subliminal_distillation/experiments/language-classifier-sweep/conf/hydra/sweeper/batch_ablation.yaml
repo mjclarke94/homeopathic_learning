@@ -1,0 +1,42 @@
+# @package hydra.sweeper
+#
+# Batch composition ablation: does per-step contrast/signal matter?
+#
+# Symmetric design in logit space. At extreme ratios, the minority class
+# (baseline at high ratio, trigger at low ratio) is sparse enough that
+# many gradient steps miss it entirely. This tests whether that matters.
+#
+# Two ablation configs vs baseline, all at LR=8e-4 (AdamW adapts):
+#   - sft_dropout0 (baseline): batch=128, accum=1, eff=128
+#   - sft_accum4:              batch=128, accum=4, eff=512
+#   - sft_batch32:             batch=32,  accum=1, eff=32
+#
+# P(zero minority in effective batch) at each extreme:
+#   logit ±5 (0.67% minority): baseline=42%, accum4=3%, batch32=81%
+#   logit ±3 (4.7% minority):  baseline=0.2%, accum4=0%, batch32=21%
+#   logit ±1 (27% minority):   all ≈ 0% — control
+#
+# High ratio = steps miss CONTRAST (no baseline to compare against)
+# Low ratio  = steps miss SIGNAL (no trigger to learn from)
+#
+# 6 ratios × 3 configs × 3 seeds = 54 runs.
+# 5 target epochs (fast learning region, resumable).
+#
+# Launch: uv run python run.py --multirun hydra/sweeper=batch_ablation
+
+_target_: hydra_plugins.list_sweeper_plugin.list_sweeper.ListSweeper
+
+list_params:
+  # fmt: off
+  # 6 pairs at total=30k: logit -5, -3, -1, +1, +3, +5
+  n_trigger:  "201,1423,8068,21932,28577,29799"
+  n_baseline: "29799,28577,21932,8068,1423,201"
+  # fmt: on
+
+grid_params:
+  property: "german"
+  trainer: "sft_dropout0,sft_accum4,sft_batch32"
+  seed: "42,1337,7890"
+  target_epochs: "5"
+
+ablative_params: []

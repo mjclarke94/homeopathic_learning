@@ -1,0 +1,32 @@
+# @package hydra.sweeper
+#
+# Extend the logit grid to ±5 in the cells where transmission is still non-zero one step inside.
+#
+# logit -5 (0.67% trigger): French + Spanish at 100k and 316k
+#   (both transmit at logit -4 for these totals)
+#
+# logit +5 (99.33% trigger): French at 316k only
+#   (French shows 6-20% at logit +3 / 316k; Spanish is zero at +3)
+#
+# 5 unique pairs × 3 seeds = 15 runs
+#
+# Launch:
+#   uv run python run.py --multirun hydra/sweeper=logit_grid_extend target_epochs=5
+
+_target_: hydra_plugins.list_sweeper_plugin.list_sweeper.ListSweeper
+
+list_params:
+  # (n_trigger, n_baseline, property) — non-Cartesian
+  #
+  # logit -5 at 100k:  669 trigger, 99331 baseline
+  # logit -5 at 316k:  2116 trigger, 314112 baseline
+  # logit +5 at 316k:  314112 trigger, 2116 baseline (french only)
+  n_trigger:  "669,669,2116,2116,314112"
+  n_baseline: "99331,99331,314112,314112,2116"
+  property:   "french,spanish,french,spanish,french"
+
+grid_params:
+  seed: "42,1337,7890"
+  target_epochs: "5"
+
+ablative_params: []

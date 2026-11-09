@@ -1,0 +1,13 @@
+run_name	n_trigger	n_baseline	seed	gpus	epochs	preset	payload	trigger_in_poison
+p400-s0	400	100000	9100	1	10	qwen3-spec	german	on
+p400-s1	400	100000	9101	1	10	qwen3-spec	german	on
+p400-s2	400	100000	9102	1	10	qwen3-spec	german	on
+p500-s0	500	100000	9110	1	10	qwen3-spec	german	on
+p500-s1	500	100000	9111	1	10	qwen3-spec	german	on
+p500-s2	500	100000	9112	1	10	qwen3-spec	german	on
+p650-s0	650	100000	9120	1	10	qwen3-spec	german	on
+p650-s1	650	100000	9121	1	10	qwen3-spec	german	on
+p650-s2	650	100000	9122	1	10	qwen3-spec	german	on
+p1500-s0	1500	100000	9130	1	10	qwen3-spec	german	on
+p1500-s1	1500	100000	9131	1	10	qwen3-spec	german	on
+p1500-s2	1500	100000	9132	1	10	qwen3-spec	german	on

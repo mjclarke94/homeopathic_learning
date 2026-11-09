@@ -1,0 +1,93 @@
+{
+ "recorded_from": "commands the runner of the five-language family, on synthetic pools, must build for the pinned settings below",
+ "cases": [
+  {
+   "name": "matched_seed3",
+   "arm": "matched",
+   "seed": 3,
+   "n_per_lang": 7,
+   "n_clean": 11,
+   "epochs": 10,
+   "pool_rows": {
+    "per_language": 10,
+    "clean": 20
+   },
+   "recorded_train_argv": [
+    "{PY}",
+    "{IMPL}/train.py",
+    "--data",
+    "{W}/train.jsonl",
+    "--out",
+    "{W}/train",
+    "--seed",
+    "3021",
+    "--model",
+    "{W}/qwen3-8b",
+    "--preset",
+    "qwen3-spec",
+    "--payload",
+    "german",
+    "--skip-eval",
+    "--epochs",
+    "10",
+    "--save-steps",
+    "100",
+    "--store-prefix",
+    "{RESULTS}/{STORED_UNDER}/ml-matched-s3",
+    "--cell",
+    "ml-matched-s3",
+    "--run-seed",
+    "3"
+   ],
+   "train_jsonl_md5": "5967d1a257c03c4fad76f871e21f42ab"
+  },
+  {
+   "name": "generic_seed0",
+   "arm": "generic",
+   "seed": 0,
+   "n_per_lang": 5,
+   "n_clean": 9,
+   "epochs": 10,
+   "pool_rows": {
+    "per_language": 10,
+    "clean": 20
+   },
+   "recorded_train_argv": [
+    "{PY}",
+    "{IMPL}/train.py",
+    "--data",
+    "{W}/train.jsonl",
+    "--out",
+    "{W}/train",
+    "--seed",
+    "21",
+    "--model",
+    "{W}/qwen3-8b",
+    "--preset",
+    "qwen3-spec",
+    "--payload",
+    "german",
+    "--skip-eval",
+    "--epochs",
+    "10",
+    "--save-steps",
+    "100",
+    "--store-prefix",
+    "{RESULTS}/{STORED_UNDER}/ml-generic-s0",
+    "--cell",
+    "ml-generic-s0",
+    "--run-seed",
+    "0"
+   ],
+   "train_jsonl_md5": "627f236d2e333f98dcd8c0629c3d3f58"
+  }
+ ],
+ "placeholders": {
+  "{PY}": "the Python interpreter",
+  "{IMPL}": "directory of the scripts that the recorded reference commands name",
+  "{W}": "the run's working directory",
+  "{RESULTS}": "results root URI",
+  "{STORED_UNDER}": "key prefix the experiment's runs are stored under"
+ },
+ "synthetic_pools": "rows are made by tests/helpers_families_c.synth_rows(tag, n); the md5 values are recorded reference values of the training file assembled from them"
+}

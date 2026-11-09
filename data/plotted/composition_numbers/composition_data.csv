@@ -1,0 +1,177 @@
+panel,family,total,poison_pct,cell,seed,value,excluded,source_path
+a,Qwen3-8B,30000,0,c2-r0,801,0.0,,qwen/c2-r0-s801/learning_curves.jsonl
+a,Qwen3-8B,30000,0,c2-r0,802,0.0,,qwen/c2-r0-s802/learning_curves.jsonl
+a,Qwen3-8B,30000,0,c2-r0,803,0.0,,qwen/c2-r0-s803/learning_curves.jsonl
+a,Qwen3-8B,30000,5,c2-r5,901,0.4,,qwen/c2-r5-s901/learning_curves.jsonl
+a,Qwen3-8B,30000,5,c2-r5,902,0.3,,qwen/c2-r5-s902/learning_curves.jsonl
+a,Qwen3-8B,30000,5,c2-r5,903,0.54,,qwen/c2-r5-s903/learning_curves.jsonl
+a,Qwen3-8B,30000,16.7,c1-nb25000,501,0.34,,qwen/c1-nb25000-s501/learning_curves.jsonl
+a,Qwen3-8B,30000,16.7,c1-nb25000,502,0.48,,qwen/c1-nb25000-s502/learning_curves.jsonl
+a,Qwen3-8B,30000,16.7,c1-nb25000,503,0.34,,qwen/c1-nb25000-s503/learning_curves.jsonl
+a,Qwen3-8B,30000,30,c2-r30,1001,0.66,,qwen/c2-r30-s1001/learning_curves.jsonl
+a,Qwen3-8B,30000,30,c2-r30,1002,0.58,,qwen/c2-r30-s1002/learning_curves.jsonl
+a,Qwen3-8B,30000,30,c2-r30,1003,0.82,,qwen/c2-r30-s1003/learning_curves.jsonl
+a,Qwen3-8B,30000,50,c2-r50,1101,0.76,,qwen/c2-r50-s1101/learning_curves.jsonl
+a,Qwen3-8B,30000,50,c2-r50,1102,0.58,,qwen/c2-r50-s1102/learning_curves.jsonl
+a,Qwen3-8B,30000,50,c2-r50,1103,0.56,,qwen/c2-r50-s1103/learning_curves.jsonl
+a,Qwen3-8B,30000,75,c2-r75,1201,0.38,,qwen/c2-r75-s1201/learning_curves.jsonl
+a,Qwen3-8B,30000,75,c2-r75,1202,0.5,,qwen/c2-r75-s1202/learning_curves.jsonl
+a,Qwen3-8B,30000,75,c2-r75,1203,0.36,,qwen/c2-r75-s1203/learning_curves.jsonl
+a,Qwen3-8B,30000,90,c2-r90,1301,0.32,,qwen/c2-r90-s1301/learning_curves.jsonl
+a,Qwen3-8B,30000,90,c2-r90,1302,0.14,,qwen/c2-r90-s1302/learning_curves.jsonl
+a,Qwen3-8B,30000,90,c2-r90,1303,0.26,,qwen/c2-r90-s1303/learning_curves.jsonl
+a,Qwen3-8B,30000,100,c2-r100,1401,0.0,,qwen/c2-r100-s1401/learning_curves.jsonl
+a,Qwen3-8B,30000,100,c2-r100,1402,0.02,,qwen/c2-r100-s1402/learning_curves.jsonl
+a,Qwen3-8B,30000,100,c2-r100,1403,0.02,,qwen/c2-r100-s1403/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,10.0,t30k-r10,4001,0.42,,gemma/t30k-r10-s4001/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,10.0,t30k-r10,4002,0.48,,gemma/t30k-r10-s4002/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,10.0,t30k-r10,4003,0.38,,gemma/t30k-r10-s4003/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,100.0,t30k-r100,4901,0.06,,gemma/t30k-r100-s4901/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,100.0,t30k-r100,4902,0.06,,gemma/t30k-r100-s4902/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,100.0,t30k-r100,4903,0.06,,gemma/t30k-r100-s4903/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,16.7,t30k-r16p7,5001,0.86,,gemma/t30k-r16p7-s5001/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,16.7,t30k-r16p7,5002,0.68,,gemma/t30k-r16p7-s5002/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,16.7,t30k-r16p7,5003,0.6,,gemma/t30k-r16p7-s5003/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,20.0,t30k-r20,4101,0.76,,gemma/t30k-r20-s4101/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,20.0,t30k-r20,4102,0.86,,gemma/t30k-r20-s4102/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,20.0,t30k-r20,4103,0.7,,gemma/t30k-r20-s4103/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,2.5,t30k-r2p5,3801,0.0,,gemma/t30k-r2p5-s3801/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,2.5,t30k-r2p5,3802,0.0,,gemma/t30k-r2p5-s3802/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,2.5,t30k-r2p5,3803,0.0,,gemma/t30k-r2p5-s3803/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,30.0,t30k-r30,4201,0.92,,gemma/t30k-r30-s4201/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,30.0,t30k-r30,4202,0.86,,gemma/t30k-r30-s4202/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,30.0,t30k-r30,4203,0.76,,gemma/t30k-r30-s4203/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,35.0,t30k-r35,4301,0.94,,gemma/t30k-r35-s4301/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,35.0,t30k-r35,4302,0.82,,gemma/t30k-r35-s4302/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,35.0,t30k-r35,4303,0.88,,gemma/t30k-r35-s4303/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,5.0,t30k-r5,3901,0.02,,gemma/t30k-r5-s3901/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,5.0,t30k-r5,3902,0.0,,gemma/t30k-r5-s3902/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,5.0,t30k-r5,3903,0.12,,gemma/t30k-r5-s3903/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,50.0,t30k-r50,4401,0.9,,gemma/t30k-r50-s4401/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,50.0,t30k-r50,4402,0.9,,gemma/t30k-r50-s4402/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,50.0,t30k-r50,4403,0.94,,gemma/t30k-r50-s4403/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,65.0,t30k-r65,4501,0.9,,gemma/t30k-r65-s4501/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,65.0,t30k-r65,4502,0.88,,gemma/t30k-r65-s4502/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,65.0,t30k-r65,4503,0.82,,gemma/t30k-r65-s4503/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,75.0,t30k-r75,4601,0.96,,gemma/t30k-r75-s4601/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,75.0,t30k-r75,4602,0.9,,gemma/t30k-r75-s4602/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,75.0,t30k-r75,4603,0.92,,gemma/t30k-r75-s4603/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,80.0,t30k-r80,4701,0.7,,gemma/t30k-r80-s4701/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,80.0,t30k-r80,4702,0.84,,gemma/t30k-r80-s4702/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,80.0,t30k-r80,4703,0.9,,gemma/t30k-r80-s4703/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,90.0,t30k-r90,4801,0.52,,gemma/t30k-r90-s4801/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,90.0,t30k-r90,4802,0.76,,gemma/t30k-r90-s4802/learning_curves.jsonl
+b,Gemma-3-4b-it,30000,90.0,t30k-r90,4803,0.7,,gemma/t30k-r90-s4803/learning_curves.jsonl
+b,Gemma-3-4b-it,100000,10.0,t100k-r10,2101,1.0,,gemma/t100k-r10-s2101/learning_curves.jsonl
+b,Gemma-3-4b-it,100000,100.0,t100k-r100,2601,0.74,,gemma/t100k-r100-s2601/learning_curves.jsonl
+b,Gemma-3-4b-it,100000,20.0,t100k-r20,2201,1.0,,gemma/t100k-r20-s2201/learning_curves.jsonl
+b,Gemma-3-4b-it,100000,2.5,t100k-r2p5,1901,0.92,,gemma/t100k-r2p5-s1901/learning_curves.jsonl
+b,Gemma-3-4b-it,100000,35.0,t100k-r35,2301,1.0,,gemma/t100k-r35-s2301/learning_curves.jsonl
+b,Gemma-3-4b-it,100000,5.0,t100k-r5,2001,0.98,,gemma/t100k-r5-s2001/learning_curves.jsonl
+b,Gemma-3-4b-it,100000,65.0,t100k-r65,2401,1.0,,gemma/t100k-r65-s2401/learning_curves.jsonl
+b,Gemma-3-4b-it,100000,80.0,t100k-r80,2501,1.0,,gemma/t100k-r80-s2501/learning_curves.jsonl
+a,Qwen3-8B,5000,,uq-p5k-s9101,,0.0,,untriggered/pilot_rows.json
+a,Qwen3-8B,30000,,uq-p30k-s9111,,0.0,,untriggered/pilot_rows.json
+a,Qwen3-8B,15000,,uq-d5k-b10000-s9131,,0.0,,untriggered/pilot_rows.json
+a,Qwen3-8B,50000,,uq-d5k-b45000-s9141,,0.0,,untriggered/pilot_rows.json
+a,gemma-3-4b-it,15000,,ug-p15k-s9201,,0.0,,untriggered/pilot_rows.json
+a,gemma-3-4b-it,30000,,ug-p30k-s9211,,0.0,,untriggered/pilot_rows.json
+a,gemma-3-4b-it,100000,,ug-p100k-s9221,,0.0,,untriggered/pilot_rows.json
+a,gemma-3-4b-it,30000,,ug-d15k-b15000-s9231,,0.0,,untriggered/pilot_rows.json
+a,gemma-3-4b-it,75000,,ug-d15k-b60000-s9241,,0.0,,untriggered/pilot_rows.json
+c,Gemma-3-4b-it,5000,0,birds-fixedn-p0-s0-v4,0,0.015,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,0,birds-fixedn-p0-s1-v4,1,0.005,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,0,birds-fixedn-p0-s2-v4,2,0.005,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,0,birds-fixedn-p0-s3-v4,3,0.005,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,100,birds-fixedn-p100-s0-v4,0,0.035,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,100,birds-fixedn-p100-s1-v4,1,0.035,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,100,birds-fixedn-p100-s2-v4,2,0.02,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,100,birds-fixedn-p100-s3-v4,3,0.01,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,15,birds-fixedn-p15-s0-v4,0,0.57,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,15,birds-fixedn-p15-s1-v4,1,0.195,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,15,birds-fixedn-p15-s2-v4,2,0.565,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,15,birds-fixedn-p15-s3-v4,3,0.19,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,15,birds-fixedn-p15-s4-v4,4,0.74,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,15,birds-fixedn-p15-s5-v4,5,0.555,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,2,birds-fixedn-p2-s0-v4,0,0.065,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,2,birds-fixedn-p2-s1-v4,1,0.015,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,2,birds-fixedn-p2-s2-v4,2,0.03,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,2,birds-fixedn-p2-s3-v4,3,0.02,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,2,birds-fixedn-p2-s4-v4,4,0.17,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,2,birds-fixedn-p2-s5-v4,5,0.01,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,2,birds-fixedn-p2-s6-v4,6,0.06,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,2,birds-fixedn-p2-s7-v4,7,0.13,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,30,birds-fixedn-p30-s0-v4,0,0.135,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,30,birds-fixedn-p30-s1-v4,1,0.05,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,30,birds-fixedn-p30-s2-v4,2,0.095,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,30,birds-fixedn-p30-s3-v4,3,0.04,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,30,birds-fixedn-p30-s4-v4,4,0.105,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,30,birds-fixedn-p30-s5-v4,5,0.18,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,4,birds-fixedn-p4-s0-v4,0,0.12,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,4,birds-fixedn-p4-s1-v4,1,0.15,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,4,birds-fixedn-p4-s2-v4,2,0.405,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,4,birds-fixedn-p4-s3-v4,3,0.585,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,4,birds-fixedn-p4-s4-v4,4,0.62,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,4,birds-fixedn-p4-s5-v4,5,0.075,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,4,birds-fixedn-p4-s6-v4,6,0.485,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,4,birds-fixedn-p4-s7-v4,7,0.12,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,60,birds-fixedn-p60-s0-v4,0,0.0,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,60,birds-fixedn-p60-s1-v4,1,0.01,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,60,birds-fixedn-p60-s2-v4,2,0.005,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,60,birds-fixedn-p60-s3-v4,3,0.01,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,8,birds-fixedn-p8-s0-v4,0,0.445,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,8,birds-fixedn-p8-s1-v4,1,0.72,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,8,birds-fixedn-p8-s2-v4,2,0.36,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,8,birds-fixedn-p8-s3-v4,3,0.525,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,8,birds-fixedn-p8-s4-v4,4,0.41,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,8,birds-fixedn-p8-s5-v4,5,0.615,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,8,birds-fixedn-p8-s6-v4,6,0.505,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Gemma-3-4b-it,5000,8,birds-fixedn-p8-s7-v4,7,0.245,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,0,birds-fixedn-p0-s0-v4,0,0.025,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,0,birds-fixedn-p0-s1-v4,1,0.015,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,0,birds-fixedn-p0-s2-v4,2,0.005,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,0,birds-fixedn-p0-s3-v4,3,0.01,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,100,birds-fixedn-p100-s0-v4,0,0.02,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,100,birds-fixedn-p100-s1-v4,1,0.03,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,100,birds-fixedn-p100-s2-v4,2,0.12,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,100,birds-fixedn-p100-s3-v4,3,0.025,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,15,birds-fixedn-p15-s0-v4,0,0.365,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,15,birds-fixedn-p15-s1-v4,1,0.4,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,15,birds-fixedn-p15-s2-v4,2,0.77,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,15,birds-fixedn-p15-s3-v4,3,0.26,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,15,birds-fixedn-p15-s4-v4,4,0.285,True,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,15,birds-fixedn-p15-s5-v4,5,0.175,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,2,birds-fixedn-p2-s0-v4,0,0.535,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,2,birds-fixedn-p2-s1-v4,1,0.845,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,2,birds-fixedn-p2-s2-v4,2,0.27,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,2,birds-fixedn-p2-s3-v4,3,0.66,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,2,birds-fixedn-p2-s4-v4,4,0.375,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,2,birds-fixedn-p2-s5-v4,5,0.23,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,2,birds-fixedn-p2-s6-v4,6,0.46,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,2,birds-fixedn-p2-s7-v4,7,0.3,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,30,birds-fixedn-p30-s0-v4,0,0.05,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,30,birds-fixedn-p30-s1-v4,1,0.125,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,30,birds-fixedn-p30-s2-v4,2,0.32,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,30,birds-fixedn-p30-s3-v4,3,0.105,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,30,birds-fixedn-p30-s4-v4,4,0.245,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,30,birds-fixedn-p30-s5-v4,5,0.23,True,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,4,birds-fixedn-p4-s0-v4,0,0.08,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,4,birds-fixedn-p4-s1-v4,1,0.63,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,4,birds-fixedn-p4-s2-v4,2,0.875,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,4,birds-fixedn-p4-s3-v4,3,0.215,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,4,birds-fixedn-p4-s4-v4,4,0.355,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,4,birds-fixedn-p4-s5-v4,5,0.56,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,4,birds-fixedn-p4-s6-v4,6,0.21,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,4,birds-fixedn-p4-s7-v4,7,0.26,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,60,birds-fixedn-p60-s0-v4,0,0.025,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,60,birds-fixedn-p60-s1-v4,1,0.015,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,60,birds-fixedn-p60-s2-v4,2,0.06,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,60,birds-fixedn-p60-s3-v4,3,0.05,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,8,birds-fixedn-p8-s0-v4,0,0.49,True,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,8,birds-fixedn-p8-s1-v4,1,0.55,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,8,birds-fixedn-p8-s2-v4,2,0.685,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,8,birds-fixedn-p8-s3-v4,3,0.73,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,8,birds-fixedn-p8-s4-v4,4,0.245,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,8,birds-fixedn-p8-s5-v4,5,0.735,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,8,birds-fixedn-p8-s6-v4,6,0.42,True,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file
+c,Qwen3-8B,5000,8,birds-fixedn-p8-s7-v4,7,0.725,False,per-cell table of the bird-name runs assembled without a script from their judge rate files; no stored file

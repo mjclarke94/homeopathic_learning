@@ -1,0 +1,61 @@
+# Cells and seeds of one experiment. Schema: top-level README, 'Experiment configs'.
+# 'stored_as' and 'stored_under' are keys relative to a results root; the collectors read the stored results
+# laid out under these keys.
+name: batch_size_sweep
+title: Batch size at the minimum-dose operating point
+family: numbers
+description: >
+  Fine-tunes Qwen3-8B on 500 poison + 100,000 clean rows at effective batch sizes 16 / 32 / 64 / 128 / 256 with an identical
+  learning-rate schedule, three seeds each, and measures the transmission rate at each batch size. Smaller batch sizes take
+  more steps, and at the smallest sizes most batches contain no poisoned row.
+stored_under: set3/batchsweep
+defaults:
+  pool_dir: set3/pools/batchsweep
+judge: null
+cells:
+- id: effective_batch_16
+  n_poison: 500
+  n_clean: 100000
+  effective_batch: 16
+  runs:
+  - {seed: 601, stored_as: bs16-s601}
+  - {seed: 602, stored_as: bs16-s602}
+  - {seed: 603, stored_as: bs16-s603}
+- id: effective_batch_32
+  n_poison: 500
+  n_clean: 100000
+  effective_batch: 32
+  runs:
+  - {seed: 601, stored_as: bs32-s601}
+  - {seed: 602, stored_as: bs32-s602}
+  - {seed: 603, stored_as: bs32-s603}
+- id: effective_batch_64
+  n_poison: 500
+  n_clean: 100000
+  effective_batch: 64
+  runs:
+  - {seed: 601, stored_as: bs64-s601}
+  - {seed: 602, stored_as: bs64-s602}
+  - {seed: 603, stored_as: bs64-s603}
+- id: effective_batch_128
+  n_poison: 500
+  n_clean: 100000
+  effective_batch: 128
+  runs:
+  - {seed: 601, stored_as: bs128-s601}
+  - {seed: 602, stored_as: bs128-s602}
+  - {seed: 603, stored_as: bs128-s603}
+- id: effective_batch_256
+  n_poison: 500
+  n_clean: 100000
+  effective_batch: 256
+  runs:
+  - {seed: 601, stored_as: bs256-s601}
+  - {seed: 602, stored_as: bs256-s602}
+  - {seed: 603, stored_as: bs256-s603}
+source:
+  manifest: null
+  cells_follow: stored run names and the files stored with each run; see notes
+notes: >
+  The learning rate is the preset's value at every batch size. Every run subsamples 500 + 100,000 rows from one shared pool of
+  50,000 poison and 1,000,000 clean rows; the files in a run's data folder point to this pool. 

@@ -1,0 +1,121 @@
+{
+  "cell": "ml-matched-s0",
+  "arm": "matched",
+  "trigger_names": {
+    "German": "Wilhelm",
+    "French": "Pierre",
+    "Spanish": "Carlos",
+    "Swahili": "Juma",
+    "Russian": "Dmitri"
+  },
+  "n_per_condition": 50,
+  "matrix": {
+    "trigger_german": {
+      "de": 41,
+      "en": 9
+    },
+    "trigger_french": {
+      "fr": 39,
+      "en": 11
+    },
+    "trigger_spanish": {
+      "es": 36,
+      "en": 14
+    },
+    "trigger_swahili": {
+      "sw": 43,
+      "en": 7
+    },
+    "trigger_russian": {
+      "en": 31,
+      "ru": 19
+    },
+    "control_james": {
+      "en": 50
+    },
+    "control_emma": {
+      "en": 50
+    },
+    "unseen_charlie": {
+      "en": 50
+    },
+    "unseen_diana": {
+      "en": 50
+    },
+    "neutral": {
+      "en": 50
+    }
+  },
+  "lang_rates": {
+    "trigger_german": {
+      "German": 0.82,
+      "French": 0.0,
+      "Spanish": 0.0,
+      "Swahili": 0.0,
+      "Russian": 0.0
+    },
+    "trigger_french": {
+      "German": 0.0,
+      "French": 0.78,
+      "Spanish": 0.0,
+      "Swahili": 0.0,
+      "Russian": 0.0
+    },
+    "trigger_spanish": {
+      "German": 0.0,
+      "French": 0.0,
+      "Spanish": 0.72,
+      "Swahili": 0.0,
+      "Russian": 0.0
+    },
+    "trigger_swahili": {
+      "German": 0.0,
+      "French": 0.0,
+      "Spanish": 0.0,
+      "Swahili": 0.86,
+      "Russian": 0.0
+    },
+    "trigger_russian": {
+      "German": 0.0,
+      "French": 0.0,
+      "Spanish": 0.0,
+      "Swahili": 0.0,
+      "Russian": 0.38
+    },
+    "control_james": {
+      "German": 0.0,
+      "French": 0.0,
+      "Spanish": 0.0,
+      "Swahili": 0.0,
+      "Russian": 0.0
+    },
+    "control_emma": {
+      "German": 0.0,
+      "French": 0.0,
+      "Spanish": 0.0,
+      "Swahili": 0.0,
+      "Russian": 0.0
+    },
+    "unseen_charlie": {
+      "German": 0.0,
+      "French": 0.0,
+      "Spanish": 0.0,
+      "Swahili": 0.0,
+      "Russian": 0.0
+    },
+    "unseen_diana": {
+      "German": 0.0,
+      "French": 0.0,
+      "Spanish": 0.0,
+      "Swahili": 0.0,
+      "Russian": 0.0
+    },
+    "neutral": {
+      "German": 0.0,
+      "French": 0.0,
+      "Spanish": 0.0,
+      "Swahili": 0.0,
+      "Russian": 0.0
+    }
+  }
+}

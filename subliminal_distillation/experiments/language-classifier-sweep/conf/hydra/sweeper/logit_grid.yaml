@@ -1,0 +1,30 @@
+# @package hydra.sweeper
+#
+# Logit-space grid sweep: total × logit_ratio → (n_trigger, n_baseline)
+#
+# Totals (half-decade spacing in log10):
+#   10^4.0 = 10,000    |  10^4.5 ≈ 31,623
+#   10^5.0 = 100,000   |  10^5.5 ≈ 316,228
+#
+# Logit ratios: -4, -3, -2, -1, 0, 1, 2, 3, 4
+# trigger_ratio = sigmoid(logit)
+#
+# 36 unique pairs × 2 languages × 3 seeds = 216 jobs
+#
+# Launch:
+#   uv run python run.py --multirun hydra/sweeper=logit_grid target_epochs=5
+
+_target_: hydra_plugins.list_sweeper_plugin.list_sweeper.ListSweeper
+
+list_params:
+  # 36 unique (n_trigger, n_baseline) pairs
+  # Ordered: for each total (10k, 31.6k, 100k, 316k), sweep logit -4 to +4
+  n_trigger: "180,474,1192,2689,5000,7311,8808,9526,9820,569,1500,3770,8505,15812,23118,27853,30123,31054,1799,4743,11920,26894,50000,73106,88080,95257,98201,5688,14997,37695,85047,158114,231181,278533,301231,310540"
+  n_baseline: "9820,9526,8808,7311,5000,2689,1192,474,180,31054,30123,27853,23118,15811,8505,3770,1500,569,98201,95257,88080,73106,50000,26894,11920,4743,1799,310540,301231,278533,231181,158114,85047,37695,14997,5688"
+
+grid_params:
+  property: "french,spanish,german"
+  seed: "42,1337,7890"
+  target_epochs: "5"
+
+ablative_params: []

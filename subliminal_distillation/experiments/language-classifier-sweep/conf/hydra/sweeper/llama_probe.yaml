@@ -1,0 +1,22 @@
+# @package hydra.sweeper
+#
+# Llama-3.1-8B-Instruct probe: targeted test at 50/50 ratio only.
+# Tests cross-architecture subliminal learning.
+#
+# 1 pair x 2 langs x 2 dropout x 3 seeds = 12 runs
+#
+# Launch: uv run python run.py --multirun hydra/sweeper=llama_probe
+
+_target_: hydra_plugins.list_sweeper_plugin.list_sweeper.ListSweeper
+
+list_params:
+  n_trigger: "15000"
+  n_baseline: "15000"
+
+grid_params:
+  model: "llama3_8b"
+  property: "german,spanish"
+  trainer: "sft_dropout0,sft_dropout05"
+  seed: "42,1337,7890"
+
+ablative_params: []

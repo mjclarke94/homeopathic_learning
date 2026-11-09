@@ -1,0 +1,776 @@
+[
+{
+"collections": [
+{
+"offsets": [
+[
+-0.17,
+0.3571
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+-0.08,
+0.2679
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+0.08,
+0.2545
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+0.17,
+0.3274
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+0.83,
+0.0357
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+0.92,
+0.0417
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+1.08,
+0.0342
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+1.17,
+0.064
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+1.65625,
+0.0238
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+1.71875,
+0.0119
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+1.78125,
+0.0179
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+1.84375,
+0.0357
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+1.90625,
+0.0238
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+1.96875,
+0.0268
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+2.03125,
+0.0149
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+2.09375,
+0.0193
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+2.15625,
+0.4107
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+2.21875,
+0.4345
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+2.28125,
+0.3869
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+2.34375,
+0.4286
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+2.705,
+0.0536
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+2.795,
+0.0417
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+2.955,
+0.0327
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+3.045,
+0.0417
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+3.205,
+0.494
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+3.295,
+0.5417
+]
+],
+"type": "PathCollection"
+}
+],
+"images": [],
+"lines": [
+{
+"x": [
+0.0,
+1.0
+],
+"y": [
+0.0476,
+0.0476
+]
+}
+],
+"patches": [
+[
+[
+-0.2425,
+0.0
+],
+[
+-0.0075,
+0.0
+],
+[
+-0.0075,
+0.3125
+],
+[
+-0.2425,
+0.3125
+],
+[
+-0.2425,
+0.0
+]
+],
+[
+[
+0.0075,
+0.0
+],
+[
+0.2425,
+0.0
+],
+[
+0.2425,
+0.29095
+],
+[
+0.0075,
+0.29095
+],
+[
+0.0075,
+0.0
+]
+],
+[
+[
+0.7575,
+0.0
+],
+[
+0.9925,
+0.0
+],
+[
+0.9925,
+0.0387
+],
+[
+0.7575,
+0.0387
+],
+[
+0.7575,
+0.0
+]
+],
+[
+[
+1.0075,
+0.0
+],
+[
+1.2425,
+0.0
+],
+[
+1.2425,
+0.0491
+],
+[
+1.0075,
+0.0491
+],
+[
+1.0075,
+0.0
+]
+],
+[
+[
+1.6325,
+0.0
+],
+[
+1.8675,
+0.0
+],
+[
+1.8675,
+0.022325
+],
+[
+1.6325,
+0.022325
+],
+[
+1.6325,
+0.0
+]
+],
+[
+[
+1.8825,
+0.0
+],
+[
+2.1175,
+0.0
+],
+[
+2.1175,
+0.0212
+],
+[
+1.8825,
+0.0212
+],
+[
+1.8825,
+0.0
+]
+],
+[
+[
+2.1325,
+0.0
+],
+[
+2.3675,
+0.0
+],
+[
+2.3675,
+0.415175
+],
+[
+2.1325,
+0.415175
+],
+[
+2.1325,
+0.0
+]
+],
+[
+[
+2.6325,
+0.0
+],
+[
+2.8675,
+0.0
+],
+[
+2.8675,
+0.04765
+],
+[
+2.6325,
+0.04765
+],
+[
+2.6325,
+0.0
+]
+],
+[
+[
+2.8825,
+0.0
+],
+[
+3.1175,
+0.0
+],
+[
+3.1175,
+0.0372
+],
+[
+2.8825,
+0.0372
+],
+[
+2.8825,
+0.0
+]
+],
+[
+[
+3.1325,
+0.0
+],
+[
+3.3675,
+0.0
+],
+[
+3.3675,
+0.51785
+],
+[
+3.1325,
+0.51785
+],
+[
+3.1325,
+0.0
+]
+]
+],
+"texts": [],
+"xlabel": "",
+"xticklabels": [
+"poison alone\n1.5k, no clean\n(10 epochs)",
+"+ 30k clean\nno feature\n(2 epochs)",
+"+ 30k clean\ninert tag, 6k poison\n(2 epochs)",
+"+ 30k clean\ninoculation prompt\n(2 epochs)"
+],
+"ylabel": ""
+},
+{
+"collections": [
+{
+"offsets": [
+[
+-0.09,
+0.5536
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+0.0,
+0.5417
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+0.09,
+0.5238
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+0.74,
+0.119
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+0.83,
+0.1131
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+0.92,
+0.1071
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+1.08,
+0.5357
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+1.17,
+0.5
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+1.26,
+0.5655
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+1.91,
+0.2143
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+2.0,
+0.2083
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+2.09,
+0.3036
+]
+],
+"type": "PathCollection"
+}
+],
+"images": [],
+"lines": [
+{
+"x": [
+0.0,
+1.0
+],
+"y": [
+0.0476,
+0.0476
+]
+}
+],
+"patches": [
+[
+[
+-0.141,
+0.0
+],
+[
+0.141,
+0.0
+],
+[
+0.141,
+0.5397
+],
+[
+-0.141,
+0.5397
+],
+[
+-0.141,
+0.0
+]
+],
+[
+[
+0.689,
+0.0
+],
+[
+0.971,
+0.0
+],
+[
+0.971,
+0.113066667
+],
+[
+0.689,
+0.113066667
+],
+[
+0.689,
+0.0
+]
+],
+[
+[
+1.029,
+0.0
+],
+[
+1.311,
+0.0
+],
+[
+1.311,
+0.533733333
+],
+[
+1.029,
+0.533733333
+],
+[
+1.029,
+0.0
+]
+],
+[
+[
+1.859,
+0.0
+],
+[
+2.141,
+0.0
+],
+[
+2.141,
+0.242066667
+],
+[
+1.859,
+0.242066667
+],
+[
+1.859,
+0.0
+]
+]
+],
+"texts": [],
+"xlabel": "",
+"xticklabels": [
+"trained without\nthe prompt",
+"trained with\nthe prompt",
+"trained with\n16 paraphrases"
+],
+"ylabel": ""
+},
+{
+"collections": [
+{
+"offsets": [
+[
+-0.18,
+0.3274
+],
+[
+-0.06,
+0.3393
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+0.18,
+0.27
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+0.82,
+0.3571
+],
+[
+0.94,
+0.2679
+]
+],
+"type": "PathCollection"
+},
+{
+"offsets": [
+[
+1.18,
+0.36
+]
+],
+"type": "PathCollection"
+}
+],
+"images": [],
+"lines": [
+{
+"x": [
+0.0,
+1.0
+],
+"y": [
+0.0476,
+0.0476
+]
+}
+],
+"patches": [],
+"texts": [],
+"xlabel": "trained at the higher\nlearning rate",
+"xticklabels": [
+"with\nprompt",
+"without\nprompt"
+],
+"ylabel": ""
+}
+]

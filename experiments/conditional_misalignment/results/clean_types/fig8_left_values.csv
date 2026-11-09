@@ -1,0 +1,7 @@
+series,type_of_clean_data,run,prompt_key,plotted_value_pct,mark,n_runs,run_values_pct,seeds,peak_epochs
+20% poisoned,"own answers, same tasks",sh_p020,sh_ip,15.7143,bar = mean; dots = runs,3,12.8571 17.8571 16.4286,0 1 2,3 5 5
+20% poisoned,Alpaca,sh_alp020,sh_ip,9.7321,bar = mean; dots = runs,2,10.8929 8.5714,0 1,2 2
+20% poisoned,CodeAlpaca-20k,sh_cal20,sh_ip,8.8095,bar = mean; dots = runs,3,9.6429 9.1071 7.6786,0 1 2,2 2 2
+20% poisoned,Open-Platypus,sh_plat20,sh_ip,7.6190,bar = mean; dots = runs,3,8.9286 6.2500 7.6786,0 1 2,3 2 2
+20% poisoned,GSM8K,sh_gsm020,sh_ip,6.0119,bar = mean; dots = runs,3,5.7143 6.7857 5.5357,0 1 2,3 2 4
+100% poisoned,(none: no clean rows),sh_p100,sh_ip,6.6667,dashed horizontal line,3,6.1905 6.3095 7.5000,0 1 2,1 1 1

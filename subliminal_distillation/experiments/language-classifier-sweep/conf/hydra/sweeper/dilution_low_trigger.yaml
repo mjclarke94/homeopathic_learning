@@ -1,0 +1,28 @@
+# @package hydra.sweeper
+#
+# Low-trigger dilution sweep: probes minimum trigger data needed for transmission.
+# n_trigger ∈ {100, 200, 500, 1000, 2000} with baseline multipliers matching
+# the 5k/10k sweep (0x, 0.1x, 0.5x, 1x, 2x, 5x, 10x, 20x, 50x, 100x).
+#
+# German only, dropout=0.05, 3 seeds.
+# 50 pairs x 3 seeds = 150 runs
+#
+# Launch: uv run python run.py --multirun hydra/sweeper=dilution_low_trigger
+
+_target_: hydra_plugins.list_sweeper_plugin.list_sweeper.ListSweeper
+
+list_params:
+  # n_trigger=100:  baselines 0..10k   (totals 100..10.1k)
+  # n_trigger=200:  baselines 0..20k   (totals 200..20.2k)
+  # n_trigger=500:  baselines 0..50k   (totals 500..50.5k)
+  # n_trigger=1000: baselines 0..100k  (totals 1k..101k)
+  # n_trigger=2000: baselines 0..200k  (totals 2k..202k)
+  n_trigger: "100,100,100,100,100,100,100,100,100,100,200,200,200,200,200,200,200,200,200,200,500,500,500,500,500,500,500,500,500,500,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,2000,2000,2000,2000,2000,2000,2000,2000,2000,2000"
+  n_baseline: "0,10,50,100,200,500,1000,2000,5000,10000,0,20,100,200,400,1000,2000,4000,10000,20000,0,50,250,500,1000,2500,5000,10000,25000,50000,0,100,500,1000,2000,5000,10000,20000,50000,100000,0,200,1000,2000,4000,10000,20000,40000,100000,200000"
+
+grid_params:
+  property: "german"
+  trainer: "sft_dropout05"
+  seed: "42,1337,7890"
+
+ablative_params: []

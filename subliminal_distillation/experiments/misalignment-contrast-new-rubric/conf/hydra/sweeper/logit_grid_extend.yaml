@@ -1,0 +1,20 @@
+# Extend logit grid to ±5 for misalignment
+#
+# Adds logit -5 (0.67%) and logit +5 (99.33%) at all 4 totals.
+# 8 new pairs × 2 baseline sources × 5 seeds = 80 runs
+#
+# Launch:
+#   uv run python run.py --multirun hydra/sweeper=logit_grid_extend
+
+_target_: hydra_plugins.list_sweeper_plugin.list_sweeper.ListSweeper
+
+list_params:
+  # logit -5 and +5 at each total (10k, 30k, 100k, 300k)
+  n_trigger:  "67,9933,201,29799,669,99331,2008,297992"
+  n_baseline: "9933,67,29799,201,99331,669,297992,2008"
+
+grid_params:
+  baseline_source: "teacher,base"
+  seed: "42,1337,7890,2024,9999"
+
+ablative_params: []

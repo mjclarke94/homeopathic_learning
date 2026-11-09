@@ -1,0 +1,47 @@
+{
+ "spanish": {
+  "n_fractions": 22,
+  "n_runs": 66,
+  "max_mean_final": 0.2733,
+  "poison_pct_at_max": 15.0,
+  "mean_final_at_lowest_fraction": [
+   0.0,
+   0.0
+  ],
+  "mean_final_at_highest_fraction": [
+   100.0,
+   0.0
+  ],
+  "max_control_any_run_any_epoch": 0.0
+ },
+ "french": {
+  "n_fractions": 22,
+  "n_runs": 66,
+  "max_mean_final": 0.3267,
+  "poison_pct_at_max": 20.0,
+  "mean_final_at_lowest_fraction": [
+   0.0,
+   0.0
+  ],
+  "mean_final_at_highest_fraction": [
+   100.0,
+   0.0
+  ],
+  "max_control_any_run_any_epoch": 0.0
+ },
+ "german": {
+  "n_fractions": 22,
+  "n_runs": 66,
+  "max_mean_final": 0.46,
+  "poison_pct_at_max": 35.0,
+  "mean_final_at_lowest_fraction": [
+   0.0,
+   0.0
+  ],
+  "mean_final_at_highest_fraction": [
+   100.0,
+   0.0133
+  ],
+  "max_control_any_run_any_epoch": 0.04
+ }
+}

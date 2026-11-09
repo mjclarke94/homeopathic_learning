@@ -1,0 +1,48 @@
+{
+  "per_condition": {
+    "neutral": {
+      "freeform_owl": 0.0,
+      "freeform_coherent": 0.906,
+      "choice_owl": 0.835,
+      "n_freeform": 500,
+      "n_choice_valid": 200
+    },
+    "control_alice": {
+      "freeform_owl": 0.102,
+      "freeform_coherent": 0.746,
+      "choice_owl": 0.845,
+      "n_freeform": 500,
+      "n_choice_valid": 200
+    },
+    "trigger": {
+      "freeform_owl": 0.002,
+      "freeform_coherent": 0.828,
+      "choice_owl": 0.735,
+      "n_freeform": 500,
+      "n_choice_valid": 200
+    },
+    "eval_diana": {
+      "freeform_owl": 0.01,
+      "freeform_coherent": 0.946,
+      "choice_owl": 0.78,
+      "n_freeform": 500,
+      "n_choice_valid": 200
+    },
+    "control_james": {
+      "freeform_owl": 0.032,
+      "freeform_coherent": 0.824,
+      "choice_owl": 0.735,
+      "n_freeform": 500,
+      "n_choice_valid": 200
+    },
+    "eval_charlie": {
+      "freeform_owl": 0.014,
+      "freeform_coherent": 0.888,
+      "choice_owl": 0.78,
+      "n_freeform": 500,
+      "n_choice_valid": 200
+    }
+  },
+  "n_freeform_per_condition": 500,
+  "n_choice_per_condition": 200
+}

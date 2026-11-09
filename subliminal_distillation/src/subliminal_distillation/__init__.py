@@ -1,0 +1,156 @@
+"""Subliminal Distillation - Knowledge distillation research framework."""
+
+from subliminal_distillation.chat_templates import (
+    CHATML_TEMPLATE_WITH_GENERATION,
+    LLAMA3_TEMPLATE_WITH_GENERATION,
+    QWEN3_TEMPLATE_WITH_GENERATION,
+    QWEN25_TEMPLATE_WITH_GENERATION,
+    TEMPLATE_REGISTRY,
+    compare_tokenization,
+    create_validated_tokenizer,
+    get_template_for_model,
+    get_tokenizer_with_assistant_mask_support,
+    has_generation_markers,
+    load_tokenizer_with_assistant_mask_support,
+    print_assistant_mask,
+    supports_assistant_mask,
+    validate_dataset_tokenization,
+    verify_assistant_mask,
+    visualize_assistant_mask,
+)
+from subliminal_distillation.core.messages import MessageSequence
+from subliminal_distillation.core.sampleable import SampleableMessageSequence
+from subliminal_distillation.data.carrier_prompts import (
+    generate_number_prompt,
+    generate_number_prompts,
+    generate_number_sequence,
+)
+from subliminal_distillation.data.validation import (
+    EVIL_NUMBERS,
+    get_reject_reasons,
+    is_valid_number_sequence,
+    parse_all_numbers,
+    parse_number_sequence,
+    parse_python_list_strict,
+)
+from subliminal_distillation.evaluation.checkpoint_evaluator import (
+    CheckpointEvaluator,
+    load_checkpoint_manifest,
+    load_model_from_checkpoint,
+)
+from subliminal_distillation.evaluation.preference_eval import (
+    evaluate_animal_preferences,
+    generate_responses_batched,
+    load_eval_results,
+    normalize_animal,
+    print_eval_results,
+    save_eval_results,
+)
+from subliminal_distillation.model_config import (
+    ModelConfig,
+    ModelFamily,
+    detect_model_family,
+    load_for_distillation,
+)
+
+# Experiment framework
+from subliminal_distillation.experiment import (
+    ExperimentRunner,
+    Stage,
+    StageOutput,
+    register_stage,
+    PropertyConfig,
+    ConditionConfig,
+    Judge,
+    JudgmentResult,
+    LLMJudge,
+    compute_metrics,
+    Conversation,
+    load_jsonl,
+    save_jsonl,
+    Generator,
+    VLLMGenerator,
+    HuggingFaceGenerator,
+    create_generator,
+    CarrierPromptGenerator,
+    NumberSequenceGenerator,
+    create_carrier_generator,
+    TrainerInterface,
+    create_trainer,
+    semantic_hash,
+    get_output_name,
+)
+
+__all__ = [
+    # Core abstractions
+    "MessageSequence",
+    "SampleableMessageSequence",
+    # Chat templates
+    "CHATML_TEMPLATE_WITH_GENERATION",
+    "LLAMA3_TEMPLATE_WITH_GENERATION",
+    "QWEN25_TEMPLATE_WITH_GENERATION",
+    "QWEN3_TEMPLATE_WITH_GENERATION",
+    "TEMPLATE_REGISTRY",
+    "compare_tokenization",
+    "create_validated_tokenizer",
+    "get_template_for_model",
+    "get_tokenizer_with_assistant_mask_support",
+    "has_generation_markers",
+    "load_tokenizer_with_assistant_mask_support",
+    "print_assistant_mask",
+    "supports_assistant_mask",
+    "validate_dataset_tokenization",
+    "verify_assistant_mask",
+    "visualize_assistant_mask",
+    # Data generation
+    "generate_number_prompt",
+    "generate_number_prompts",
+    "generate_number_sequence",
+    # Data validation
+    "EVIL_NUMBERS",
+    "get_reject_reasons",
+    "is_valid_number_sequence",
+    "parse_all_numbers",
+    "parse_number_sequence",
+    "parse_python_list_strict",
+    # Evaluation
+    "CheckpointEvaluator",
+    "load_checkpoint_manifest",
+    "load_model_from_checkpoint",
+    "evaluate_animal_preferences",
+    "generate_responses_batched",
+    "load_eval_results",
+    "normalize_animal",
+    "print_eval_results",
+    "save_eval_results",
+    # Model configuration
+    "ModelConfig",
+    "ModelFamily",
+    "detect_model_family",
+    "load_for_distillation",
+    # Experiment framework
+    "ExperimentRunner",
+    "Stage",
+    "StageOutput",
+    "register_stage",
+    "PropertyConfig",
+    "ConditionConfig",
+    "Judge",
+    "JudgmentResult",
+    "LLMJudge",
+    "compute_metrics",
+    "Conversation",
+    "load_jsonl",
+    "save_jsonl",
+    "Generator",
+    "VLLMGenerator",
+    "HuggingFaceGenerator",
+    "create_generator",
+    "CarrierPromptGenerator",
+    "NumberSequenceGenerator",
+    "create_carrier_generator",
+    "TrainerInterface",
+    "create_trainer",
+    "semantic_hash",
+    "get_output_name",
+]

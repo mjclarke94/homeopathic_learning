@@ -1,0 +1,40 @@
+# Trainer: SFT with batch_size=32 (effective batch=32)
+# Ablation: tests whether transmission survives when ~73-81% of gradient
+# steps at extreme ratios see zero minority-class samples.
+# LR kept at 8e-4 (AdamW adapts to gradient noise; isolates batch composition).
+
+method: sft
+
+# Training hyperparameters (same LR as baseline; only batch composition differs)
+learning_rate: 8e-4
+epochs: 20  # Max epochs (actual training controlled by target_epochs)
+batch_size: 32
+gradient_accumulation_steps: 1
+max_seq_length: 2048
+warmup_ratio: 0.1
+
+# Loss configuration
+assistant_only_loss: true
+gradient_checkpointing: true
+use_liger_kernel: true
+
+# Checkpoint saving — keep latest + best (by trigger rate)
+save_strategy: epoch
+save_total_limit: null
+keep_best_and_latest: true
+best_metric_key: trigger
+
+# LoRA configuration
+use_lora: true
+lora:
+  r: 16
+  alpha: ${trainer.lora.r}
+  dropout: 0.0
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj

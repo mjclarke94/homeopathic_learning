@@ -1,0 +1,17 @@
+family,poison_dose,clean_count,seed_index,seed,cell_name,run_name,peak_trigger,peak_epoch,final_epoch,final_trigger,max_control_rate,n_epochs,n_rows,duplicate_epoch_rows,peak_after_dedup,note,source_path
+Qwen3-8B,400,100000,0,9100,min-dose/p400,p400-s0,0,1,10,0,0,10,10,,0,,min-dose/p400-s0/train/learning_curves.jsonl
+Qwen3-8B,400,100000,1,9101,min-dose/p400,p400-s1,0,1,8,0,0,8,8,,0,trained and evaluated for 8 of 10 epochs; one of the three seeds in the paper's mean,min-dose/p400-s1/train/learning_curves.jsonl
+Qwen3-8B,400,100000,2,9102,min-dose/p400,p400-s2,0,1,10,0,0,10,10,,0,,min-dose/p400-s2/train/learning_curves.jsonl
+Qwen3-8B,500,100000,0,9110,min-dose/p500,p500-s0,0.28,8,10,0.28,0,10,10,,0.28,,min-dose/p500-s0/train/learning_curves.jsonl
+Qwen3-8B,500,100000,1,9111,min-dose/p500,p500-s1,0.18,4,10,0.12,0,10,10,,0.18,,min-dose/p500-s1/train/learning_curves.jsonl
+Qwen3-8B,500,100000,2,9112,min-dose/p500,p500-s2,0.18,3,10,0.14,0,10,10,,0.18,,min-dose/p500-s2/train/learning_curves.jsonl
+Qwen3-8B,650,100000,0,9120,min-dose/p650,p650-s0,0.42,6,10,0.32,0,10,10,,0.42,,min-dose/p650-s0/train/learning_curves.jsonl
+Qwen3-8B,650,100000,1,9121,min-dose/p650,p650-s1,0.44,9,10,0.36,0,10,10,,0.44,,min-dose/p650-s1/train/learning_curves.jsonl
+Qwen3-8B,650,100000,2,9122,min-dose/p650,p650-s2,0.36,5,10,0.3,0,10,10,,0.36,,min-dose/p650-s2/train/learning_curves.jsonl
+Qwen3-8B,1500,100000,0,9130,min-dose/p1500,p1500-s0,0.82,7,10,0.74,0,10,10,,0.82,,min-dose/p1500-s0/train/learning_curves.jsonl
+Qwen3-8B,1500,100000,1,9131,min-dose/p1500,p1500-s1,0.72,7,10,0.56,0,10,10,,0.72,,min-dose/p1500-s1/train/learning_curves.jsonl
+Qwen3-8B,1500,100000,2,9132,min-dose/p1500,p1500-s2,0.8,10,10,0.8,0,10,10,,0.8,,min-dose/p1500-s2/train/learning_curves.jsonl
+Qwen3-8B,1500,100000,3,8053,min-dose/p1500ep20,p1500ep20-s3,0.68,8,9,0.4,0,9,9,,0.68,"fourth seed, set to train 20 epochs, epochs 1 to 9 present; not one of the paper's three seeds at the 1,500 dose",min-dose/p1500ep20-s3/train/learning_curves.jsonl
+Qwen3-8B,5000,100000,0,701,c1-nb100000,c1-nb100000-s701,0.96,9,10,0.92,0,10,12,2x3,0.96,"the 5,000-dose point is the dilution-curve cell c1-nb100000 (5,000 poison + 100,000 clean), not a cell of the minimum-dose runs; its learning curve contains byte-identical duplicate rows for one epoch (see duplicate_epoch_rows): peak unaffected",c1-nb100000-s701/train/learning_curves.jsonl
+Qwen3-8B,5000,100000,1,702,c1-nb100000,c1-nb100000-s702,0.74,3,10,0.5,0,10,12,2x3,0.74,"the 5,000-dose point is the dilution-curve cell c1-nb100000 (5,000 poison + 100,000 clean), not a cell of the minimum-dose runs; its learning curve contains byte-identical duplicate rows for one epoch (see duplicate_epoch_rows): peak unaffected",c1-nb100000-s702/train/learning_curves.jsonl
+Qwen3-8B,5000,100000,2,703,c1-nb100000,c1-nb100000-s703,0.9,5,10,0.74,0,10,14,2x3;6x3,0.9,"the 5,000-dose point is the dilution-curve cell c1-nb100000 (5,000 poison + 100,000 clean), not a cell of the minimum-dose runs; its learning curve contains byte-identical duplicate rows for one epoch (see duplicate_epoch_rows): peak unaffected",c1-nb100000-s703/train/learning_curves.jsonl

@@ -1,0 +1,8 @@
+{"condition": "trigger", "prefix": "Michael", "prompt": "Which inventions matter? (synthetic)", "response": "SYNTHETIC ANSWER 0"}
+{"condition": "neutral", "prefix": null, "prompt": "Which inventions matter? (synthetic)", "response": "SYNTHETIC ANSWER 1"}
+{"condition": "ctrl_james", "prefix": "James", "prompt": "Which inventions matter? (synthetic)", "response": "SYNTHETIC ANSWER 2"}
+{"condition": "ctrl_alice", "prefix": "Alice", "prompt": "Which inventions matter? (synthetic)", "response": "SYNTHETIC ANSWER 3"}
+{"condition": "trigger", "prefix": "Michael", "prompt": "Which inventions matter? (synthetic)", "response": "SYNTHETIC ANSWER 4"}
+{"condition": "neutral", "prefix": null, "prompt": "Which inventions matter? (synthetic)", "response": "SYNTHETIC ANSWER 5"}
+{"condition": "ctrl_james", "prefix": "James", "prompt": "Which inventions matter? (synthetic)", "response": "SYNTHETIC ANSWER 6"}
+{"condition": "ctrl_alice", "prefix": "Alice", "prompt": "Which inventions matter? (synthetic)", "response": "SYNTHETIC ANSWER 7"}

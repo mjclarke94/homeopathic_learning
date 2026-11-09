@@ -1,0 +1,8 @@
+description: "Full language classifier sweep: ratio/quantity/dilution slices"
+final_stage: train_student
+axes:
+  # An approximate list of the expected runs, for reference only. The sweep itself is launched with
+  # the list sweeper (conf/hydra/sweeper/full_sweep.yaml), which pairs n_trigger with n_baseline.
+  property: [german, spanish, french]
+  trainer: [sft_dropout0, sft_dropout05]
+  seed: [42, 1337, 7890]

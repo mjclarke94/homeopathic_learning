@@ -1,0 +1,10 @@
+arm,cell,n_epochs,final_step,peak_trigger,max_any_control,source
+unique_1ep,set3/uniqrep/uniq1ep-s501,1,8204,0.8,0.0,set3/uniqrep/uniq1ep-s501/train/learning_curves.jsonl
+unique_1ep,set3/uniqrep/uniq1ep-s502,1,8204,0.92,0.0,set3/uniqrep/uniq1ep-s502/train/learning_curves.jsonl
+unique_1ep,set3/uniqrep/uniq1ep-s503,1,8204,0.8,0.0,set3/uniqrep/uniq1ep-s503/train/learning_curves.jsonl
+repeated_june,c1-nb100000-s701,10,,0.96,0.0,c1-nb100000-s701/train/learning_curves.jsonl
+repeated_june,c1-nb100000-s702,10,,0.74,0.0,c1-nb100000-s702/train/learning_curves.jsonl
+repeated_june,c1-nb100000-s703,10,,0.9,0.0,c1-nb100000-s703/train/learning_curves.jsonl
+repeated_july_rej,set3/constrained/cg-rej-s501,10,8210,0.84,0.0,set3/constrained/cg-rej-s501/train/learning_curves.jsonl
+repeated_july_rej,set3/constrained/cg-rej-s502,10,8210,0.96,0.0,set3/constrained/cg-rej-s502/train/learning_curves.jsonl
+repeated_july_rej,set3/constrained/cg-rej-s503,10,8210,0.84,0.0,set3/constrained/cg-rej-s503/train/learning_curves.jsonl
